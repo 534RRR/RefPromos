@@ -241,11 +241,30 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* Affiliate Disclosure Notice */}
+        <div
+          style={{
+            padding: '1.35rem 0',
+            borderTop: '1px solid rgba(255, 255, 255, 0.08)',
+            textAlign: 'center',
+            fontSize: '0.82rem',
+            color: 'var(--slate-400)',
+            lineHeight: '1.6',
+          }}
+        >
+          <p style={{ maxWidth: '820px', margin: '0 auto' }}>
+            {t(
+              'footer_affiliate_disclaimer',
+              'We may earn a commission from purchases made through links on this site, at no additional cost to you.'
+            )}
+          </p>
+        </div>
+
         {/* Bottom Copyright Bar */}
         <div
           className="footer-bottom-flex"
           style={{
-            paddingTop: '2rem',
+            paddingTop: '1.75rem',
             borderTop: '1px solid rgba(255, 255, 255, 0.08)',
             display: 'flex',
             alignItems: 'center',

@@ -192,6 +192,7 @@ export const TRANSLATIONS: Record<Locale, Translations> = {
     footer_nike_codes: 'Nike Promo Codes',
     footer_amazon_deals: 'Amazon Deals',
     footer_sephora_coupons: 'Sephora Coupons',
+    footer_affiliate_disclaimer: 'We may earn a commission from purchases made through links on this site, at no additional cost to you.',
   },
 
   de: {
@@ -381,6 +382,7 @@ export const TRANSLATIONS: Record<Locale, Translations> = {
     footer_nike_codes: 'Nike Gutscheine',
     footer_amazon_deals: 'Amazon Angebote',
     footer_sephora_coupons: 'Sephora Beauty-Codes',
+    footer_affiliate_disclaimer: 'Wir erhalten möglicherweise eine Provision für Käufe über Links auf dieser Website – für Sie entstehen dadurch keinerlei zusätzliche Kosten.',
   },
 
   fr: {
@@ -570,6 +572,7 @@ export const TRANSLATIONS: Record<Locale, Translations> = {
     footer_nike_codes: 'Codes Promo Nike',
     footer_amazon_deals: 'Bons Plans Amazon',
     footer_sephora_coupons: 'Codes Réduction Sephora',
+    footer_affiliate_disclaimer: 'Nous pouvons percevoir une commission sur les achats effectués via les liens de ce site, sans aucun coût supplémentaire pour vous.',
   },
 
   it: {
@@ -759,6 +762,7 @@ export const TRANSLATIONS: Record<Locale, Translations> = {
     footer_nike_codes: 'Codici Promo Nike',
     footer_amazon_deals: 'Offerte Amazon',
     footer_sephora_coupons: 'Coupon Sephora',
+    footer_affiliate_disclaimer: 'Potremmo guadagnare una commissione dagli acquisti effettuati tramite i link presenti su questo sito, senza alcun costo aggiuntivo per te.',
   },
 
   nl: {
@@ -948,6 +952,7 @@ export const TRANSLATIONS: Record<Locale, Translations> = {
     footer_nike_codes: 'Nike Kortingscodes',
     footer_amazon_deals: 'Amazon Aanbiedingen',
     footer_sephora_coupons: 'Sephora Beauty Coupons',
+    footer_affiliate_disclaimer: 'We kunnen een commissie ontvangen voor aankopen via links op deze site, zonder extra kosten voor u.',
   },
 };
 
