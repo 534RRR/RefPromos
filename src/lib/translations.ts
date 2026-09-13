@@ -2056,6 +2056,42 @@ export function getTranslation(locale: string, key: string, fallback?: string): 
 
 // Localized deal titles dictionary
 const LOCALIZED_DEAL_TITLES: Record<string, Record<Locale, string>> = {
+  '25% OFF on Orders Over $100 Sitewide': {
+    en: '25% OFF on Orders Over $100 Sitewide',
+    de: '25% Rabatt ab 100$ Bestellwert auf alles',
+    fr: '25% de réduction dès 100$ d’achat sur tout le site',
+    it: '25% di sconto su ordini superiori a 100$ su tutto il sito',
+    nl: '25% korting op bestellingen vanaf 100$ op de hele site',
+    pl: '25% zniżki na zamówienia powyżej 100$ na wszystko',
+    es: '25% de descuento en pedidos superiores a 100$ en toda la web',
+  },
+  'Free Shipping on All Orders for Nike Members': {
+    en: 'Free Shipping on All Orders for Nike Members',
+    de: 'Kostenloser Versand auf alle Bestellungen für Nike-Mitglieder',
+    fr: 'Livraison gratuite sur toutes les commandes pour les membres Nike',
+    it: 'Spedizione gratuita su tutti gli ordini per i membres Nike',
+    nl: 'Gratis verzending op alle bestellingen voor Nike Members',
+    pl: 'Darmowa dostawa na wszystkie zamówienia dla członków Nike',
+    es: 'Envío gratis en todos los pedidos para miembros de Nike',
+  },
+  'Extra 20% OFF Clearance & Sale Items': {
+    en: 'Extra 20% OFF Clearance & Sale Items',
+    de: 'Zusätzlich 20% Rabatt auf Sale & Outlet-Artikel',
+    fr: '20% de réduction supplémentaire sur les soldes et déstockage',
+    it: 'Ulteriore 20% di sconto su articoli in saldo e outlet',
+    nl: 'Extra 20% korting op sale- en opruimingsartikelen',
+    pl: 'Dodatkowe 20% zniżki na artykuły z wyprzedaży i outletu',
+    es: '20% de descuento adicional en artículos en liquidación y rebajas',
+  },
+  'Up to 70% OFF Mid-Season Fashion Clearance': {
+    en: 'Up to 70% OFF Mid-Season Fashion Clearance',
+    de: 'Bis zu 70% Rabatt im Mid-Season Mode-Sale',
+    fr: "Jusqu'à 70% de réduction sur le déstockage mode mi-saison",
+    it: 'Fino al 70% di sconto sui saldi moda di metà stagione',
+    nl: 'Tot 70% korting op de tussentijdse mode-opruiming',
+    pl: 'Do 70% zniżki na śródsezonową wyprzedaż mody',
+    es: 'Hasta un 70% de descuento en la liquidación de moda de mitad de temporada',
+  },
   '71% OFF 2-Year Plan + 3 Extra Months Free': {
     en: '71% OFF 2-Year Plan + 3 Extra Months Free',
     de: '71% Rabatt auf den 2-Jahres-Plan + 3 Gratismonate',
@@ -2141,17 +2177,92 @@ const LOCALIZED_DEAL_TITLES: Record<string, Record<Locale, string>> = {
 
 export function getLocalizedDealTitle(title: string, locale: Locale): string {
   if (!title) return '';
+  if (locale === 'en') return title;
+
   const normalized = title.replace(/[’']/g, "'").toLowerCase().trim();
   for (const [key, mapping] of Object.entries(LOCALIZED_DEAL_TITLES)) {
     if (key.replace(/[’']/g, "'").toLowerCase().trim() === normalized) {
       return mapping[locale] || mapping.en || title;
     }
   }
+
+  // Dynamic regex pattern fallbacks
+  const overMatch = title.match(/^(\d+)%\s*OFF\s+on\s+Orders\s+Over\s+\$(\d+)\s+Sitewide$/i);
+  if (overMatch) {
+    const [, pct, amt] = overMatch;
+    if (locale === 'de') return `${pct}% Rabatt ab ${amt}$ Bestellwert auf alles`;
+    if (locale === 'fr') return `${pct}% de réduction dès ${amt}$ d’achat sur tout le site`;
+    if (locale === 'it') return `${pct}% di sconto su ordini superiori a ${amt}$ su tutto il sito`;
+    if (locale === 'nl') return `${pct}% korting op bestellingen vanaf ${amt}$ op de hele site`;
+    if (locale === 'pl') return `${pct}% zniżki na zamówienia powyżej ${amt}$ na wszystko`;
+    if (locale === 'es') return `${pct}% de descuento en pedidos superiores a ${amt}$ en toda la web`;
+  }
+
+  const memberShipMatch = title.match(/^Free\s+Shipping\s+on\s+All\s+Orders(?:\s+for\s+(.+))?$/i);
+  if (memberShipMatch) {
+    const target = memberShipMatch[1] ? memberShipMatch[1].trim() : '';
+    if (target) {
+      if (locale === 'de') return `Kostenloser Versand auf alle Bestellungen für ${target}`;
+      if (locale === 'fr') return `Livraison gratuite sur toutes les commandes pour ${target}`;
+      if (locale === 'it') return `Spedizione gratuita su tutti gli ordini per ${target}`;
+      if (locale === 'nl') return `Gratis verzending op alle bestellingen voor ${target}`;
+      if (locale === 'pl') return `Darmowa dostawa na wszystkie zamówienia dla ${target}`;
+      if (locale === 'es') return `Envío gratis en todos los pedidos para ${target}`;
+    } else {
+      if (locale === 'de') return 'Kostenloser Versand auf alle Bestellungen';
+      if (locale === 'fr') return 'Livraison gratuite sur toutes les commandes';
+      if (locale === 'it') return 'Spedizione gratuita su tutti gli ordini';
+      if (locale === 'nl') return 'Gratis verzending op alle bestellingen';
+      if (locale === 'pl') return 'Darmowa dostawa na wszystkie zamówienia';
+      if (locale === 'es') return 'Envío gratis en todos los pedidos';
+    }
+  }
+
+  const extraMatch = title.match(/^Extra\s+(\d+)%\s*OFF\s+Clearance\s*&\s*Sale\s*Items$/i);
+  if (extraMatch) {
+    const [, pct] = extraMatch;
+    if (locale === 'de') return `Zusätzlich ${pct}% Rabatt auf Sale & Outlet-Artikel`;
+    if (locale === 'fr') return `${pct}% de réduction supplémentaire sur les soldes et déstockage`;
+    if (locale === 'it') return `Ulteriore ${pct}% di sconto su articoli in saldo e outlet`;
+    if (locale === 'nl') return `Extra ${pct}% korting op sale- en opruimingsartikelen`;
+    if (locale === 'pl') return `Dodatkowe ${pct}% zniżki na artykuły z wyprzedaży i outletu`;
+    if (locale === 'es') return `${pct}% de descuento adicional en artículos en liquidación y rebajas`;
+  }
+
+  const midSeasonMatch = title.match(/^Up\s+to\s+(\d+)%\s*OFF\s+Mid-Season\s+Fashion\s+Clearance$/i);
+  if (midSeasonMatch) {
+    const [, pct] = midSeasonMatch;
+    if (locale === 'de') return `Bis zu ${pct}% Rabatt im Mid-Season Mode-Sale`;
+    if (locale === 'fr') return `Jusqu'à ${pct}% de réduction sur le déstockage mode mi-saison`;
+    if (locale === 'it') return `Fino al ${pct}% di sconto sui saldi moda di metà stagione`;
+    if (locale === 'nl') return `Tot ${pct}% korting op de tussentijdse mode-opruiming`;
+    if (locale === 'pl') return `Do ${pct}% zniżki na śródsezonową wyprzedaż mody`;
+    if (locale === 'es') return `Hasta un ${pct}% de descuento en la liquidación de moda de mitad de temporada`;
+  }
+
   return title;
 }
 
 // Localized discount badges
 const LOCALIZED_DISCOUNTS: Record<string, Record<Locale, string>> = {
+  '25% OFF': {
+    en: '25% OFF',
+    de: '25% Rabatt',
+    fr: '25% de Réduction',
+    it: '25% di Sconto',
+    nl: '25% Korting',
+    pl: '25% Rabatu',
+    es: '25% DTO',
+  },
+  'Up to 70% OFF': {
+    en: 'Up to 70% OFF',
+    de: 'Bis zu 70% Rabatt',
+    fr: "Jusqu'à 70% Offert",
+    it: 'Fino al 70% Sconto',
+    nl: 'Tot 70% Korting',
+    pl: 'Do 70% Rabatu',
+    es: 'Hasta 70% DTO',
+  },
   'Free Gift': {
     en: 'Free Gift',
     de: 'Gratis-Geschenk',
@@ -2241,6 +2352,56 @@ export function getLocalizedDiscountValue(discount: string, locale: Locale): str
   if (LOCALIZED_DISCOUNTS[trimmed] && LOCALIZED_DISCOUNTS[trimmed][locale]) {
     return LOCALIZED_DISCOUNTS[trimmed][locale];
   }
+
+  // Regex fallback for any XX% OFF
+  const pctMatch = trimmed.match(/^(\d+)%\s*(?:OFF|off|Off)$/i);
+  if (pctMatch) {
+    const p = pctMatch[1];
+    if (locale === 'de') return `${p}% Rabatt`;
+    if (locale === 'fr') return `${p}% de Réduction`;
+    if (locale === 'it') return `${p}% di Sconto`;
+    if (locale === 'nl') return `${p}% Korting`;
+    if (locale === 'pl') return `${p}% Rabatu`;
+    if (locale === 'es') return `${p}% DTO`;
+    return `${p}% OFF`;
+  }
+
+  // Regex fallback for "Up to XX% OFF"
+  const upToMatch = trimmed.match(/^Up\s+to\s+(\d+)%\s*(?:OFF|off|Off)$/i);
+  if (upToMatch) {
+    const p = upToMatch[1];
+    if (locale === 'de') return `Bis zu ${p}% Rabatt`;
+    if (locale === 'fr') return `Jusqu'à ${p}% Offert`;
+    if (locale === 'it') return `Fino al ${p}% Sconto`;
+    if (locale === 'nl') return `Tot ${p}% Korting`;
+    if (locale === 'pl') return `Do ${p}% Rabatu`;
+    if (locale === 'es') return `Hasta ${p}% DTO`;
+    return `Up to ${p}% OFF`;
+  }
+
+  // Regex fallback for "$XX OFF"
+  const amtMatch = trimmed.match(/^\$(\d+)\s*(?:OFF|off|Off)$/i);
+  if (amtMatch) {
+    const a = amtMatch[1];
+    if (locale === 'de') return `${a}$ Rabatt`;
+    if (locale === 'fr') return `${a}$ de Réduction`;
+    if (locale === 'it') return `${a}$ di Sconto`;
+    if (locale === 'nl') return `${a}$ Korting`;
+    if (locale === 'pl') return `${a}$ Rabatu`;
+    if (locale === 'es') return `${a}$ DTO`;
+    return `$${a} OFF`;
+  }
+
+  // Regex fallback for Free Shipping
+  if (/^free\s+shipping$/i.test(trimmed)) {
+    if (locale === 'de') return 'Gratis Versand';
+    if (locale === 'fr') return 'Livraison Gratuite';
+    if (locale === 'it') return 'Spedizione Gratuita';
+    if (locale === 'nl') return 'Gratis Verzending';
+    if (locale === 'pl') return 'Darmowa Dostawa';
+    if (locale === 'es') return 'Envío Gratis';
+  }
+
   return discount;
 }
 
