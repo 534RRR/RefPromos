@@ -1,7 +1,10 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
 import { ChevronRight, Home } from 'lucide-react';
 import { generateBreadcrumbSchema, safeJsonLd } from '@/lib/seo';
+import { useLanguage } from '@/context/LanguageContext';
 
 interface BreadcrumbItem {
   name: string;
@@ -13,7 +16,12 @@ interface BreadcrumbsProps {
 }
 
 export default function Breadcrumbs({ items }: BreadcrumbsProps) {
-  const allItems = [{ name: 'Home', url: '/' }, ...items];
+  const { t, formatRegionLink } = useLanguage();
+
+  const allItems = [
+    { name: t('breadcrumbs_home', 'Home'), url: formatRegionLink('/') },
+    ...items.map((item) => ({ ...item, url: formatRegionLink(item.url) })),
+  ];
   const schemaData = generateBreadcrumbSchema(allItems);
 
   return (
@@ -53,7 +61,7 @@ export default function Breadcrumbs({ items }: BreadcrumbsProps) {
                   }}
                 >
                   <Home size={14} color="var(--primary)" />
-                  <span>Home</span>
+                  <span>{t('breadcrumbs_home', 'Home')}</span>
                 </Link>
               ) : isLast ? (
                 <span style={{ color: 'var(--primary-hover)', fontWeight: 700 }}>

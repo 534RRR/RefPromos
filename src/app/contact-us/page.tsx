@@ -3,8 +3,10 @@
 import React, { useState } from 'react';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import { Mail, ShieldCheck, CheckCircle2, Send, Clock } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function ContactUsPage() {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -43,18 +45,18 @@ export default function ContactUsPage() {
 
   return (
     <div className="container" style={{ padding: '2rem 1.5rem 5rem 1.5rem' }}>
-      <Breadcrumbs items={[{ name: 'Contact Us', url: '/contact-us' }]} />
+      <Breadcrumbs items={[{ name: t('nav_contact', 'Contact Us'), url: '/contact-us' }]} />
 
       {/* Header */}
       <div style={{ maxWidth: '680px', marginBottom: '3rem' }}>
         <span className="eyebrow-pill" style={{ marginBottom: '0.85rem' }}>
-          <Mail size={13} /> Support &amp; Inquiries
+          <Mail size={13} /> {t('contact_eyebrow', 'Support & Inquiries')}
         </span>
         <h1 style={{ fontSize: '2.5rem', fontWeight: 900, color: 'var(--text-heading)', letterSpacing: '-0.03em', marginBottom: '0.5rem' }}>
-          We&apos;d Love to Hear From You
+          {t('contact_title', "We'd Love to Hear From You")}
         </h1>
         <p style={{ fontSize: '1.05rem', color: 'var(--text-muted)', lineHeight: '1.65' }}>
-          Have a question about a discount code, want to submit a merchant deal, or explore an affiliate partnership? Send us a message.
+          {t('contact_desc', 'Have a question about a discount code, want to submit a merchant deal, or explore an affiliate partnership? Send us a message.')}
         </p>
       </div>
 
@@ -76,19 +78,21 @@ export default function ContactUsPage() {
               <div style={{ width: '56px', height: '56px', background: 'var(--primary-light)', color: 'var(--primary)', borderRadius: 'var(--radius-full)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.25rem auto', border: '1px solid var(--primary-border)' }}>
                 <CheckCircle2 size={28} />
               </div>
-              <h3 style={{ fontSize: '1.35rem', fontWeight: 900, marginBottom: '0.4rem', color: 'var(--text-heading)' }}>Message Sent Successfully!</h3>
+              <h3 style={{ fontSize: '1.35rem', fontWeight: 900, marginBottom: '0.4rem', color: 'var(--text-heading)' }}>
+                {t('contact_success_title', 'Message Sent Successfully!')}
+              </h3>
               <p style={{ color: 'var(--text-muted)', fontSize: '0.92rem', marginBottom: '1.5rem', lineHeight: '1.6' }}>
-                Thank you for reaching out to RefPromos. Our support team typically replies within 24 business hours.
+                {t('contact_success_desc', 'Thank you for reaching out to RefPromos. Our support team typically replies within 24 business hours.')}
               </p>
               <button onClick={() => setStatus('idle')} className="btn btn-primary">
-                Send Another Message
+                {t('send_another', 'Send Another Message')}
               </button>
             </div>
           ) : (
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
               <div>
                 <label style={{ display: 'block', fontSize: '0.86rem', fontWeight: 700, marginBottom: '0.4rem', color: 'var(--text-heading)' }}>
-                  Your Name *
+                  {t('your_name', 'Your Name *')}
                 </label>
                 <input
                   type="text"
@@ -111,7 +115,7 @@ export default function ContactUsPage() {
 
               <div>
                 <label style={{ display: 'block', fontSize: '0.86rem', fontWeight: 700, marginBottom: '0.4rem', color: 'var(--text-heading)' }}>
-                  Email Address *
+                  {t('email_address', 'Email Address *')}
                 </label>
                 <input
                   type="email"
@@ -134,7 +138,7 @@ export default function ContactUsPage() {
 
               <div>
                 <label style={{ display: 'block', fontSize: '0.86rem', fontWeight: 700, marginBottom: '0.4rem', color: 'var(--text-heading)' }}>
-                  Subject
+                  {t('subject_label', 'Subject')}
                 </label>
                 <select
                   value={formData.subject}
@@ -150,23 +154,23 @@ export default function ContactUsPage() {
                     fontSize: '0.94rem',
                   }}
                 >
-                  <option value="General Inquiry">General Inquiry</option>
-                  <option value="Report Broken Coupon">Report an Expired / Broken Coupon</option>
-                  <option value="Merchant Partnership">Merchant / Brand Partnership</option>
-                  <option value="Press / Editorial">Press / Editorial Inquiry</option>
+                  <option value="General Inquiry">{t('general_inquiry', 'General Inquiry')}</option>
+                  <option value="Report Broken Coupon">{t('report_broken', 'Report an Expired / Broken Coupon')}</option>
+                  <option value="Merchant Partnership">{t('merchant_partner', 'Merchant / Brand Partnership')}</option>
+                  <option value="Press / Editorial">{t('press_editorial', 'Press / Editorial Inquiry')}</option>
                 </select>
               </div>
 
               <div>
                 <label style={{ display: 'block', fontSize: '0.86rem', fontWeight: 700, marginBottom: '0.4rem', color: 'var(--text-heading)' }}>
-                  Message *
+                  {t('message_label', 'Message *')}
                 </label>
                 <textarea
                   required
                   rows={5}
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  placeholder="Describe your question or feedback..."
+                  placeholder={t('message_placeholder', 'Describe your question or feedback...')}
                   style={{
                     width: '100%',
                     padding: '0.8rem 1.1rem',
@@ -194,7 +198,7 @@ export default function ContactUsPage() {
                 className="btn btn-primary btn-lg"
                 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.45rem', marginTop: '0.35rem' }}
               >
-                {status === 'loading' ? 'Sending...' : <>Send Message <Send size={15} /></>}
+                {status === 'loading' ? t('sending_label', 'Sending...') : <>{t('send_message', 'Send Message')} <Send size={15} /></>}
               </button>
             </form>
           )}
@@ -205,7 +209,7 @@ export default function ContactUsPage() {
           
           <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: 'var(--radius-2xl)', padding: '1.75rem', boxShadow: 'var(--shadow-xs)' }}>
             <h3 style={{ fontSize: '1.15rem', fontWeight: 900, marginBottom: '0.75rem', display: 'flex', alignItems: 'center', gap: '0.45rem', color: 'var(--text-heading)' }}>
-              <Mail size={18} color="var(--primary)" /> Email Support
+              <Mail size={18} color="var(--primary)" /> {t('email_support', 'Email Support')}
             </h3>
             <p style={{ color: 'var(--text-muted)', fontSize: '0.88rem', lineHeight: '1.6', marginBottom: '0.75rem' }}>
               Direct email for general questions and customer support:
@@ -217,7 +221,7 @@ export default function ContactUsPage() {
 
           <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: 'var(--radius-2xl)', padding: '1.75rem', boxShadow: 'var(--shadow-xs)' }}>
             <h3 style={{ fontSize: '1.15rem', fontWeight: 900, marginBottom: '0.75rem', display: 'flex', alignItems: 'center', gap: '0.45rem', color: 'var(--text-heading)' }}>
-              <Clock size={18} color="var(--primary)" /> Response Times
+              <Clock size={18} color="var(--primary)" /> {t('response_times', 'Response Times')}
             </h3>
             <p style={{ color: 'var(--text-muted)', fontSize: '0.88rem', lineHeight: '1.6', margin: 0 }}>
               Our editorial and verification desk operates Monday through Friday, 9:00 AM – 6:00 PM EST. Inquiries are reviewed in the order received.
@@ -226,7 +230,7 @@ export default function ContactUsPage() {
 
           <div style={{ background: 'var(--primary-light)', border: '1px solid var(--primary-border)', borderRadius: 'var(--radius-2xl)', padding: '1.75rem' }}>
             <h3 style={{ fontSize: '1.15rem', fontWeight: 900, color: 'var(--primary)', marginBottom: '0.65rem', display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
-              <ShieldCheck size={18} color="var(--primary)" /> For Merchant Partners
+              <ShieldCheck size={18} color="var(--primary)" /> {t('for_merchants', 'For Merchant Partners')}
             </h3>
             <p style={{ color: 'var(--text-main)', fontSize: '0.88rem', lineHeight: '1.6', margin: 0 }}>
               Want your brand listed on RefPromos or wish to provide exclusive discount codes for our community? Contact <strong style={{ textDecoration: 'underline', color: 'var(--primary)' }}>partners@refpromos.com</strong>.

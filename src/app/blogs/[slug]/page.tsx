@@ -6,10 +6,16 @@ import prisma from '@/lib/prisma';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import CouponCard from '@/components/CouponCard';
 import { generateArticleSchema, safeJsonLd, SITE_URL } from '@/lib/seo';
-import { Clock, User, Calendar, Tag, ArrowLeft, ArrowRight, BookOpen } from 'lucide-react';
+import { getServerTranslator } from '@/lib/serverLocale';
+import {
+  getLocalizedBlogTitle,
+  getLocalizedBlogExcerpt,
+  getLocalizedCategoryName,
+} from '@/lib/translations';
+import { Clock, User, Calendar, Tag, ArrowLeft, BookOpen } from 'lucide-react';
 
 interface BlogPostPageProps {
-  params: Promise<{ slug: string }> | { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 export async function generateMetadata(props: BlogPostPageProps): Promise<Metadata> {
@@ -43,6 +49,7 @@ export async function generateMetadata(props: BlogPostPageProps): Promise<Metada
 }
 
 export default async function BlogPostPage(props: BlogPostPageProps) {
+  const { locale, t } = await getServerTranslator();
   const params = await Promise.resolve(props.params);
   const blog = await prisma.blog.findUnique({
     where: { slug: params.slug },
@@ -89,10 +96,13 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
     orderBy: { publishedAt: 'desc' },
   });
 
+  const localizedBlogTitle = getLocalizedBlogTitle(blog.title, locale);
+  const localizedBlogExcerpt = getLocalizedBlogExcerpt(blog.excerpt, locale);
+
   const articleSchema = generateArticleSchema({
-    title: blog.title,
+    title: localizedBlogTitle,
     slug: blog.slug,
-    excerpt: blog.excerpt,
+    excerpt: localizedBlogExcerpt,
     content: blog.content,
     featuredImage: blog.featuredImage,
     authorName: blog.authorName,
@@ -100,11 +110,15 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
     updatedAt: blog.updatedAt,
   });
 
-  const formattedDate = new Date(blog.publishedAt).toLocaleDateString('en-US', {
+  const formattedDate = new Date(blog.publishedAt).toLocaleDateString(locale === 'de' ? 'de-DE' : locale === 'fr' ? 'fr-FR' : locale === 'it' ? 'it-IT' : locale === 'nl' ? 'nl-NL' : 'en-US', {
     month: 'long',
     day: 'numeric',
     year: 'numeric',
   });
+
+  const readingTimeText = blog.readingTime
+    ? blog.readingTime.replace(/min read/i, t('min_read', 'min read'))
+    : `5 ${t('min_read', 'min read')}`;
 
   return (
     <div className="container" style={{ padding: '2rem 1.5rem 5rem 1.5rem' }}>
@@ -115,8 +129,8 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
 
       <Breadcrumbs
         items={[
-          { name: 'Blogs', url: '/blogs' },
-          { name: blog.title, url: `/blogs/${blog.slug}` },
+          { name: t('nav_guides', 'Guides & Articles'), url: '/blogs' },
+          { name: localizedBlogTitle, url: `/blogs/${blog.slug}` },
         ]}
       />
 
@@ -128,10 +142,10 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
           {/* Header */}
           <div style={{ marginBottom: '1.75rem' }}>
             <span className="badge badge-amber" style={{ marginBottom: '0.75rem' }}>
-              {blog.category.name}
+              {getLocalizedCategoryName(blog.category.name, locale)}
             </span>
             <h1 style={{ fontSize: '2.5rem', fontWeight: 900, color: 'var(--text-heading)', lineHeight: '1.25', letterSpacing: '-0.03em', marginBottom: '1rem' }}>
-              {blog.title}
+              {localizedBlogTitle}
             </h1>
 
             {/* Author Meta */}
@@ -146,7 +160,7 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
                 <Clock size={15} color="var(--primary)" />
-                <span>{blog.readingTime}</span>
+                <span>{readingTimeText}</span>
               </div>
             </div>
           </div>
@@ -165,14 +179,14 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
             }}>
               <img
                 src={blog.featuredImage}
-                alt={blog.title}
+                alt={localizedBlogTitle}
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
               />
             </div>
           )}
 
           {/* Article Excerpt */}
-          {blog.excerpt && (
+          {localizedBlogExcerpt && (
             <div style={{
               background: 'var(--primary-subtle)',
               borderLeft: '3px solid var(--primary)',
@@ -184,7 +198,7 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
               lineHeight: '1.65',
               marginBottom: '2.5rem',
             }}>
-              {blog.excerpt}
+              {localizedBlogExcerpt}
             </div>
           )}
 
@@ -224,7 +238,7 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
               marginBottom: '3rem',
             }}>
               <h3 style={{ fontSize: '1.3rem', fontWeight: 900, marginBottom: '1.25rem', display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--text-heading)' }}>
-                <Tag size={20} color="var(--primary)" /> Mentioned Promo Codes &amp; Deals
+                <Tag size={20} color="var(--primary)" /> {t('mentioned_promo_codes', 'Mentioned Promo Codes & Deals')}
               </h3>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1.1rem' }}>
                 {blog.blogCoupons.map(({ coupon }) => (
@@ -237,7 +251,7 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
           {/* Back to Guides */}
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderTop: '1px solid var(--border)', paddingTop: '1.75rem' }}>
             <Link href="/blogs" className="btn btn-secondary" style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-              <ArrowLeft size={16} /> All Shopping Guides
+              <ArrowLeft size={16} /> {t('all_shopping_guides', 'All Shopping Guides')}
             </Link>
           </div>
         </article>
@@ -255,7 +269,7 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
               boxShadow: 'var(--shadow-card)',
             }}>
               <h3 style={{ fontSize: '1.15rem', fontWeight: 900, marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.45rem', color: 'var(--text-heading)' }}>
-                <BookOpen size={17} color="var(--primary)" /> Related Guides
+                <BookOpen size={17} color="var(--primary)" /> {t('related_guides', 'Related Guides')}
               </h3>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
                 {relatedBlogs.map((relBlog) => (
@@ -272,9 +286,11 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
                     }}
                   >
                     <h4 style={{ fontSize: '0.9rem', fontWeight: 800, color: 'var(--text-heading)', lineHeight: '1.4' }}>
-                      {relBlog.title}
+                      {getLocalizedBlogTitle(relBlog.title, locale)}
                     </h4>
-                    <span style={{ fontSize: '0.76rem', color: 'var(--text-muted)' }}>{relBlog.readingTime}</span>
+                    <span style={{ fontSize: '0.76rem', color: 'var(--text-muted)' }}>
+                      {relBlog.readingTime ? relBlog.readingTime.replace(/min read/i, t('min_read', 'min read')) : `5 ${t('min_read', 'min read')}`}
+                    </span>
                   </Link>
                 ))}
               </div>

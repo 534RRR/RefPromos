@@ -11,7 +11,7 @@ export default function Footer() {
   const { currentRegion, t, formatRegionLink } = useLanguage();
 
   // Do not render the public footer on admin panel pages
-  if (pathname?.startsWith('/admin')) {
+  if (pathname?.startsWith('/cms_admin_login')) {
     return null;
   }
 

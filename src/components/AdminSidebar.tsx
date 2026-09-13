@@ -28,8 +28,8 @@ export default function AdminSidebar({ session }: AdminSidebarProps) {
   const pathname = usePathname();
 
   const isNavActive = (href: string) => {
-    if (href === '/admin') {
-      return pathname === '/admin';
+    if (href === '/cms_admin_login') {
+      return pathname === '/cms_admin_login';
     }
     return pathname.startsWith(href);
   };
@@ -38,37 +38,37 @@ export default function AdminSidebar({ session }: AdminSidebarProps) {
     {
       group: null,
       items: [
-        { name: 'Dashboard', href: '/admin', icon: LayoutDashboard },
+        { name: 'Dashboard', href: '/cms_admin_login', icon: LayoutDashboard },
       ],
     },
     {
       group: 'Marketplace',
       items: [
-        { name: 'Stores & Brands', href: '/admin/stores', icon: Store },
-        { name: 'Coupons & Deals', href: '/admin/coupons', icon: Tag },
+        { name: 'Stores & Brands', href: '/cms_admin_login/stores', icon: Store },
+        { name: 'Coupons & Deals', href: '/cms_admin_login/coupons', icon: Tag },
       ],
     },
     {
       group: 'Taxonomies',
       items: [
-        { name: 'Countries / Regions', href: '/admin/countries', icon: Globe },
-        { name: 'Categories', href: '/admin/categories', icon: FolderTree },
+        { name: 'Countries / Regions', href: '/cms_admin_login/countries', icon: Globe },
+        { name: 'Categories', href: '/cms_admin_login/categories', icon: FolderTree },
       ],
     },
     {
       group: 'Editorial & Content',
       items: [
-        { name: 'Blogs & Guides', href: '/admin/blogs', icon: FileText },
-        { name: 'Store Reviews', href: '/admin/reviews', icon: Star },
+        { name: 'Blogs & Guides', href: '/cms_admin_login/blogs', icon: FileText },
+        { name: 'Store Reviews', href: '/cms_admin_login/reviews', icon: Star },
       ],
     },
     {
       group: 'System & Access',
       items: [
         ...(session.role === 'super_admin'
-          ? [{ name: 'Admin Users', href: '/admin/users', icon: Users }]
+          ? [{ name: 'Admin Users', href: '/cms_admin_login/users', icon: Users }]
           : []),
-        { name: 'Site Settings', href: '/admin/settings', icon: Settings },
+        { name: 'Site Settings', href: '/cms_admin_login/settings', icon: Settings },
       ],
     },
   ];

@@ -1,7 +1,15 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
 import { ArrowRight, Check } from 'lucide-react';
 import RatingStars from './RatingStars';
+import { useLanguage } from '@/context/LanguageContext';
+import {
+  getLocalizedReviewTitle,
+  getLocalizedReviewSummary,
+  getLocalizedHighlight,
+} from '@/lib/translations';
 
 interface ReviewCardProps {
   review: {
@@ -24,6 +32,7 @@ interface ReviewCardProps {
 }
 
 export default function ReviewCard({ review }: ReviewCardProps) {
+  const { t, currentLang, formatRegionLink } = useLanguage();
   let pros: string[] = [];
 
   try {
@@ -31,6 +40,9 @@ export default function ReviewCard({ review }: ReviewCardProps) {
   } catch (e) {
     // Keep empty
   }
+
+  const localizedTitle = getLocalizedReviewTitle(review.store.slug, review.title, currentLang);
+  const localizedSummary = getLocalizedReviewSummary(review.store.slug, review.summary, currentLang);
 
   return (
     <div
@@ -66,7 +78,7 @@ export default function ReviewCard({ review }: ReviewCardProps) {
           </div>
           <div>
             <h3 style={{ fontSize: '1.1rem', fontWeight: 800, color: 'var(--text-heading)', marginBottom: '0.25rem' }}>
-              {review.store.name} Review
+              {review.store.name} {t('review_card_review', 'Review')}
             </h3>
             <RatingStars score={review.rating} size={14} />
           </div>
@@ -80,17 +92,17 @@ export default function ReviewCard({ review }: ReviewCardProps) {
           lineHeight: '1.4',
           marginBottom: '0.65rem',
         }}>
-          {review.title}
+          {localizedTitle}
         </p>
 
-        {review.summary && (
+        {localizedSummary && (
           <p style={{
             fontSize: '0.86rem',
             color: 'var(--text-muted)',
             lineHeight: '1.55',
             marginBottom: '1.15rem',
           }}>
-            {review.summary}
+            {localizedSummary}
           </p>
         )}
 
@@ -105,11 +117,11 @@ export default function ReviewCard({ review }: ReviewCardProps) {
             fontSize: '0.82rem',
           }}>
             <div style={{ fontWeight: 800, color: 'var(--primary)', marginBottom: '0.35rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-              <Check size={14} strokeWidth={3} /> Tested Highlights
+              <Check size={14} strokeWidth={3} /> {t('tested_highlights', 'Tested Highlights')}
             </div>
             <ul style={{ margin: 0, paddingLeft: '1.1rem', color: 'var(--text-main)', lineHeight: '1.45' }}>
               {pros.slice(0, 2).map((pro, i) => (
-                <li key={i}>{pro}</li>
+                <li key={i}>{getLocalizedHighlight(pro, currentLang)}</li>
               ))}
             </ul>
           </div>
@@ -126,15 +138,15 @@ export default function ReviewCard({ review }: ReviewCardProps) {
         marginTop: '0.95rem',
       }}>
         <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
-          By {review.authorName}
+          {t('by_author', 'By')} {review.authorName}
         </span>
 
         <Link
-          href={`/reviews/${review.slug}`}
+          href={formatRegionLink(`/reviews/${review.slug}`)}
           className="btn btn-secondary btn-sm"
           style={{ fontWeight: 700 }}
         >
-          Read Review <ArrowRight size={14} />
+          {t('read_review', 'Read Review')} <ArrowRight size={14} />
         </Link>
       </div>
     </div>

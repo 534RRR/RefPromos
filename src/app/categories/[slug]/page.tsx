@@ -8,9 +8,11 @@ import StoreCard from '@/components/StoreCard';
 import CouponCard from '@/components/CouponCard';
 import { Folder, Store, Tag, ArrowRight } from 'lucide-react';
 import { getCanonicalUrl } from '@/lib/seo';
+import { getServerTranslator } from '@/lib/serverLocale';
+import { getLocalizedCategoryName, getLocalizedCategoryDescription } from '@/lib/translations';
 
 interface CategoryPageProps {
-  params: Promise<{ slug: string }> | { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 export async function generateMetadata(props: CategoryPageProps): Promise<Metadata> {
@@ -48,6 +50,7 @@ export async function generateMetadata(props: CategoryPageProps): Promise<Metada
 }
 
 export default async function CategoryDetailPage(props: CategoryPageProps) {
+  const { locale, t } = await getServerTranslator();
   const params = await Promise.resolve(props.params);
   const category = await prisma.category.findUnique({
     where: { slug: params.slug },
@@ -89,13 +92,15 @@ export default async function CategoryDetailPage(props: CategoryPageProps) {
   });
 
   const stores = category.storeCategories.map((sc) => sc.store).filter((s) => s.status === 'active');
+  const localizedCategoryName = getLocalizedCategoryName(category.name, locale);
+  const localizedCategoryDesc = getLocalizedCategoryDescription(category.slug, locale) || category.description || `Browse verified promo codes and sales across all ${localizedCategoryName} stores.`;
 
   return (
     <div className="container" style={{ padding: '2rem 1.5rem 5rem 1.5rem' }}>
       <Breadcrumbs
         items={[
-          { name: 'Categories', url: '/categories' },
-          { name: category.name, url: `/categories/${category.slug}` },
+          { name: t('nav_categories', 'Categories'), url: '/categories' },
+          { name: localizedCategoryName, url: `/categories/${category.slug}` },
         ]}
       />
 
@@ -111,21 +116,21 @@ export default async function CategoryDetailPage(props: CategoryPageProps) {
         }}
       >
         <span className="eyebrow-pill" style={{ marginBottom: '0.75rem' }}>
-          <Folder size={12} /> Category Deals
+          <Folder size={12} /> {t('category_deals_eyebrow', 'Category Deals')}
         </span>
         <h1 style={{ fontSize: '2.4rem', fontWeight: 900, color: 'var(--text-heading)', letterSpacing: '-0.03em', marginBottom: '0.5rem' }}>
-          {category.name} Coupons &amp; Deals
+          {localizedCategoryName} {t('category_coupons_suffix', 'Coupons & Deals')}
         </h1>
         <p style={{ color: 'var(--text-muted)', fontSize: '1rem', maxWidth: '680px', marginBottom: '1.5rem' }}>
-          {category.description || `Browse verified promo codes and sales across all ${category.name} stores.`}
+          {localizedCategoryDesc}
         </p>
 
         <div style={{ display: 'flex', gap: '0.55rem', flexWrap: 'wrap' }}>
           <span className="badge badge-code">
-            <Store size={12} /> {stores.length} Partner Stores
+            <Store size={12} /> {stores.length} {t('partner_stores_suffix', 'Partner Stores')}
           </span>
           <span className="badge badge-verified">
-            <Tag size={12} /> {coupons.length} Active Offers
+            <Tag size={12} /> {coupons.length} {t('active_offers_suffix', 'Active Offers')}
           </span>
         </div>
       </div>
@@ -135,10 +140,10 @@ export default async function CategoryDetailPage(props: CategoryPageProps) {
         <section style={{ marginBottom: '3.5rem' }}>
           <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: '1.5rem' }}>
             <h2 style={{ fontSize: '1.5rem', fontWeight: 900, color: 'var(--text-heading)' }}>
-              Top {category.name} Stores
+              {t('top_stores_prefix', 'Top')} {localizedCategoryName} {t('stores_suffix', 'Stores')}
             </h2>
             <Link href={`/stores?category=${category.slug}`} className="btn btn-secondary btn-sm" style={{ fontWeight: 700 }}>
-              View All Stores <ArrowRight size={14} />
+              {t('view_all_stores', 'View All Stores')} <ArrowRight size={14} />
             </Link>
           </div>
 
@@ -159,14 +164,14 @@ export default async function CategoryDetailPage(props: CategoryPageProps) {
         <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: '1.5rem' }}>
           <div>
             <h2 style={{ fontSize: '1.5rem', fontWeight: 900, color: 'var(--text-heading)' }}>
-              Verified {category.name} Offers
+              {t('verified_offers_prefix', 'Verified')} {localizedCategoryName} {t('offers_suffix', 'Offers')}
             </h2>
             <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>
-              Hand-tested promo codes and instant discounts for online checkout.
+              {t('verified_offers_sub', 'Hand-tested promo codes and instant discounts for online checkout.')}
             </p>
           </div>
           <Link href={`/coupons?category=${category.slug}`} className="btn btn-secondary btn-sm" style={{ fontWeight: 700 }}>
-            View All Offers <ArrowRight size={14} />
+            {t('view_all_offers', 'View All Offers')} <ArrowRight size={14} />
           </Link>
         </div>
 
@@ -180,8 +185,12 @@ export default async function CategoryDetailPage(props: CategoryPageProps) {
             boxShadow: 'var(--shadow-card)',
           }}>
             <Tag size={40} color="var(--primary)" style={{ margin: '0 auto 1rem auto' }} />
-            <h3 style={{ fontSize: '1.25rem', fontWeight: 800, marginBottom: '0.4rem', color: 'var(--text-heading)' }}>No Coupons in this category</h3>
-            <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>Check back soon for newly added promo codes.</p>
+            <h3 style={{ fontSize: '1.25rem', fontWeight: 800, marginBottom: '0.4rem', color: 'var(--text-heading)' }}>
+              {t('no_coupons_in_category', 'No Coupons in this category')}
+            </h3>
+            <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>
+              {t('check_back_soon', 'Check back soon for newly added promo codes.')}
+            </p>
           </div>
         ) : (
           <div className="grid grid-cols-2 gap-5" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(310px, 1fr))' }}>

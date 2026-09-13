@@ -19,11 +19,11 @@ export default function HomeHero() {
   const { currentRegion, t, formatRegionLink } = useLanguage();
 
   const trendingSearches = [
-    { label: 'Nike 20% Off', href: '/stores/nike' },
-    { label: 'Amazon Promo Codes', href: '/stores/amazon' },
-    { label: 'Sephora Beauty Deals', href: '/stores/sephora' },
-    { label: 'Apple Student Discount', href: '/stores/apple' },
-    { label: 'ASOS Summer Sale', href: '/stores/asos' },
+    { label: t('trending_nike', 'Nike 20% Off'), href: '/stores/nike' },
+    { label: t('trending_amazon', 'Amazon Promo Codes'), href: '/stores/amazon' },
+    { label: t('trending_sephora', 'Sephora Beauty Deals'), href: '/stores/sephora' },
+    { label: t('trending_apple', 'Apple Student Discount'), href: '/stores/apple' },
+    { label: t('trending_asos', 'ASOS Summer Sale'), href: '/stores/asos' },
   ];
 
   const brandLogos = [
@@ -283,7 +283,7 @@ export default function HomeHero() {
                 25% OFF
               </span>
               <span style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--text-muted)' }}>
-                Sitewide
+                {t('pill_sitewide', 'Sitewide')}
               </span>
             </div>
 
@@ -314,7 +314,7 @@ export default function HomeHero() {
                   fontFamily: 'Space Grotesk, sans-serif',
                 }}
               >
-                40% OFF
+                {t('hero_floating_2', '40% OFF')}
               </span>
             </div>
 
@@ -338,7 +338,7 @@ export default function HomeHero() {
             >
               <Gift size={15} color="var(--primary)" />
               <span style={{ fontSize: '0.95rem', fontWeight: 800, color: 'var(--hero-pill-text)' }}>
-                15% OFF + Free Ship
+                {t('hero_floating_3', '15% OFF + Free Ship')}
               </span>
             </div>
           </div>
@@ -384,7 +384,7 @@ export default function HomeHero() {
                   100%
                 </div>
                 <div style={{ fontSize: '0.82rem', color: 'var(--text-muted)', fontWeight: 600 }}>
-                  Verified Coupons
+                  {t('stat_verified_coupons', 'Verified Coupons')}
                 </div>
               </div>
             </div>
@@ -416,7 +416,7 @@ export default function HomeHero() {
                   50,000+
                 </div>
                 <div style={{ fontSize: '0.82rem', color: 'var(--text-muted)', fontWeight: 600 }}>
-                  Promo Codes
+                  {t('stat_promo_codes', 'Promo Codes')}
                 </div>
               </div>
             </div>
@@ -448,7 +448,7 @@ export default function HomeHero() {
                   500+
                 </div>
                 <div style={{ fontSize: '0.82rem', color: 'var(--text-muted)', fontWeight: 600 }}>
-                  Top Brands
+                  {t('stat_top_brands', 'Top Brands')}
                 </div>
               </div>
             </div>
@@ -480,7 +480,7 @@ export default function HomeHero() {
                   4.9 / 5
                 </div>
                 <div style={{ fontSize: '0.82rem', color: 'var(--text-muted)', fontWeight: 600 }}>
-                  User Rating
+                  {t('stat_user_rating', 'User Rating')}
                 </div>
               </div>
             </div>
@@ -499,7 +499,7 @@ export default function HomeHero() {
               marginBottom: '1.25rem',
             }}
           >
-            Trusted by shoppers of top brands
+            {t('trusted_by_shoppers', 'TRUSTED BY SHOPPERS OF TOP BRANDS')}
           </div>
 
           <div
@@ -539,7 +539,7 @@ export default function HomeHero() {
                 gap: '0.25rem',
               }}
             >
-              +500 more <ArrowRight size={14} />
+              {t('more_brands', '+500 more')} <ArrowRight size={14} />
             </Link>
           </div>
         </div>

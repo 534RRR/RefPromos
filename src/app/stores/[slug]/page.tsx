@@ -18,16 +18,22 @@ import {
   Info,
   Store as StoreIcon,
 } from 'lucide-react';
+import { getServerTranslator } from '@/lib/serverLocale';
+import {
+  getLocalizedStoreDescription,
+  getLocalizedHighlight,
+  getLocalizedCategoryName,
+} from '@/lib/translations';
 
 interface StorePageProps {
-  params: Promise<{ slug: string }> | { slug: string };
-  searchParams: Promise<{ type?: string }> | { type?: string };
+  params: Promise<{ slug: string }>;
+  searchParams: Promise<{ type?: string }>;
 }
 
 export async function generateMetadata(props: {
-  params: Promise<{ slug: string }> | { slug: string };
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
-  const params = await Promise.resolve(props.params);
+  const params = await props.params;
   const store = await prisma.store.findUnique({
     where: { slug: params.slug },
     include: {
@@ -69,6 +75,7 @@ export async function generateMetadata(props: {
 }
 
 export default async function StoreDetailPage(props: StorePageProps) {
+  const { locale, t } = await getServerTranslator();
   const params = await Promise.resolve(props.params);
   const searchParams = (await Promise.resolve(props.searchParams)) || {};
   const currentType = searchParams.type || 'all';
@@ -181,7 +188,7 @@ export default async function StoreDetailPage(props: StorePageProps) {
 
       <Breadcrumbs
         items={[
-          { name: 'Stores', url: '/stores' },
+          { name: t('nav_stores', 'Stores'), url: '/stores' },
           { name: store.name, url: `/stores/${store.slug}` },
         ]}
       />
@@ -228,10 +235,10 @@ export default async function StoreDetailPage(props: StorePageProps) {
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', marginBottom: '0.35rem', flexWrap: 'wrap' }}>
               <h1 style={{ fontSize: '2.2rem', fontWeight: 900, color: 'var(--text-heading)', letterSpacing: '-0.03em' }}>
-                {store.name} Promo Codes
+                {store.name} {t('promo_codes_suffix', 'Promo Codes')}
               </h1>
               <span className="badge badge-verified">
-                <ShieldCheck size={12} /> Verified Merchant
+                <ShieldCheck size={12} /> {t('verified_merchant', 'Verified Merchant')}
               </span>
             </div>
 
@@ -239,7 +246,7 @@ export default async function StoreDetailPage(props: StorePageProps) {
               <RatingStars score={store.ratingScore} count={store.ratingCount} size={16} />
               <span style={{ color: 'var(--slate-300)' }}>•</span>
               <span style={{ fontSize: '0.88rem', color: 'var(--primary)', fontWeight: 700 }}>
-                {activeCoupons.length} Active Offers Today
+                {activeCoupons.length} {t('active_offers_today', 'Active Offers Today')}
               </span>
             </div>
 
@@ -247,7 +254,7 @@ export default async function StoreDetailPage(props: StorePageProps) {
             <div style={{ display: 'flex', gap: '0.45rem', flexWrap: 'wrap' }}>
               {store.storeCategories.map(({ category }) => (
                 <Link key={category.id} href={`/categories/${category.slug}`} className="badge badge-deal">
-                  <Tag size={11} /> {category.name}
+                  <Tag size={11} /> {getLocalizedCategoryName(category.name, locale)}
                 </Link>
               ))}
               {store.storeCountries.map(({ country }) => (
@@ -268,7 +275,7 @@ export default async function StoreDetailPage(props: StorePageProps) {
             className="btn btn-primary btn-lg"
             style={{ padding: '0.85rem 1.8rem', fontSize: '0.96rem' }}
           >
-            Visit {store.name} <ExternalLink size={16} />
+            {t('btn_visit_store', 'Visit')} {store.name} <ExternalLink size={16} />
           </a>
         </div>
       </div>
@@ -295,21 +302,21 @@ export default async function StoreDetailPage(props: StorePageProps) {
               className={`btn btn-sm ${currentType === 'all' ? 'btn-primary' : 'btn-secondary'}`}
               style={{ fontWeight: 700 }}
             >
-              All Offers ({activeCoupons.length})
+              {t('all_offers', 'All Offers')} ({activeCoupons.length})
             </Link>
             <Link
               href={`/stores/${store.slug}?type=codes`}
               className={`btn btn-sm ${currentType === 'codes' ? 'btn-primary' : 'btn-secondary'}`}
               style={{ fontWeight: 700 }}
             >
-              Promo Codes ({activeCoupons.filter((c) => Boolean(c.couponCode)).length})
+              {t('promo_codes', 'Promo Codes')} ({activeCoupons.filter((c) => Boolean(c.couponCode)).length})
             </Link>
             <Link
               href={`/stores/${store.slug}?type=deals`}
               className={`btn btn-sm ${currentType === 'deals' ? 'btn-primary' : 'btn-secondary'}`}
               style={{ fontWeight: 700 }}
             >
-              Deals &amp; Sales ({activeCoupons.filter((c) => !c.couponCode).length})
+              {t('sales_deals', 'Deals & Sales')} ({activeCoupons.filter((c) => !c.couponCode).length})
             </Link>
           </div>
 
@@ -327,12 +334,14 @@ export default async function StoreDetailPage(props: StorePageProps) {
               }}
             >
               <Tag size={40} color="var(--primary)" style={{ margin: '0 auto 1rem auto' }} />
-              <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--text-heading)', marginBottom: '0.4rem' }}>No offers in this tab</h3>
+              <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--text-heading)', marginBottom: '0.4rem' }}>
+                {t('no_offers_tab', 'No offers in this tab')}
+              </h3>
               <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginBottom: '1.25rem' }}>
-                Select &ldquo;All Offers&rdquo; to view all available discounts.
+                {t('no_offers_desc', 'Select "All Offers" to view all available discounts.')}
               </p>
               <Link href={`/stores/${store.slug}`} className="btn btn-primary btn-sm">
-                View All {store.name} Offers
+                {t('view_all_offers', 'View All')} {store.name} {t('offers_suffix', 'Offers')}
               </Link>
             </div>
           ) : (
@@ -366,10 +375,10 @@ export default async function StoreDetailPage(props: StorePageProps) {
                   gap: '0.5rem',
                 }}
               >
-                <span>🕒 Recently Expired Coupons for {store.name} ({expiredCoupons.length})</span>
+                <span>🕒 {t('recently_expired', 'Recently Expired Coupons for')} {store.name} ({expiredCoupons.length})</span>
               </summary>
               <p style={{ fontSize: '0.86rem', color: 'var(--text-muted)', marginTop: '0.75rem', marginBottom: '1.25rem' }}>
-                These codes recently expired but might still work on occasion.
+                {t('recently_expired_desc', 'These codes recently expired but might still work on occasion.')}
               </p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1.1rem', opacity: 0.75 }}>
                 {expiredCoupons.map((coupon) => (
@@ -393,7 +402,7 @@ export default async function StoreDetailPage(props: StorePageProps) {
             >
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem' }}>
                 <h3 style={{ fontSize: '1.4rem', fontWeight: 900, color: 'var(--text-heading)' }}>
-                  {store.name} Editorial Review
+                  {store.name} {t('editorial_review', 'Editorial Review')}
                 </h3>
                 <RatingStars score={store.review.rating} size={16} />
               </div>
@@ -407,11 +416,11 @@ export default async function StoreDetailPage(props: StorePageProps) {
                 {reviewPros.length > 0 && (
                   <div style={{ background: 'var(--primary-light)', border: '1px solid var(--primary-border)', borderRadius: 'var(--radius-lg)', padding: '1.25rem' }}>
                     <div style={{ fontWeight: 800, color: 'var(--primary)', marginBottom: '0.75rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                      <Check size={16} strokeWidth={3} /> What Shoppers Love
+                      <Check size={16} strokeWidth={3} /> {t('what_shoppers_love', 'What Shoppers Love')}
                     </div>
                     <ul style={{ margin: 0, paddingLeft: '1.1rem', color: 'var(--text-main)', display: 'flex', flexDirection: 'column', gap: '0.35rem', fontSize: '0.86rem' }}>
                       {reviewPros.map((pro, i) => (
-                        <li key={i}>{pro}</li>
+                        <li key={i}>{getLocalizedHighlight(pro, locale)}</li>
                       ))}
                     </ul>
                   </div>
@@ -420,7 +429,7 @@ export default async function StoreDetailPage(props: StorePageProps) {
                 {reviewCons.length > 0 && (
                   <div style={{ background: 'rgba(239, 68, 68, 0.1)', border: '1px solid rgba(239, 68, 68, 0.25)', borderRadius: 'var(--radius-lg)', padding: '1.25rem' }}>
                     <div style={{ fontWeight: 800, color: '#ef4444', marginBottom: '0.75rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                      <X size={16} strokeWidth={3} /> Things to Note
+                      <X size={16} strokeWidth={3} /> {t('things_to_note', 'Things to Note')}
                     </div>
                     <ul style={{ margin: 0, paddingLeft: '1.1rem', color: 'var(--text-main)', display: 'flex', flexDirection: 'column', gap: '0.35rem', fontSize: '0.86rem' }}>
                       {reviewCons.map((con, i) => (
@@ -434,7 +443,7 @@ export default async function StoreDetailPage(props: StorePageProps) {
               {store.review.verdict && (
                 <div style={{ background: 'var(--bg-subtle)', borderRadius: 'var(--radius-lg)', padding: '1.25rem', borderLeft: '3px solid var(--primary)' }}>
                   <span style={{ fontWeight: 800, color: 'var(--text-heading)', fontSize: '0.9rem', display: 'block', marginBottom: '0.25rem' }}>
-                    Editorial Verdict:
+                    {t('editorial_verdict', 'Editorial Verdict:')}
                   </span>
                   <p style={{ fontSize: '0.88rem', color: 'var(--text-muted)', margin: 0 }}>
                     {store.review.verdict}
@@ -466,25 +475,25 @@ export default async function StoreDetailPage(props: StorePageProps) {
             }}
           >
             <h3 style={{ fontSize: '1.15rem', fontWeight: 900, marginBottom: '0.75rem', display: 'flex', alignItems: 'center', gap: '0.45rem', color: 'var(--text-heading)' }}>
-              <Info size={17} color="var(--primary)" /> About {store.name}
+              <Info size={17} color="var(--primary)" /> {t('about_store', 'About')} {store.name}
             </h3>
             <p style={{ fontSize: '0.88rem', color: 'var(--text-muted)', lineHeight: '1.6', marginBottom: '1.25rem' }}>
-              {store.shortDescription || store.longDescription || `${store.name} is a top merchant partner on RefPromos.`}
+              {getLocalizedStoreDescription(store.slug, store.shortDescription || store.longDescription, locale) || `${store.name} is a top merchant partner on RefPromos.`}
             </p>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', borderTop: '1px solid var(--border)', paddingTop: '0.95rem', fontSize: '0.86rem' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <span style={{ color: 'var(--text-muted)' }}>Official Site:</span>
+                <span style={{ color: 'var(--text-muted)' }}>{t('official_site', 'Official Site:')}</span>
                 <a href={`/out/store/${store.id}`} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--primary)', fontWeight: 700 }}>
                   {store.name.toLowerCase().replace(/\s+/g, '')}.com ↗
                 </a>
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <span style={{ color: 'var(--text-muted)' }}>Avg Savings:</span>
+                <span style={{ color: 'var(--text-muted)' }}>{t('avg_savings', 'Avg Savings:')}</span>
                 <span style={{ fontWeight: 800, color: 'var(--text-heading)' }}>25% OFF</span>
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <span style={{ color: 'var(--text-muted)' }}>Active Coupons:</span>
+                <span style={{ color: 'var(--text-muted)' }}>{t('active_coupons', 'Active Coupons:')}</span>
                 <span style={{ fontWeight: 800, color: 'var(--primary)' }}>{activeCoupons.length} Active</span>
               </div>
             </div>
@@ -500,12 +509,12 @@ export default async function StoreDetailPage(props: StorePageProps) {
             }}
           >
             <h3 style={{ fontSize: '1.1rem', fontWeight: 900, color: 'var(--primary)', marginBottom: '0.75rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-              <Sparkles size={16} color="var(--primary)" /> Saving Tips for {store.name}
+              <Sparkles size={16} color="var(--primary)" /> {t('saving_tips_for', 'Saving Tips for')} {store.name}
             </h3>
             <ul style={{ margin: 0, paddingLeft: '1.1rem', color: 'var(--text-main)', display: 'flex', flexDirection: 'column', gap: '0.55rem', fontSize: '0.85rem', lineHeight: '1.5' }}>
-              <li>Copy verified promo codes above prior to payment.</li>
-              <li>Look for seasonal clearance events and newsletter signup perks.</li>
-              <li>Stack discount codes with free delivery offers when available.</li>
+              <li>{t('saving_tip_1', 'Copy verified promo codes above prior to payment.')}</li>
+              <li>{t('saving_tip_2', 'Look for seasonal clearance events and newsletter signup perks.')}</li>
+              <li>{t('saving_tip_3', 'Stack discount codes with free delivery offers when available.')}</li>
             </ul>
           </div>
 
@@ -521,7 +530,7 @@ export default async function StoreDetailPage(props: StorePageProps) {
               }}
             >
               <h3 style={{ fontSize: '1.15rem', fontWeight: 900, marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.45rem', color: 'var(--text-heading)' }}>
-                <StoreIcon size={17} color="var(--primary)" /> Similar Stores
+                <StoreIcon size={17} color="var(--primary)" /> {t('similar_stores', 'Similar Stores')}
               </h3>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
                 {relatedStores.map((relStore) => (
@@ -548,7 +557,7 @@ export default async function StoreDetailPage(props: StorePageProps) {
                         {relStore.name}
                       </div>
                       <div style={{ fontSize: '0.76rem', color: 'var(--text-muted)' }}>
-                        {relStore._count.coupons + relStore._count.deals} Offers
+                        {relStore._count.coupons + relStore._count.deals} {t('available_deals', 'Offers')}
                       </div>
                     </div>
                   </Link>

@@ -7,6 +7,12 @@ import BlogCard from '@/components/BlogCard';
 import NewsletterBox from '@/components/NewsletterBox';
 import { BookOpen, Clock, Sparkles, ArrowRight, User } from 'lucide-react';
 import { getCanonicalUrl } from '@/lib/seo';
+import { getServerTranslator } from '@/lib/serverLocale';
+import {
+  getLocalizedBlogTitle,
+  getLocalizedBlogExcerpt,
+  getLocalizedCategoryName,
+} from '@/lib/translations';
 
 export const metadata: Metadata = {
   title: 'Shopping Guides, Saving Hacks & Money Tips | RefPromos',
@@ -18,12 +24,14 @@ export const metadata: Metadata = {
 };
 
 interface BlogsPageProps {
-  searchParams: {
+  searchParams: Promise<{
     category?: string;
-  };
+  }>;
 }
 
-export default async function BlogsPage({ searchParams }: BlogsPageProps) {
+export default async function BlogsPage(props: BlogsPageProps) {
+  const { locale, t } = await getServerTranslator();
+  const searchParams = await props.searchParams;
   const selectedCategory = searchParams.category || '';
 
   const blogCategories = await prisma.blogCategory.findMany({
@@ -53,18 +61,18 @@ export default async function BlogsPage({ searchParams }: BlogsPageProps) {
 
   return (
     <div className="container" style={{ padding: '2rem 1.5rem 5rem 1.5rem' }}>
-      <Breadcrumbs items={[{ name: 'Guides & Articles', url: '/blogs' }]} />
+      <Breadcrumbs items={[{ name: t('nav_guides', 'Guides & Articles'), url: '/blogs' }]} />
 
       {/* Page Header */}
       <div style={{ marginBottom: '2.5rem' }}>
         <span className="eyebrow-pill" style={{ marginBottom: '0.85rem' }}>
-          <BookOpen size={13} /> Shopping Editorial
+          <BookOpen size={13} /> {t('blogs_eyebrow', 'Shopping Editorial')}
         </span>
         <h1 style={{ fontSize: '2.5rem', fontWeight: 900, color: 'var(--text-heading)', letterSpacing: '-0.03em', marginBottom: '0.5rem' }}>
-          Saving Guides, Reviews &amp; Hacks
+          {t('blogs_title', 'Saving Guides, Reviews & Hacks')}
         </h1>
         <p style={{ color: 'var(--text-muted)', fontSize: '1.05rem', maxWidth: '640px' }}>
-          Expert shopping tips, retailer buying guides, and tested strategies to save money at checkout.
+          {t('blogs_desc', 'Expert shopping tips, retailer buying guides, and tested strategies to save money at checkout.')}
         </p>
       </div>
 
@@ -74,7 +82,7 @@ export default async function BlogsPage({ searchParams }: BlogsPageProps) {
           href="/blogs"
           className={`btn btn-sm ${!selectedCategory ? 'btn-primary' : 'btn-secondary'}`}
         >
-          All Articles
+          {t('all_articles', 'All Articles')}
         </Link>
         {blogCategories.map((cat) => (
           <Link
@@ -82,7 +90,7 @@ export default async function BlogsPage({ searchParams }: BlogsPageProps) {
             href={`/blogs?category=${cat.slug}`}
             className={`btn btn-sm ${selectedCategory === cat.slug ? 'btn-primary' : 'btn-secondary'}`}
           >
-            {cat.name}
+            {getLocalizedCategoryName(cat.name, locale)}
           </Link>
         ))}
       </div>
@@ -117,13 +125,13 @@ export default async function BlogsPage({ searchParams }: BlogsPageProps) {
             )}
             <div style={{ padding: '2.25rem 2rem' }}>
               <span className="badge badge-amber" style={{ marginBottom: '0.85rem' }}>
-                <Sparkles size={11} /> Featured Guide
+                <Sparkles size={11} /> {t('featured_guide_badge', 'Featured Guide')}
               </span>
               <h2 style={{ fontSize: '1.75rem', fontWeight: 900, color: 'var(--text-heading)', lineHeight: '1.3', marginBottom: '0.75rem', letterSpacing: '-0.02em' }}>
-                {featuredBlog.title}
+                {getLocalizedBlogTitle(featuredBlog.title, locale)}
               </h2>
               <p style={{ color: 'var(--text-muted)', fontSize: '0.94rem', lineHeight: '1.6', marginBottom: '1.5rem' }}>
-                {featuredBlog.excerpt}
+                {getLocalizedBlogExcerpt(featuredBlog.excerpt, locale)}
               </p>
               <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem', fontSize: '0.84rem', color: 'var(--text-muted)' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
@@ -132,10 +140,10 @@ export default async function BlogsPage({ searchParams }: BlogsPageProps) {
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
                   <Clock size={14} color="var(--primary)" />
-                  <span>{featuredBlog.readingTime}</span>
+                  <span>{featuredBlog.readingTime ? featuredBlog.readingTime.replace(/min read/i, t('min_read', 'min read')) : `5 ${t('min_read', 'min read')}`}</span>
                 </div>
                 <span style={{ color: 'var(--primary)', fontWeight: 800, marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
-                  Read Guide <ArrowRight size={15} />
+                  {t('read_guide', 'Read Guide')} <ArrowRight size={15} />
                 </span>
               </div>
             </div>
@@ -146,14 +154,18 @@ export default async function BlogsPage({ searchParams }: BlogsPageProps) {
       {/* Recent Guides Grid */}
       <section style={{ marginBottom: '4.5rem' }}>
         <h2 style={{ fontSize: '1.75rem', fontWeight: 900, color: 'var(--text-heading)', marginBottom: '1.75rem', letterSpacing: '-0.02em' }}>
-          {selectedCategory ? 'Category Articles' : 'Recent Shopping Guides'}
+          {selectedCategory ? t('category_articles', 'Category Articles') : t('recent_guides_title', 'Recent Shopping Guides')}
         </h2>
 
         {blogs.length === 0 ? (
           <div style={{ padding: '4rem 2rem', textAlign: 'center', background: 'var(--bg-card)', borderRadius: 'var(--radius-2xl)', border: '1px solid var(--border)', boxShadow: 'var(--shadow-card)' }}>
             <BookOpen size={44} color="var(--primary)" style={{ margin: '0 auto 1.25rem auto' }} />
-            <h3 style={{ fontSize: '1.35rem', fontWeight: 800, marginBottom: '0.5rem', color: 'var(--text-heading)' }}>No Guides Found</h3>
-            <p style={{ color: 'var(--text-muted)', fontSize: '0.94rem' }}>New shopping hacks and store guides are published every week.</p>
+            <h3 style={{ fontSize: '1.35rem', fontWeight: 800, marginBottom: '0.5rem', color: 'var(--text-heading)' }}>
+              {t('no_guides_found', 'No Guides Found')}
+            </h3>
+            <p style={{ color: 'var(--text-muted)', fontSize: '0.94rem' }}>
+              {t('no_guides_desc', 'New shopping hacks and store guides are published every week.')}
+            </p>
           </div>
         ) : (
           <div className="grid grid-cols-3 gap-6" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(310px, 1fr))' }}>

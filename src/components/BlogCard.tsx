@@ -4,7 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { Clock, ArrowRight } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
-import { getLocalizedBlogTitle, getLocalizedCategoryName } from '@/lib/translations';
+import { getLocalizedBlogTitle, getLocalizedBlogExcerpt, getLocalizedCategoryName } from '@/lib/translations';
 
 interface BlogCardProps {
   blog: {
@@ -83,7 +83,7 @@ export default function BlogCard({ blog }: BlogCardProps) {
             marginBottom: '1.35rem',
             flex: 1,
           }}>
-            {blog.excerpt}
+            {getLocalizedBlogExcerpt(blog.excerpt, currentLang)}
           </p>
         )}
 

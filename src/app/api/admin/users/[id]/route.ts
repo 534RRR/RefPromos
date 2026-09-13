@@ -5,7 +5,7 @@ import { getAdminSession } from '@/lib/auth';
 import { createErrorResponse } from '@/lib/apiResponse';
 
 interface Params {
-  params: Promise<{ id: string }> | { id: string };
+  params: Promise<{ id: string }>;
 }
 
 export async function DELETE(req: NextRequest, props: Params) {

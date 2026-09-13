@@ -75,9 +75,14 @@ export async function middleware(request: NextRequest) {
     }
   }
 
-  // 2. Protect /admin CMS dashboard routes and /api/admin backend endpoints
-  const isAdminRoute = pathname.startsWith('/admin') || pathname.startsWith('/api/admin');
-  const isPublicAuthRoute = pathname === '/admin/login' || pathname === '/api/admin/auth/login';
+  // 2. Completely terminate /admin route (no redirection, return 404)
+  if (pathname === '/admin' || (pathname.startsWith('/admin/') && !pathname.startsWith('/api/admin'))) {
+    return new NextResponse(null, { status: 404 });
+  }
+
+  // 3. Protect /cms_admin_login CMS dashboard routes and /api/admin backend endpoints
+  const isAdminRoute = pathname.startsWith('/cms_admin_login') || pathname.startsWith('/api/admin');
+  const isPublicAuthRoute = pathname === '/cms_admin_login/login' || pathname === '/api/admin/auth/login';
 
   if (isAdminRoute) {
     const token = request.cookies.get(COOKIE_NAME)?.value;
@@ -98,8 +103,8 @@ export async function middleware(request: NextRequest) {
     }
 
     if (isPublicAuthRoute) {
-      if (isValid && pathname === '/admin/login') {
-        return NextResponse.redirect(new URL('/admin', request.url));
+      if (isValid && pathname === '/cms_admin_login/login') {
+        return NextResponse.redirect(new URL('/cms_admin_login', request.url));
       }
       return NextResponse.next();
     }
@@ -111,12 +116,12 @@ export async function middleware(request: NextRequest) {
           { status: 401, headers: { 'Content-Type': 'application/json' } }
         );
       }
-      const loginUrl = new URL('/admin/login', request.url);
+      const loginUrl = new URL('/cms_admin_login/login', request.url);
       loginUrl.searchParams.set('from', pathname);
       return NextResponse.redirect(loginUrl);
     }
 
-    const isUserManagement = pathname.startsWith('/admin/users') || pathname.startsWith('/api/admin/users');
+    const isUserManagement = pathname.startsWith('/cms_admin_login/users') || pathname.startsWith('/api/admin/users');
     if (isUserManagement && role !== 'super_admin') {
       if (pathname.startsWith('/api/')) {
         return new NextResponse(
@@ -124,14 +129,14 @@ export async function middleware(request: NextRequest) {
           { status: 403, headers: { 'Content-Type': 'application/json' } }
         );
       }
-      return NextResponse.redirect(new URL('/admin', request.url));
+      return NextResponse.redirect(new URL('/cms_admin_login', request.url));
     }
 
     return NextResponse.next();
   }
 
   // Skip API, admin, and outbound tracking routes from region prefixing
-  if (pathname.startsWith('/api') || pathname.startsWith('/admin') || pathname.startsWith('/out')) {
+  if (pathname.startsWith('/api') || pathname.startsWith('/cms_admin_login') || pathname.startsWith('/out')) {
     return NextResponse.next();
   }
 
@@ -149,6 +154,16 @@ export async function middleware(request: NextRequest) {
   if (firstSegment && REGION_SLUG_MAP[firstSegment]) {
     const regionInfo = REGION_SLUG_MAP[firstSegment];
     const remainingSegments = segments.slice(1);
+
+    // Prevent region-prefixed admin routes
+    if (remainingSegments[0] === 'cms_admin_login') {
+      const cleanPath = `/${remainingSegments.join('/')}`;
+      return NextResponse.redirect(new URL(cleanPath, request.url));
+    }
+    if (remainingSegments[0] === 'admin') {
+      return new NextResponse(null, { status: 404 });
+    }
+
     const internalPath = remainingSegments.length > 0 ? `/${remainingSegments.join('/')}` : '/';
 
     const rewriteUrl = request.nextUrl.clone();

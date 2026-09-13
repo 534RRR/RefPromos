@@ -97,7 +97,7 @@ export default function NewsletterBox({
             fontSize: '0.94rem',
           }}>
             <CheckCircle2 size={22} />
-            <span>🎉 Thank you for subscribing! Your first weekly deal roundup is on its way.</span>
+            <span>{t('newsletter_success', '🎉 Thank you for subscribing! Your first weekly deal roundup is on its way.')}</span>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="newsletter-form" style={{
@@ -133,14 +133,14 @@ export default function NewsletterBox({
               className="btn btn-primary"
               style={{ padding: '0.75rem 1.5rem', whiteSpace: 'nowrap' }}
             >
-              {status === 'loading' ? 'Subscribing...' : <>{t('newsletter_btn')} <ArrowRight size={16} /></>}
+              {status === 'loading' ? t('newsletter_subscribing', 'Subscribing...') : <>{t('newsletter_btn')} <ArrowRight size={16} /></>}
             </button>
           </form>
         )}
 
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.45rem', marginTop: '1.5rem', color: 'var(--slate-400)', fontSize: '0.8rem' }}>
           <ShieldCheck size={15} color="#34d399" />
-          <span>Zero spam. Unsubscribe at any time with 1 click.</span>
+          <span>{t('newsletter_privacy', 'Zero spam. Unsubscribe at any time with 1 click.')}</span>
         </div>
       </div>
     </div>

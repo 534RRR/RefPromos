@@ -2,6 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 import { Copy, Check, ExternalLink, X, ThumbsUp, ShieldCheck } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
+import { getLocalizedDealTitle, getLocalizedDiscountValue } from '@/lib/translations';
 
 interface ModalData {
   isOpen: boolean;
@@ -22,6 +24,7 @@ declare global {
 }
 
 export default function CodeModal() {
+  const { t, currentLang } = useLanguage();
   const [modal, setModal] = useState<ModalData>({
     isOpen: false,
     couponId: '',
@@ -129,13 +132,13 @@ export default function CodeModal() {
           </div>
 
           <span className="badge badge-verified" style={{ marginBottom: '0.65rem' }}>
-            <ShieldCheck size={13} /> Verified Offer
+            <ShieldCheck size={13} /> {t('stat_verified_coupons', 'Verified Offer')}
           </span>
           <h3 className="code-modal-discount" style={{ fontSize: '1.8rem', fontWeight: 900, color: 'var(--primary)', marginTop: '0.4rem', letterSpacing: '-0.03em' }}>
-            {modal.discountValue}
+            {getLocalizedDiscountValue(modal.discountValue, currentLang)}
           </h3>
           <p style={{ color: 'var(--text-heading)', fontSize: '0.94rem', marginTop: '0.4rem', lineHeight: '1.45', fontWeight: 600 }}>
-            {modal.title}
+            {getLocalizedDealTitle(modal.title, currentLang)}
           </p>
         </div>
 
@@ -150,7 +153,7 @@ export default function CodeModal() {
             marginBottom: '1.75rem',
           }}>
             <p style={{ fontSize: '0.78rem', fontWeight: 800, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
-              Copy this promo code &amp; apply at checkout:
+              {t('modal_coupon_code', 'Copy this promo code & apply at checkout:')}
             </p>
             <div className="code-modal-code-row" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.85rem', marginTop: '0.85rem' }}>
               <span className="code-modal-code" style={{
@@ -167,7 +170,7 @@ export default function CodeModal() {
                 className="btn btn-primary"
                 style={{ padding: '0.6rem 1.25rem', fontSize: '0.9rem' }}
               >
-                {copied ? <><Check size={16} /> Copied!</> : <><Copy size={16} /> Copy Code</>}
+                {copied ? <><Check size={16} /> {t('modal_copied', 'Copied!')}</> : <><Copy size={16} /> {t('copy_code', 'Copy Code')}</>}
               </button>
             </div>
           </div>
@@ -183,7 +186,7 @@ export default function CodeModal() {
             fontSize: '0.94rem',
             border: '1px solid var(--primary-border)',
           }}>
-            🎉 No promo code needed! Your discount has been activated in the store tab.
+            {t('modal_no_code_needed', '🎉 No promo code needed! Your discount has been activated in the store tab.')}
           </div>
         )}
 
@@ -195,7 +198,7 @@ export default function CodeModal() {
           className="btn btn-primary btn-lg"
           style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', marginBottom: '1.25rem' }}
         >
-          <span>Continue to {modal.storeName}</span>
+          <span>{t('modal_visit_store', 'Continue to')} {modal.storeName}</span>
           <ExternalLink size={16} />
         </a>
 
@@ -209,13 +212,13 @@ export default function CodeModal() {
           fontSize: '0.84rem',
           color: 'var(--text-muted)',
         }}>
-          <span>Did this code work?</span>
+          <span>{t('modal_feedback_prompt', 'Did this code work?')}</span>
           <button
             onClick={() => setFeedback('worked')}
             className={`btn btn-sm ${feedback === 'worked' ? 'btn-primary' : 'btn-secondary'}`}
             style={{ fontSize: '0.8rem', padding: '0.4rem 0.75rem' }}
           >
-            <ThumbsUp size={13} /> Yes ({modal.couponCode ? '100%' : '98%'})
+            <ThumbsUp size={13} /> {t('modal_feedback_yes', 'Yes')} ({modal.couponCode ? '100%' : '98%'})
           </button>
         </div>
       </div>

@@ -4,6 +4,7 @@ import type { Metadata } from 'next';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import { ShieldCheck, Zap, Award, ArrowRight } from 'lucide-react';
 import { getCanonicalUrl } from '@/lib/seo';
+import { getServerTranslator } from '@/lib/serverLocale';
 
 export const metadata: Metadata = {
   title: 'About Us — RefPromos Savings Mission & Editorial Policy',
@@ -14,21 +15,23 @@ export const metadata: Metadata = {
   },
 };
 
-export default function AboutUsPage() {
+export default async function AboutUsPage() {
+  const { t } = await getServerTranslator();
+
   return (
     <div className="container" style={{ padding: '2rem 1.5rem 5rem 1.5rem' }}>
-      <Breadcrumbs items={[{ name: 'About Us', url: '/about-us' }]} />
+      <Breadcrumbs items={[{ name: t('nav_about', 'About Us'), url: '/about-us' }]} />
 
       {/* Hero */}
       <div style={{ maxWidth: '780px', margin: '0 auto 3.5rem auto', textAlign: 'center' }}>
         <span className="eyebrow-pill" style={{ marginBottom: '1.25rem' }}>
-          Our Mission
+          {t('about_mission_eyebrow', 'Our Mission')}
         </span>
         <h1 className="page-title" style={{ fontSize: '2.8rem', fontWeight: 900, color: 'var(--text-heading)', letterSpacing: '-0.03em', lineHeight: '1.15', marginBottom: '1.25rem' }}>
-          We Help Millions of Smart Shoppers <span className="hero-gradient-text">Save on Every Purchase</span>
+          {t('about_hero_title', 'We Help Millions of Smart Shoppers Save on Every Purchase')}
         </h1>
         <p style={{ fontSize: '1.05rem', color: 'var(--text-muted)', lineHeight: '1.65' }}>
-          RefPromos was founded to eliminate expired discount codes and provide online shoppers with 100% verified, tested coupon codes and real deals.
+          {t('about_hero_desc', 'RefPromos was founded to eliminate expired discount codes and provide online shoppers with 100% verified, tested coupon codes and real deals.')}
         </p>
       </div>
 
@@ -36,25 +39,25 @@ export default function AboutUsPage() {
       <div className="about-metrics-grid grid grid-cols-4 gap-5" style={{ marginBottom: '4rem' }}>
         <div className="card" style={{ textAlign: 'center', padding: '2rem 1.25rem' }}>
           <div className="about-metric-value" style={{ fontSize: '2.4rem', fontWeight: 900, color: 'var(--primary)', marginBottom: '0.25rem', lineHeight: 1.1 }}>500+</div>
-          <div style={{ fontSize: '0.95rem', fontWeight: 800, color: 'var(--text-heading)' }}>Retail Partners</div>
+          <div style={{ fontSize: '0.95rem', fontWeight: 800, color: 'var(--text-heading)' }}>{t('stat_top_brands', 'Retail Partners')}</div>
           <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '0.35rem' }}>Top global brands worldwide</p>
         </div>
 
         <div className="card" style={{ textAlign: 'center', padding: '2rem 1.25rem' }}>
           <div className="about-metric-value" style={{ fontSize: '2.4rem', fontWeight: 900, color: 'var(--text-heading)', marginBottom: '0.25rem', lineHeight: 1.1 }}>20,000+</div>
-          <div style={{ fontSize: '0.95rem', fontWeight: 800, color: 'var(--text-heading)' }}>Verified Codes</div>
+          <div style={{ fontSize: '0.95rem', fontWeight: 800, color: 'var(--text-heading)' }}>{t('stat_verified_coupons', 'Verified Codes')}</div>
           <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '0.35rem' }}>Tested &amp; updated daily</p>
         </div>
 
         <div className="card" style={{ textAlign: 'center', padding: '2rem 1.25rem' }}>
           <div className="about-metric-value" style={{ fontSize: '2.4rem', fontWeight: 900, color: 'var(--primary)', marginBottom: '0.25rem', lineHeight: 1.1 }}>$1.2M+</div>
-          <div style={{ fontSize: '0.95rem', fontWeight: 800, color: 'var(--text-heading)' }}>Shopper Savings</div>
+          <div style={{ fontSize: '0.95rem', fontWeight: 800, color: 'var(--text-heading)' }}>{t('shopper_savings', 'Shopper Savings')}</div>
           <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '0.35rem' }}>In verified discounts</p>
         </div>
 
         <div className="card" style={{ textAlign: 'center', padding: '2rem 1.25rem' }}>
           <div className="about-metric-value" style={{ fontSize: '2.4rem', fontWeight: 900, color: 'var(--text-heading)', marginBottom: '0.25rem', lineHeight: 1.1 }}>8</div>
-          <div style={{ fontSize: '0.95rem', fontWeight: 800, color: 'var(--text-heading)' }}>Global Regions</div>
+          <div style={{ fontSize: '0.95rem', fontWeight: 800, color: 'var(--text-heading)' }}>{t('global_regions', 'Global Regions')}</div>
           <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '0.35rem' }}>US, UK, AU, CA, DE, FR, IT, NL</p>
         </div>
       </div>
@@ -62,7 +65,7 @@ export default function AboutUsPage() {
       {/* Core Values / 3 Pillars */}
       <div style={{ maxWidth: '860px', margin: '0 auto 4rem auto' }}>
         <h2 style={{ fontSize: '2rem', fontWeight: 900, textAlign: 'center', marginBottom: '2rem', color: 'var(--text-heading)', letterSpacing: '-0.02em' }}>
-          How RefPromos Works For You
+          {t('how_it_works_title', 'How RefPromos Works For You')}
         </h2>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
@@ -71,9 +74,11 @@ export default function AboutUsPage() {
               <ShieldCheck size={26} />
             </div>
             <div>
-              <h3 style={{ fontSize: '1.25rem', fontWeight: 900, marginBottom: '0.4rem', color: 'var(--text-heading)' }}>1. Manual Testing &amp; Verification</h3>
+              <h3 style={{ fontSize: '1.25rem', fontWeight: 900, marginBottom: '0.4rem', color: 'var(--text-heading)' }}>
+                {t('pillar_1_title', '1. Manual Testing & Verification')}
+              </h3>
               <p style={{ color: 'var(--text-muted)', lineHeight: '1.65', fontSize: '0.92rem', margin: 0 }}>
-                Our team tests codes at actual checkout before publishing. If a code fails to provide the promised discount or has expired, it is immediately flagged or archived.
+                {t('pillar_1_desc', 'Our team tests codes at actual checkout before publishing. If a code fails to provide the promised discount or has expired, it is immediately flagged or archived.')}
               </p>
             </div>
           </div>
@@ -83,9 +88,11 @@ export default function AboutUsPage() {
               <Zap size={26} />
             </div>
             <div>
-              <h3 style={{ fontSize: '1.25rem', fontWeight: 900, marginBottom: '0.4rem', color: 'var(--text-heading)' }}>2. 100% Free &amp; Frictionless</h3>
+              <h3 style={{ fontSize: '1.25rem', fontWeight: 900, marginBottom: '0.4rem', color: 'var(--text-heading)' }}>
+                {t('pillar_2_title', '2. 100% Free & Frictionless')}
+              </h3>
               <p style={{ color: 'var(--text-muted)', lineHeight: '1.65', fontSize: '0.92rem', margin: 0 }}>
-                We believe smart shopping should never require paid subscriptions or complex accounts. You can find, copy, and apply any promo code instantly with 1 click.
+                {t('pillar_2_desc', 'We believe smart shopping should never require paid subscriptions or complex accounts. You can find, copy, and apply any promo code instantly with 1 click.')}
               </p>
             </div>
           </div>
@@ -95,9 +102,11 @@ export default function AboutUsPage() {
               <Award size={26} />
             </div>
             <div>
-              <h3 style={{ fontSize: '1.25rem', fontWeight: 900, marginBottom: '0.4rem', color: 'var(--text-heading)' }}>3. Transparent Partnerships</h3>
+              <h3 style={{ fontSize: '1.25rem', fontWeight: 900, marginBottom: '0.4rem', color: 'var(--text-heading)' }}>
+                {t('pillar_3_title', '3. Transparent Partnerships')}
+              </h3>
               <p style={{ color: 'var(--text-muted)', lineHeight: '1.65', fontSize: '0.92rem', margin: 0 }}>
-                When you make a purchase using our affiliate links, we may earn a small commission from the merchant at zero additional cost to you, enabling us to keep the platform free.
+                {t('pillar_3_desc', 'When you make a purchase using our affiliate links, we may earn a small commission from the merchant at zero additional cost to you, enabling us to keep the platform free.')}
               </p>
             </div>
           </div>
@@ -114,17 +123,17 @@ export default function AboutUsPage() {
         boxShadow: '0 20px 40px -10px rgba(15, 23, 42, 0.25)',
       }}>
         <h2 style={{ fontSize: '2.2rem', fontWeight: 900, marginBottom: '0.75rem', letterSpacing: '-0.02em' }}>
-          Ready to Start Saving?
+          {t('ready_to_save_title', 'Ready to Start Saving?')}
         </h2>
         <p style={{ color: 'var(--slate-300)', fontSize: '0.98rem', maxWidth: '480px', margin: '0 auto 2rem auto' }}>
-          Explore trending coupons and brand deals right now.
+          {t('ready_to_save_desc', 'Explore trending coupons and brand deals right now.')}
         </p>
         <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
           <Link href="/coupons" className="btn btn-primary btn-lg">
-            Explore Coupons <ArrowRight size={16} />
+            {t('nav_coupons', 'Explore Coupons')} <ArrowRight size={16} />
           </Link>
           <Link href="/stores" className="btn btn-secondary btn-lg" style={{ background: 'rgba(255, 255, 255, 0.1)', color: '#ffffff', borderColor: 'rgba(255, 255, 255, 0.2)' }}>
-            Browse Stores
+            {t('nav_stores', 'Browse Stores')}
           </Link>
         </div>
       </div>

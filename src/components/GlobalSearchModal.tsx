@@ -4,6 +4,12 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { Search, X, Folder, BookOpen, Loader2 } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
+import {
+  getLocalizedCategoryName,
+  getLocalizedBlogTitle,
+  getLocalizedDealTitle,
+  getLocalizedDiscountValue,
+} from '@/lib/translations';
 
 interface SearchResult {
   stores: Array<{
@@ -83,7 +89,7 @@ export default function GlobalSearchModal({ isOpen, onClose }: GlobalSearchModal
     return () => clearTimeout(timeout);
   }, [query]);
 
-  const { formatRegionLink } = useLanguage();
+  const { t, currentLang, formatRegionLink } = useLanguage();
 
   if (!isOpen) return null;
 
@@ -142,7 +148,7 @@ export default function GlobalSearchModal({ isOpen, onClose }: GlobalSearchModal
           <input
             ref={inputRef}
             type="text"
-            placeholder="Search stores, coupons, categories, guides..."
+            placeholder={t('search_modal_placeholder', 'Search stores, coupons, categories, guides...')}
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             onKeyDown={(e) => {
@@ -177,8 +183,12 @@ export default function GlobalSearchModal({ isOpen, onClose }: GlobalSearchModal
         <div style={{ maxHeight: '440px', overflowY: 'auto', padding: '0.85rem' }}>
           {query.length >= 2 && !loading && !hasAnyResults && (
             <div style={{ padding: '2.5rem 1rem', textAlign: 'center', color: 'var(--text-muted)' }}>
-              <p style={{ fontWeight: 700, fontSize: '1rem', color: 'var(--text-heading)' }}>No results found for &ldquo;{query}&rdquo;</p>
-              <p style={{ fontSize: '0.84rem', marginTop: '0.35rem' }}>Try searching for a brand like Nike, Amazon, or a category like Fashion.</p>
+              <p style={{ fontWeight: 700, fontSize: '1rem', color: 'var(--text-heading)' }}>
+                {t('search_modal_no_results', 'No results found for')} &ldquo;{query}&rdquo;
+              </p>
+              <p style={{ fontSize: '0.84rem', marginTop: '0.35rem' }}>
+                {t('search_modal_no_results_desc', 'Try searching for a brand like Nike, Amazon, or a category like Fashion.')}
+              </p>
             </div>
           )}
 
@@ -188,7 +198,7 @@ export default function GlobalSearchModal({ isOpen, onClose }: GlobalSearchModal
               {results.stores.length > 0 && (
                 <div>
                   <div style={{ fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--primary)', padding: '0.35rem 0.65rem' }}>
-                    Stores ({results.stores.length})
+                    {t('search_modal_stores', 'Stores')} ({results.stores.length})
                   </div>
                   {results.stores.map((store) => (
                     <button
@@ -215,7 +225,7 @@ export default function GlobalSearchModal({ isOpen, onClose }: GlobalSearchModal
                         <span style={{ fontWeight: 700, fontSize: '0.92rem', color: 'var(--text-heading)' }}>{store.name}</span>
                       </div>
                       <span className="badge badge-code" style={{ fontSize: '0.72rem' }}>
-                        {store._count ? store._count.coupons + store._count.deals : 0} Deals
+                        {store._count ? store._count.coupons + store._count.deals : 0} {t('available_deals', 'Deals')}
                       </span>
                     </button>
                   ))}
@@ -226,7 +236,7 @@ export default function GlobalSearchModal({ isOpen, onClose }: GlobalSearchModal
               {results.coupons.length > 0 && (
                 <div>
                   <div style={{ fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--primary)', padding: '0.35rem 0.65rem' }}>
-                    Coupons &amp; Deals ({results.coupons.length})
+                    {t('search_modal_coupons', 'Coupons & Deals')} ({results.coupons.length})
                   </div>
                   {results.coupons.map((coupon) => (
                     <button
@@ -247,10 +257,10 @@ export default function GlobalSearchModal({ isOpen, onClose }: GlobalSearchModal
                     >
                       <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', overflow: 'hidden' }}>
                         <span style={{ fontWeight: 900, color: 'var(--primary)', fontSize: '0.88rem', flexShrink: 0 }}>
-                          {coupon.discountValue}
+                          {getLocalizedDiscountValue(coupon.discountValue, currentLang)}
                         </span>
                         <span style={{ fontSize: '0.88rem', color: 'var(--text-main)', textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap', fontWeight: 600 }}>
-                          {coupon.title}
+                          {getLocalizedDealTitle(coupon.title, currentLang)}
                         </span>
                       </div>
                       <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)', flexShrink: 0 }}>
@@ -265,7 +275,7 @@ export default function GlobalSearchModal({ isOpen, onClose }: GlobalSearchModal
               {results.categories.length > 0 && (
                 <div>
                   <div style={{ fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--primary)', padding: '0.35rem 0.65rem' }}>
-                    Categories ({results.categories.length})
+                    {t('search_modal_categories', 'Categories')} ({results.categories.length})
                   </div>
                   {results.categories.map((cat) => (
                     <button
@@ -284,7 +294,9 @@ export default function GlobalSearchModal({ isOpen, onClose }: GlobalSearchModal
                       }}
                     >
                       <Folder size={18} color="var(--primary)" />
-                      <span style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--text-heading)' }}>{cat.name}</span>
+                      <span style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--text-heading)' }}>
+                        {getLocalizedCategoryName(cat.name, currentLang)}
+                      </span>
                     </button>
                   ))}
                 </div>
@@ -294,7 +306,7 @@ export default function GlobalSearchModal({ isOpen, onClose }: GlobalSearchModal
               {results.blogs.length > 0 && (
                 <div>
                   <div style={{ fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--primary)', padding: '0.35rem 0.65rem' }}>
-                    Shopping Guides ({results.blogs.length})
+                    {t('search_modal_guides', 'Shopping Guides')} ({results.blogs.length})
                   </div>
                   {results.blogs.map((blog) => (
                     <button
@@ -314,9 +326,13 @@ export default function GlobalSearchModal({ isOpen, onClose }: GlobalSearchModal
                     >
                       <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                         <BookOpen size={18} color="var(--primary)" />
-                        <span style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--text-heading)' }}>{blog.title}</span>
+                        <span style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--text-heading)' }}>
+                          {getLocalizedBlogTitle(blog.title, currentLang)}
+                        </span>
                       </div>
-                      <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>{blog.readingTime}</span>
+                      <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>
+                        {blog.readingTime ? blog.readingTime.replace(/min read/i, t('min_read', 'min read')) : `5 ${t('min_read', 'min read')}`}
+                      </span>
                     </button>
                   ))}
                 </div>
@@ -326,12 +342,21 @@ export default function GlobalSearchModal({ isOpen, onClose }: GlobalSearchModal
 
           {!query && (
             <div style={{ padding: '1.25rem 0.5rem', color: 'var(--text-muted)', fontSize: '0.84rem' }}>
-              <p style={{ fontWeight: 800, color: 'var(--text-heading)', marginBottom: '0.65rem', fontSize: '0.88rem' }}>Popular Searches:</p>
+              <p style={{ fontWeight: 800, color: 'var(--text-heading)', marginBottom: '0.65rem', fontSize: '0.88rem' }}>
+                {t('search_modal_trending', 'Popular Searches')}:
+              </p>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.45rem' }}>
-                {['Nike', 'Amazon', 'ASOS', 'Fashion', 'Electronics', 'Free Shipping'].map((tag) => (
+                {[
+                  { label: 'Nike', val: 'Nike' },
+                  { label: 'Amazon', val: 'Amazon' },
+                  { label: 'ASOS', val: 'ASOS' },
+                  { label: t('cat_fashion', 'Fashion'), val: 'Fashion' },
+                  { label: t('cat_electronics', 'Electronics'), val: 'Electronics' },
+                  { label: t('footer_free_shipping', 'Free Shipping'), val: 'Free Shipping' },
+                ].map((item) => (
                   <button
-                    key={tag}
-                    onClick={() => setQuery(tag)}
+                    key={item.val}
+                    onClick={() => setQuery(item.val)}
                     style={{
                       background: 'var(--bg-subtle)',
                       border: '1px solid var(--border)',
@@ -344,7 +369,7 @@ export default function GlobalSearchModal({ isOpen, onClose }: GlobalSearchModal
                       transition: 'all 0.15s ease',
                     }}
                   >
-                    {tag}
+                    {item.label}
                   </button>
                 ))}
               </div>
@@ -363,8 +388,8 @@ export default function GlobalSearchModal({ isOpen, onClose }: GlobalSearchModal
           fontSize: '0.78rem',
           color: 'var(--text-muted)',
         }}>
-          <span>Press <kbd style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', padding: '0.1rem 0.35rem', borderRadius: '4px', color: 'var(--text-main)' }}>ESC</kbd> to exit</span>
-          <span>Press <kbd style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', padding: '0.1rem 0.35rem', borderRadius: '4px', color: 'var(--text-main)' }}>↵</kbd> to search all</span>
+          <span>{t('search_modal_press_esc', 'Press')} <kbd style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', padding: '0.1rem 0.35rem', borderRadius: '4px', color: 'var(--text-main)' }}>ESC</kbd> {t('search_modal_to_exit', 'to exit')}</span>
+          <span>{t('search_modal_press_esc', 'Press')} <kbd style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', padding: '0.1rem 0.35rem', borderRadius: '4px', color: 'var(--text-main)' }}>↵</kbd> {t('search_modal_to_search_all', 'to search all')}</span>
         </div>
       </div>
     </div>

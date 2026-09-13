@@ -6,6 +6,8 @@ import Breadcrumbs from '@/components/Breadcrumbs';
 import StoreCard from '@/components/StoreCard';
 import { Search, Store, Tag, Sparkles, ArrowRight } from 'lucide-react';
 import { getCanonicalUrl } from '@/lib/seo';
+import { getServerTranslator } from '@/lib/serverLocale';
+import { getLocalizedCategoryName } from '@/lib/translations';
 
 export const metadata: Metadata = {
   title: 'All Stores & Brands — Verified Coupon Codes & Discounts | RefPromos',
@@ -19,14 +21,16 @@ export const metadata: Metadata = {
 const ALPHABET = ['ALL', ...'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split(''), '#'];
 
 interface StoresPageProps {
-  searchParams: {
+  searchParams: Promise<{
     letter?: string;
     category?: string;
     search?: string;
-  };
+  }>;
 }
 
-export default async function StoresDirectoryPage({ searchParams }: StoresPageProps) {
+export default async function StoresDirectoryPage(props: StoresPageProps) {
+  const { locale, t } = await getServerTranslator();
+  const searchParams = await props.searchParams;
   const selectedLetter = (searchParams.letter || 'ALL').toUpperCase();
   const selectedCategory = searchParams.category || '';
   const searchQuery = searchParams.search || '';
@@ -102,18 +106,18 @@ export default async function StoresDirectoryPage({ searchParams }: StoresPagePr
 
   return (
     <div className="container" style={{ padding: '2rem 1.5rem 5rem 1.5rem' }}>
-      <Breadcrumbs items={[{ name: 'Stores', url: '/stores' }]} />
+      <Breadcrumbs items={[{ name: t('nav_stores', 'Stores'), url: '/stores' }]} />
 
       {/* Page Header */}
       <div style={{ marginBottom: '2.5rem' }}>
         <span className="eyebrow-pill" style={{ marginBottom: '0.85rem' }}>
-          <Store size={13} /> Retailers Directory
+          <Store size={13} /> {t('stores_directory_eyebrow', 'Retailers Directory')}
         </span>
         <h1 className="page-title" style={{ fontSize: '2.5rem', fontWeight: 900, color: 'var(--text-heading)', letterSpacing: '-0.03em', marginBottom: '0.5rem' }}>
-          All Partner Stores &amp; Brands
+          {t('stores_directory_title', 'All Partner Stores & Brands')}
         </h1>
         <p style={{ color: 'var(--text-muted)', fontSize: '1.05rem', maxWidth: '640px' }}>
-          Discover verified promo codes, seasonal sales, and cashback deals from top retailers worldwide.
+          {t('stores_directory_desc', 'Discover verified promo codes, seasonal sales, and cashback deals from top retailers worldwide.')}
         </p>
       </div>
 
@@ -140,7 +144,7 @@ export default async function StoresDirectoryPage({ searchParams }: StoresPagePr
             type="text"
             name="search"
             defaultValue={searchQuery}
-            placeholder="Search stores by brand name..."
+            placeholder={t('search_stores_placeholder', 'Search stores by brand name...')}
             style={{
               width: '100%',
               padding: '0.8rem 1rem 0.8rem 2.8rem',
@@ -160,7 +164,7 @@ export default async function StoresDirectoryPage({ searchParams }: StoresPagePr
             href={`/stores${searchQuery ? `?search=${encodeURIComponent(searchQuery)}` : ''}`}
             className={`btn btn-sm ${!selectedCategory ? 'btn-primary' : 'btn-secondary'}`}
           >
-            All Categories
+            {t('all_categories', 'All Categories')}
           </Link>
           {categories.slice(0, 5).map((cat) => (
             <Link
@@ -168,7 +172,7 @@ export default async function StoresDirectoryPage({ searchParams }: StoresPagePr
               href={`/stores?category=${cat.slug}${searchQuery ? `&search=${encodeURIComponent(searchQuery)}` : ''}`}
               className={`btn btn-sm ${selectedCategory === cat.slug ? 'btn-primary' : 'btn-secondary'}`}
             >
-              {cat.name}
+              {getLocalizedCategoryName(cat.name, locale)}
             </Link>
           ))}
         </div>
@@ -179,7 +183,7 @@ export default async function StoresDirectoryPage({ searchParams }: StoresPagePr
         <section style={{ marginBottom: '3.5rem' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.5rem' }}>
             <h2 style={{ fontSize: '1.5rem', fontWeight: 900, display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--text-heading)' }}>
-              <Sparkles size={18} color="var(--primary)" /> Top Featured Brands
+              <Sparkles size={18} color="var(--primary)" /> {t('top_featured_brands', 'Top Featured Brands')}
             </h2>
           </div>
           <div style={{
@@ -249,13 +253,13 @@ export default async function StoresDirectoryPage({ searchParams }: StoresPagePr
         }}>
           <Store size={44} color="var(--primary)" style={{ margin: '0 auto 1.25rem auto' }} />
           <h3 style={{ fontSize: '1.35rem', fontWeight: 800, color: 'var(--text-heading)', marginBottom: '0.5rem' }}>
-            No Stores Found
+            {t('no_stores_found', 'No Stores Found')}
           </h3>
           <p style={{ color: 'var(--text-muted)', fontSize: '0.94rem', marginBottom: '1.5rem', maxWidth: '440px', margin: '0 auto 1.5rem auto' }}>
-            We couldn&apos;t find any stores matching your current filter criteria.
+            {t('no_stores_desc', "We couldn't find any stores matching your current filter criteria.")}
           </p>
           <Link href="/stores" className="btn btn-primary">
-            Reset Store Filters
+            {t('clear_all_filters', 'Reset Store Filters')}
           </Link>
         </div>
       ) : (
@@ -346,7 +350,7 @@ export default async function StoresDirectoryPage({ searchParams }: StoresPagePr
                         </div>
                         <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
                           <Tag size={11} color="var(--primary)" />
-                          <span>{offerCount} {offerCount === 1 ? 'Offer' : 'Offers'}</span>
+                          <span>{offerCount} {t('available_deals', 'Offers')}</span>
                         </div>
                       </div>
                       <ArrowRight size={14} color="var(--slate-400)" />

@@ -7,10 +7,16 @@ import Breadcrumbs from '@/components/Breadcrumbs';
 import RatingStars from '@/components/RatingStars';
 import CouponCard from '@/components/CouponCard';
 import { generateReviewSchema, safeJsonLd, SITE_URL } from '@/lib/seo';
-import { Star, Check, X, ShieldCheck, ExternalLink, Tag, ArrowRight } from 'lucide-react';
+import { getServerTranslator } from '@/lib/serverLocale';
+import {
+  getLocalizedReviewTitle,
+  getLocalizedReviewSummary,
+  getLocalizedHighlight,
+} from '@/lib/translations';
+import { Star, Check, X, ShieldCheck, ExternalLink, Tag } from 'lucide-react';
 
 interface ReviewPageProps {
-  params: Promise<{ slug: string }> | { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 export async function generateMetadata(props: ReviewPageProps): Promise<Metadata> {
@@ -49,6 +55,7 @@ export async function generateMetadata(props: ReviewPageProps): Promise<Metadata
 }
 
 export default async function StoreReviewDetailPage(props: ReviewPageProps) {
+  const { locale, t } = await getServerTranslator();
   const params = await Promise.resolve(props.params);
   const review = await prisma.review.findUnique({
     where: { slug: params.slug },
@@ -86,12 +93,15 @@ export default async function StoreReviewDetailPage(props: ReviewPageProps) {
     if (review.consJson) cons = JSON.parse(review.consJson);
   } catch {}
 
+  const localizedTitle = getLocalizedReviewTitle(review.store.slug, review.title, locale);
+  const localizedSummary = getLocalizedReviewSummary(review.store.slug, review.summary, locale);
+
   const reviewSchema = generateReviewSchema(
     {
-      title: review.title,
+      title: localizedTitle,
       slug: review.slug,
       rating: review.rating,
-      summary: review.summary,
+      summary: localizedSummary,
       authorName: review.authorName,
       verdict: review.verdict,
     },
@@ -111,8 +121,8 @@ export default async function StoreReviewDetailPage(props: ReviewPageProps) {
 
       <Breadcrumbs
         items={[
-          { name: 'Reviews', url: '/reviews' },
-          { name: `${review.store.name} Review`, url: `/reviews/${review.slug}` },
+          { name: t('nav_reviews', 'Reviews'), url: '/reviews' },
+          { name: `${review.store.name} ${t('review_suffix', 'Review')}`, url: `/reviews/${review.slug}` },
         ]}
       />
 
@@ -154,16 +164,16 @@ export default async function StoreReviewDetailPage(props: ReviewPageProps) {
 
           <div>
             <span className="badge badge-amber" style={{ marginBottom: '0.45rem' }}>
-              <ShieldCheck size={12} /> Verified Review
+              <ShieldCheck size={12} /> {t('verified_review', 'Verified Review')}
             </span>
             <h1 style={{ fontSize: '2.2rem', fontWeight: 900, color: 'var(--text-heading)', letterSpacing: '-0.03em', marginBottom: '0.4rem' }}>
-              {review.title}
+              {localizedTitle}
             </h1>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
               <RatingStars score={review.rating} size={16} />
               <span style={{ color: 'var(--slate-300)' }}>•</span>
               <span style={{ fontSize: '0.86rem', color: 'var(--text-muted)' }}>
-                Reviewed by <strong style={{ color: 'var(--text-heading)' }}>{review.authorName}</strong>
+                {t('reviewed_by', 'Reviewed by')} <strong style={{ color: 'var(--text-heading)' }}>{review.authorName}</strong>
               </span>
             </div>
           </div>
@@ -172,7 +182,7 @@ export default async function StoreReviewDetailPage(props: ReviewPageProps) {
         {/* CTA Buttons */}
         <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
           <Link href={`/stores/${review.store.slug}`} className="btn btn-secondary btn-sm">
-            View Coupons ({review.store.coupons.length})
+            {t('view_all_offers', 'View Coupons')} ({review.store.coupons.length})
           </Link>
           <a
             href={`/out/store/${review.store.id}`}
@@ -180,7 +190,7 @@ export default async function StoreReviewDetailPage(props: ReviewPageProps) {
             rel="noopener noreferrer"
             className="btn btn-primary btn-sm"
           >
-            Visit Store <ExternalLink size={14} />
+            {t('btn_visit_store', 'Visit Store')} <ExternalLink size={14} />
           </a>
         </div>
       </div>
@@ -191,7 +201,7 @@ export default async function StoreReviewDetailPage(props: ReviewPageProps) {
         {/* REVIEW CONTENT */}
         <div>
           {/* Summary */}
-          {review.summary && (
+          {localizedSummary && (
             <div
               style={{
                 background: 'var(--primary-light)',
@@ -205,7 +215,7 @@ export default async function StoreReviewDetailPage(props: ReviewPageProps) {
                 marginBottom: '2.25rem',
               }}
             >
-              <strong style={{ color: 'var(--primary)' }}>Summary: </strong> {review.summary}
+              <strong style={{ color: 'var(--primary)' }}>{t('summary_label', 'Summary:')} </strong> {localizedSummary}
             </div>
           )}
 
@@ -214,11 +224,11 @@ export default async function StoreReviewDetailPage(props: ReviewPageProps) {
             {pros.length > 0 && (
               <div style={{ background: 'var(--primary-light)', border: '1px solid var(--primary-border)', borderRadius: 'var(--radius-xl)', padding: '1.4rem' }}>
                 <h3 style={{ fontSize: '1.1rem', fontWeight: 900, color: 'var(--primary)', marginBottom: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                  <Check size={16} strokeWidth={3} /> What Shoppers Love
+                  <Check size={16} strokeWidth={3} /> {t('what_shoppers_love', 'What Shoppers Love')}
                 </h3>
                 <ul style={{ margin: 0, paddingLeft: '1.1rem', color: 'var(--text-main)', display: 'flex', flexDirection: 'column', gap: '0.45rem', fontSize: '0.88rem' }}>
                   {pros.map((pro, i) => (
-                    <li key={i}>{pro}</li>
+                    <li key={i}>{getLocalizedHighlight(pro, locale)}</li>
                   ))}
                 </ul>
               </div>
@@ -227,7 +237,7 @@ export default async function StoreReviewDetailPage(props: ReviewPageProps) {
             {cons.length > 0 && (
               <div style={{ background: 'rgba(239, 68, 68, 0.1)', border: '1px solid rgba(239, 68, 68, 0.25)', borderRadius: 'var(--radius-xl)', padding: '1.4rem' }}>
                 <h3 style={{ fontSize: '1.1rem', fontWeight: 900, color: '#ef4444', marginBottom: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                  <X size={16} strokeWidth={3} /> Things to Keep in Mind
+                  <X size={16} strokeWidth={3} /> {t('things_to_note', 'Things to Keep in Mind')}
                 </h3>
                 <ul style={{ margin: 0, paddingLeft: '1.1rem', color: 'var(--text-main)', display: 'flex', flexDirection: 'column', gap: '0.45rem', fontSize: '0.88rem' }}>
                   {cons.map((con, i) => (
@@ -260,10 +270,10 @@ export default async function StoreReviewDetailPage(props: ReviewPageProps) {
               }}
             >
               <span className="badge badge-code" style={{ marginBottom: '0.65rem' }}>
-                Editorial Recommendation
+                {t('editorial_recommendation', 'Editorial Recommendation')}
               </span>
               <h3 style={{ fontSize: '1.3rem', fontWeight: 900, color: 'var(--text-heading)', marginBottom: '0.5rem' }}>
-                Our Verdict on {review.store.name}
+                {t('our_verdict_on', 'Our Verdict on')} {review.store.name}
               </h3>
               <p style={{ color: 'var(--text-main)', fontSize: '0.94rem', lineHeight: '1.65' }}>
                 {review.verdict}
@@ -287,7 +297,7 @@ export default async function StoreReviewDetailPage(props: ReviewPageProps) {
               }}
             >
               <h3 style={{ fontSize: '1.1rem', fontWeight: 900, marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.45rem', color: 'var(--text-heading)' }}>
-                <Tag size={16} color="var(--primary)" /> Active {review.store.name} Deals
+                <Tag size={16} color="var(--primary)" /> {t('active_offers_prefix', 'Active')} {review.store.name} {t('offers_suffix', 'Deals')}
               </h3>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                 {review.store.coupons.map((coupon) => (
