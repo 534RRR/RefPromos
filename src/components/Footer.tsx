@@ -231,6 +231,9 @@ export default function Footer() {
               <Link href={formatRegionLink('/contact-us')} className="footer-link">
                 {t('nav_contact')}
               </Link>
+              <a href="mailto:contact@refpromos.com" className="footer-link" style={{ fontSize: '0.84rem' }}>
+                contact@refpromos.com
+              </a>
               <Link href={formatRegionLink('/privacy-policy')} className="footer-link">
                 {t('footer_privacy')}
               </Link>

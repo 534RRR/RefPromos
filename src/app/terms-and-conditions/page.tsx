@@ -92,7 +92,7 @@ export default function TermsAndConditionsPage() {
           <p>
             For legal inquiries or notices regarding these terms, please email:
             <br />
-            <strong style={{ color: 'var(--text-heading)' }}>Email:</strong> <a href="mailto:legal@refpromos.com" style={{ color: 'var(--primary)', fontWeight: 700 }}>legal@refpromos.com</a>
+            <strong style={{ color: 'var(--text-heading)' }}>Email:</strong> <a href="mailto:contact@refpromos.com" style={{ color: 'var(--primary)', fontWeight: 700 }}>contact@refpromos.com</a>
           </p>
         </section>
       </div>

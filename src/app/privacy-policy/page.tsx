@@ -101,7 +101,7 @@ export default function PrivacyPolicyPage() {
             <li><strong style={{ color: 'var(--text-heading)' }}>Right to Opt-Out:</strong> Opt out of marketing digests or telemetry tracking at any time without penalty.</li>
           </ul>
           <p>
-            To initiate an automated data deletion request, you can submit an erasure request to our privacy endpoint at <code>/api/privacy/delete-data</code> with your registered email, or email our Data Protection Desk directly at <a href="mailto:privacy@refpromos.com" style={{ color: 'var(--primary)', fontWeight: 700 }}>privacy@refpromos.com</a>. Requests are processed within 48 hours.
+            To initiate an automated data deletion request, you can submit an erasure request to our privacy endpoint at <code>/api/privacy/delete-data</code> with your registered email, or email our Data Protection Desk directly at <a href="mailto:info@refpromos.com" style={{ color: 'var(--primary)', fontWeight: 700 }}>info@refpromos.com</a>. Requests are processed within 48 hours.
           </p>
         </section>
 
@@ -126,7 +126,7 @@ export default function PrivacyPolicyPage() {
           <p>
             For questions, data access inquiries, or deletion requests regarding your personal information, contact our Data Protection Officer at:
             <br />
-            <strong style={{ color: 'var(--text-heading)' }}>Email:</strong> <a href="mailto:privacy@refpromos.com" style={{ color: 'var(--primary)', fontWeight: 700 }}>privacy@refpromos.com</a>
+            <strong style={{ color: 'var(--text-heading)' }}>Email:</strong> <a href="mailto:info@refpromos.com" style={{ color: 'var(--primary)', fontWeight: 700 }}>info@refpromos.com</a>
           </p>
         </section>
       </div>

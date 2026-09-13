@@ -208,15 +208,29 @@ export default function ContactUsPage() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
           
           <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: 'var(--radius-2xl)', padding: '1.75rem', boxShadow: 'var(--shadow-xs)' }}>
-            <h3 style={{ fontSize: '1.15rem', fontWeight: 900, marginBottom: '0.75rem', display: 'flex', alignItems: 'center', gap: '0.45rem', color: 'var(--text-heading)' }}>
-              <Mail size={18} color="var(--primary)" /> {t('email_support', 'Email Support')}
+            <h3 style={{ fontSize: '1.15rem', fontWeight: 900, marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.45rem', color: 'var(--text-heading)' }}>
+              <Mail size={18} color="var(--primary)" /> {t('email_support', 'Direct Mailboxes')}
             </h3>
-            <p style={{ color: 'var(--text-muted)', fontSize: '0.88rem', lineHeight: '1.6', marginBottom: '0.75rem' }}>
-              Direct email for general questions and customer support:
-            </p>
-            <a href="mailto:support@refpromos.com" style={{ fontSize: '0.98rem', fontWeight: 800, color: 'var(--primary)', textDecoration: 'none' }}>
-              support@refpromos.com
-            </a>
+            
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              <div>
+                <span style={{ fontSize: '0.78rem', fontWeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.06em', display: 'block', marginBottom: '0.2rem' }}>
+                  {t('support_desk', 'Customer & Coupon Support')}:
+                </span>
+                <a href="mailto:support@refpromos.com" style={{ fontSize: '0.96rem', fontWeight: 800, color: 'var(--primary)', textDecoration: 'none' }}>
+                  support@refpromos.com
+                </a>
+              </div>
+
+              <div>
+                <span style={{ fontSize: '0.78rem', fontWeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.06em', display: 'block', marginBottom: '0.2rem' }}>
+                  {t('general_inquiries', 'General Inquiries & Information')}:
+                </span>
+                <a href="mailto:info@refpromos.com" style={{ fontSize: '0.96rem', fontWeight: 800, color: 'var(--primary)', textDecoration: 'none' }}>
+                  info@refpromos.com
+                </a>
+              </div>
+            </div>
           </div>
 
           <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: 'var(--radius-2xl)', padding: '1.75rem', boxShadow: 'var(--shadow-xs)' }}>
@@ -233,7 +247,7 @@ export default function ContactUsPage() {
               <ShieldCheck size={18} color="var(--primary)" /> {t('for_merchants', 'For Merchant Partners')}
             </h3>
             <p style={{ color: 'var(--text-main)', fontSize: '0.88rem', lineHeight: '1.6', margin: 0 }}>
-              Want your brand listed on RefPromos or wish to provide exclusive discount codes for our community? Contact <strong style={{ textDecoration: 'underline', color: 'var(--primary)' }}>partners@refpromos.com</strong>.
+              Want your brand listed on RefPromos or wish to provide exclusive discount codes for our community? Contact <a href="mailto:contact@refpromos.com" style={{ fontWeight: 800, textDecoration: 'underline', color: 'var(--primary)' }}>contact@refpromos.com</a>.
             </p>
           </div>
 
