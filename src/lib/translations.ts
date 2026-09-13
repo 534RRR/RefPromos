@@ -1,4 +1,4 @@
-export type Locale = 'en' | 'de' | 'fr' | 'it' | 'nl';
+export type Locale = 'en' | 'de' | 'fr' | 'it' | 'nl' | 'pl' | 'es';
 
 export interface Translations {
   [key: string]: string;
@@ -954,6 +954,386 @@ export const TRANSLATIONS: Record<Locale, Translations> = {
     footer_sephora_coupons: 'Sephora Beauty Coupons',
     footer_affiliate_disclaimer: 'We kunnen een commissie ontvangen voor aankopen via links op deze site, zonder extra kosten voor u.',
   },
+
+  pl: {
+    // Nav & Header
+    nav_coupons: 'Kupony',
+    nav_stores: 'Sklepy',
+    nav_categories: 'Kategorie',
+    nav_guides: 'Poradniki',
+    nav_reviews: 'Opinie',
+    nav_about: 'O nas',
+    nav_contact: 'Kontakt',
+    nav_admin: 'Panel',
+    search_placeholder: 'Szukaj okazji...',
+    select_region: 'Wybierz region',
+    breadcrumbs_home: 'Strona główna',
+
+    // Hero
+    hero_badge: 'ZWERYFIKOWANE KODY PROMOCYJNE I CODZIENNE OKAZJE',
+    hero_title_1: 'Odkryj',
+    hero_title_2: 'Mądrzejsze Oszczędności.',
+    hero_title_3: 'Każdego Dnia.',
+    hero_desc: 'Uzyskaj dostęp do ponad 50 000 sprawdzonych kodów rabatowych, kuponów zniżkowych i ekskluzywnych ofert w ponad 500 zaufanych sklepach.',
+    hero_search_input: 'Szukaj sklepów, marek lub kodów rabatowych...',
+    hero_btn_find: 'Znajdź okazje',
+    hero_trending: 'Popularne:',
+    trending_nike: 'Nike 20% zniżki',
+    trending_amazon: 'Kody promocyjne Amazon',
+    trending_sephora: 'Oferty Sephora Beauty',
+    trending_apple: 'Zniżka studencka Apple',
+    trending_asos: 'Letnia wyprzedaż ASOS',
+    hero_floating_1: '25% ZNIŻKI Na wszystko',
+    hero_floating_2: '40% ZNIŻKI',
+    hero_floating_3: '15% ZNIŻKI + Darmowa dostawa',
+    pill_sitewide: 'Na wszystko',
+    stat_verified_coupons: 'Zweryfikowane kupony',
+    stat_promo_codes: 'Kody promocyjne',
+    stat_top_brands: 'Najlepsze marki',
+    stat_user_rating: 'Ocena kupujących',
+    trusted_by_shoppers: 'ZAUFANIE KUPUJĄCYCH W WIODĄCYCH MARKACH',
+    more_brands: '+500 kolejnych',
+
+    // Section Titles & Badges
+    section_highlights_badge: 'Wyróżnione Dzisiaj',
+    section_featured_deals_title: 'Wyróżnione okazje i ekskluzywne kody promocyjne',
+    view_all_offers: 'Zobacz wszystkie oferty',
+    section_partner_retailers: 'Sklepy partnerskie',
+    section_top_stores_title: 'Najpopularniejsze sklepy ze zweryfikowanymi kuponami',
+    all_stores_directory: 'Katalog wszystkich sklepów',
+    section_browse_departments: 'Przeglądaj działy',
+    section_popular_categories_title: 'Popularne kategorie zakupowe',
+    all_categories: 'Wszystkie kategorie',
+    stores_available: 'Dostępne sklepy',
+    section_editorial_insights: 'Porady redakcji',
+    section_smart_guides_title: 'Sprytne przewodniki i triki oszczędzania',
+    read_all_guides: 'Przeczytaj wszystkie poradniki',
+    read_guide: 'Czytaj poradnik',
+    min_read: 'min czytania',
+
+    section_featured_coupons: 'Najlepsze sprawdzone kody i ekskluzywne promocje',
+    section_featured_coupons_sub: 'Ręcznie weryfikowane kupony, które dają dziś największe oszczędności',
+    section_popular_stores: 'Popularne sklepy i wyróżnieni sprzedawcy',
+    section_popular_stores_sub: 'Oszczędzaj natychmiast w najchętniej wybieranych sklepach',
+    section_categories: 'Kupuj z rabatem według popularnych kategorii',
+    section_categories_sub: 'Znajdź sprawdzone kody promocyjne na wszystko, czego szukasz',
+    section_guides: 'Eksperckie poradniki i wskazówki oszczędzania',
+    section_guides_sub: 'Sprawdzone strategie zakupowe, triki rabatowe i porady konsumenckie',
+    section_reviews: 'Szczegółowe opinie o sklepach i wskaźniki zaufania',
+    section_reviews_sub: 'Prawdziwe doświadczenia zakupowe, zasady zwrotów i wiarygodność',
+
+    // Buttons, Badges & Labels
+    btn_get_code: 'Pobierz kod',
+    btn_get_deal: 'Odbierz okazję',
+    btn_shop_now: 'Kup teraz',
+    btn_view_all: 'Zobacz wszystko',
+    btn_visit_store: 'Odwiedź sklep',
+    badge_verified: 'Zweryfikowano dzisiaj',
+    badge_staff_pick: 'Wybór redakcji',
+    badge_exclusive: 'Ekskluzywny',
+    badge_expiring: 'Wkrótce wygasa',
+    uses_today: 'użyć dzisiaj',
+    success_rate: 'Skuteczność',
+    code_copied: 'Kod skopiowany!',
+    copy_code: 'Kopiuj kod',
+    promo_code_badge: 'Kod promocyjny',
+    direct_deal_badge: 'Oferta bezpośrednia',
+    claim_offer: 'Odbierz ofertę',
+    automatic_at_checkout: 'Automatycznie przy kasie',
+    available_deals: 'Okazje',
+
+    // Stores Directory
+    stores_directory_eyebrow: 'Katalog sprzedawców',
+    stores_directory_title: 'Wszystkie sklepy partnerskie i marki',
+    stores_directory_desc: 'Odkryj zweryfikowane kody promocyjne, sezonowe wyprzedaże i rabaty od najlepszych marek na całym świecie.',
+    search_stores_placeholder: 'Szukaj sklepów po nazwie marki...',
+    top_featured_brands: 'Najchętniej wybierane marki',
+    az_directory: 'Alfabetyczny katalog A-Z',
+    no_stores_found: 'Nie znaleziono sklepów pasujących do Twojego wyszukiwania',
+    clear_filters: 'Wyczyść filtry',
+    coupons_deals_available: 'Dostępne kupony i okazje',
+
+    // Reviews Hub & Cards
+    reviews_eyebrow: 'Oceny redakcji',
+    reviews_title: 'Recenzje i opinie o sklepach',
+    reviews_desc: 'Czytaj obiektywne opinie o sklepach, oceny punktowe, zalety i wady oraz zasady zwrotów przed dokonaniem zakupu.',
+    no_reviews_yet: 'Brak opublikowanych recenzji',
+    no_reviews_desc: 'Nasz zespół testujący przygotowuje obecnie nowe recenzje marek.',
+    review_card_review: 'Recenzja',
+    tested_highlights: 'Przetestowane atuty',
+    by_author: 'Autor',
+    read_review: 'Przeczytaj recenzję',
+    pros: 'Zalety i mocne strony',
+    cons: 'Wady i ograniczenia',
+    verdict: 'Nasz werdykt',
+    overall_score: 'Ogólny wskaźnik zaufania',
+
+    // Coupons Directory
+    coupons_eyebrow: 'Centrum okazji',
+    coupons_title: 'Zweryfikowane kody promocyjne i kupony',
+    coupons_desc: 'Przeglądaj przetestowane kody rabatowe, bony zakupowe i błyskawiczne wyprzedaże, które działają dzisiaj.',
+    search_coupons_placeholder: 'Szukaj wg sklepu lub kodu (np. Nike, SAVE20)...',
+    all_offers: 'Wszystkie oferty',
+    filter_codes: 'Kody promocyjne',
+    filter_deals: 'Wyprzedaże i okazje',
+    filter_free_shipping: 'Darmowa dostawa',
+    sort_by: 'Sortuj według',
+    sort_popular: 'Najpopularniejsze',
+    sort_newest: 'Najnowsze',
+    sort_expiring: 'Wkrótce wygasające',
+    no_coupons_found: 'Nie znaleziono kuponów spełniających Twoje kryteria',
+
+    // Categories Hub
+    categories_eyebrow: 'Katalog kategorii',
+    categories_title: 'Wszystkie kategorie zakupów',
+    categories_desc: 'Odkrywaj zniżki, kody promocyjne i codzienne wyprzedaże pogrupowane według działów produktów.',
+
+    // Blogs Hub
+    blogs_eyebrow: 'Artykuły i porady',
+    blogs_title: 'Poradniki oszczędzania, recenzje i wskazówki',
+    blogs_desc: 'Eksperckie porady zakupowe, przewodniki po sklepach i sprawdzone metody oszczędzania pieniędzy przy kasie.',
+    all_articles: 'Wszystkie artykuły',
+    featured_guide: 'Wyróżniony poradnik',
+    read_full_guide: 'Przeczytaj cały poradnik',
+
+    // Modals
+    modal_coupon_code: 'Skopiuj ten kod i wklej go przy kasie w sklepie.',
+    modal_copied: 'Skopiowano do schowka!',
+    modal_visit_store: 'Przejdź do sklepu',
+    modal_feedback_prompt: 'Czy ten kupon zadziałał?',
+    modal_feedback_yes: 'Tak, zadziałał!',
+    modal_feedback_no: 'Wygasł lub niepoprawny',
+    modal_thanks: 'Dziękujemy za Twoją opinię!',
+    search_modal_placeholder: 'Szukaj sklepów, okazji, kodów promocyjnych...',
+    search_modal_trending: 'Popularne wyszukiwania',
+    search_modal_stores: 'Sklepy',
+    search_modal_coupons: 'Kupony',
+    search_modal_categories: 'Kategorie',
+    search_modal_guides: 'Poradniki',
+    search_modal_no_results: 'Brak wyników dla',
+
+    // Newsletter
+    newsletter_badge: 'BĄDŹ NA BIEŻĄCO',
+    newsletter_title: 'Otrzymuj sprawdzone okazje co tydzień',
+    newsletter_desc: 'Dołącz do ponad 50 000 sprytnych kupujących i otrzymuj cotygodniowy przegląd przetestowanych kodów i obniżek cen.',
+    newsletter_placeholder: 'Wpisz swój adres e-mail...',
+    newsletter_btn: 'Subskrybuj za darmo',
+    newsletter_privacy: 'Zero spamu. Wypisz się w dowolnym momencie jednym kliknięciem.',
+    newsletter_success: '🎉 Dziękujemy za subskrypcję! Twoje pierwsze zestawienie okazji jest w drodze.',
+    subscribing: 'Zapisywanie...',
+
+    // Footer
+    footer_tagline: 'Twoje główne źródło sprawdzonych kodów promocyjnych, codziennych wyprzedaży i wyjątkowych rabatów.',
+    footer_quick_links: 'Szybkie linki',
+    footer_categories: 'Kategorie',
+    footer_stores: 'Popularne sklepy',
+    footer_legal: 'Informacje prawne',
+    footer_terms: 'Regulamin',
+    footer_privacy: 'Polityka prywatności',
+    footer_rights: 'Wszelkie prawa zastrzeżone.',
+    footer_trust_1_title: '100% testowane codziennie',
+    footer_trust_1_desc: 'Każdy kod rabatowy jest sprawdzany przed publikacją, co gwarantuje prawdziwe oszczędności przy kasie.',
+    footer_trust_2_title: 'Darmowy i bez konieczności rejestracji',
+    footer_trust_2_desc: 'Natychmiastowy dostęp jednym kliknięciem do przetestowanych kodów bez konieczności zakładania konta.',
+    footer_trust_3_title: 'Przejrzystość afiliacyjna',
+    footer_trust_3_desc: 'Współpracujemy ze sprawdzonymi markami i możemy otrzymać prowizję od kwalifikujących się zakupów.',
+    footer_promo_codes: 'Kody promocyjne',
+    footer_free_shipping: 'Darmowa dostawa',
+    footer_nike_codes: 'Kody promocyjne Nike',
+    footer_amazon_deals: 'Okazje Amazon',
+    footer_sephora_coupons: 'Kupony Sephora',
+    footer_affiliate_disclaimer: 'Możemy otrzymać prowizję od zakupów dokonanych za pośrednictwem linków na tej stronie, bez żadnych dodatkowych kosztów dla Ciebie.',
+  },
+
+  es: {
+    // Nav & Header
+    nav_coupons: 'Cupones',
+    nav_stores: 'Tiendas',
+    nav_categories: 'Categorías',
+    nav_guides: 'Guías',
+    nav_reviews: 'Reseñas',
+    nav_about: 'Sobre nosotros',
+    nav_contact: 'Contacto',
+    nav_admin: 'Admin',
+    search_placeholder: 'Buscar ofertas...',
+    select_region: 'Seleccionar región',
+    breadcrumbs_home: 'Inicio',
+
+    // Hero
+    hero_badge: 'CÓDIGOS PROMOCIONALES VERIFICADOS Y OFERTAS DIARIAS',
+    hero_title_1: 'Desbloquea',
+    hero_title_2: 'Ahorros Inteligentes.',
+    hero_title_3: 'Cada Día.',
+    hero_desc: 'Accede a más de 50.000 códigos promocionales verificados, cupones de descuento y ahorros exclusivos en más de 500 tiendas oficiales.',
+    hero_search_input: 'Buscar tiendas, marcas o códigos de descuento...',
+    hero_btn_find: 'Buscar ofertas',
+    hero_trending: 'Tendencias:',
+    trending_nike: 'Nike 20% de descuento',
+    trending_amazon: 'Códigos descuento Amazon',
+    trending_sephora: 'Ofertas de belleza Sephora',
+    trending_apple: 'Descuento de estudiante Apple',
+    trending_asos: 'Rebajas de verano ASOS',
+    hero_floating_1: '25% DTO en toda la web',
+    hero_floating_2: '40% DTO',
+    hero_floating_3: '15% DTO + Envío Gratis',
+    pill_sitewide: 'Toda la web',
+    stat_verified_coupons: 'Cupones verificados',
+    stat_promo_codes: 'Códigos descuento',
+    stat_top_brands: 'Marcas destacadas',
+    stat_user_rating: 'Valoración de usuarios',
+    trusted_by_shoppers: 'CON LA CONFIANZA DE COMPRADORES DE PRIMERAS MARCAS',
+    more_brands: '+500 más',
+
+    // Section Titles & Badges
+    section_highlights_badge: 'Destacados de hoy',
+    section_featured_deals_title: 'Ofertas destacadas y códigos promocionales exclusivos',
+    view_all_offers: 'Ver todas las ofertas',
+    section_partner_retailers: 'Tiendas colaboradoras',
+    section_top_stores_title: 'Mejores tiendas con cupones verificados',
+    all_stores_directory: 'Directorio de todas las tiendas',
+    section_browse_departments: 'Explorar departamentos',
+    section_popular_categories_title: 'Categorías de compra populares',
+    all_categories: 'Todas las categorías',
+    stores_available: 'Tiendas disponibles',
+    section_editorial_insights: 'Consejos editoriales',
+    section_smart_guides_title: 'Guías de compra inteligente y trucos de ahorro',
+    read_all_guides: 'Leer todas las guías',
+    read_guide: 'Leer guía',
+    min_read: 'min de lectura',
+
+    section_featured_coupons: 'Mejores códigos promocionales verificados y ofertas exclusivas',
+    section_featured_coupons_sub: 'Cupones verificados a mano que más ahorran a los compradores hoy',
+    section_popular_stores: 'Tiendas en tendencia y comercios destacados',
+    section_popular_stores_sub: 'Ahorra al instante en los destinos de compra más populares de hoy',
+    section_categories: 'Compra ofertas por categorías populares',
+    section_categories_sub: 'Encuentra códigos promocionales verificados para lo que busques',
+    section_guides: 'Guías y consejos de expertos para ahorrar dinero',
+    section_guides_sub: 'Estrategias de compra probadas, trucos de descuento y consejos',
+    section_reviews: 'Reseñas detalladas de tiendas y puntuaciones de confianza',
+    section_reviews_sub: 'Experiencias reales de compra, análisis de políticas y credibilidad',
+
+    // Buttons, Badges & Labels
+    btn_get_code: 'Obtener código',
+    btn_get_deal: 'Obtener oferta',
+    btn_shop_now: 'Comprar ahora',
+    btn_view_all: 'Ver todo',
+    btn_visit_store: 'Visitar tienda',
+    badge_verified: 'Verificado hoy',
+    badge_staff_pick: 'Selección del equipo',
+    badge_exclusive: 'Exclusivo',
+    badge_expiring: 'Expira pronto',
+    uses_today: 'usos hoy',
+    success_rate: 'Éxito',
+    code_copied: '¡Código copiado!',
+    copy_code: 'Copiar código',
+    promo_code_badge: 'Código promocional',
+    direct_deal_badge: 'Oferta directa',
+    claim_offer: 'Aprovechar oferta',
+    automatic_at_checkout: 'Automático al pagar',
+    available_deals: 'Ofertas',
+
+    // Stores Directory
+    stores_directory_eyebrow: 'Directorio de comercios',
+    stores_directory_title: 'Todas las tiendas y marcas asociadas',
+    stores_directory_desc: 'Descubre códigos promocionales verificados, rebajas de temporada y ofertas de las mejores tiendas del mundo.',
+    search_stores_placeholder: 'Buscar tiendas por nombre de marca...',
+    top_featured_brands: 'Marcas destacadas principales',
+    az_directory: 'Directorio alfabético de la A a la Z',
+    no_stores_found: 'No se encontraron tiendas que coincidan con tu búsqueda',
+    clear_filters: 'Limpiar filtros',
+    coupons_deals_available: 'Cupones y ofertas disponibles',
+
+    // Reviews Hub & Cards
+    reviews_eyebrow: 'Valoraciones editoriales',
+    reviews_title: 'Reseñas de tiendas y marcas',
+    reviews_desc: 'Lee reseñas imparciales, puntuaciones, ventajas y desventajas, y políticas de devolución antes de pagar.',
+    no_reviews_yet: 'Aún no hay reseñas publicadas',
+    no_reviews_desc: 'Nuestro equipo de ofertas está preparando nuevas reseñas de marcas.',
+    review_card_review: 'Reseña',
+    tested_highlights: 'Puntos fuertes probados',
+    by_author: 'Por',
+    read_review: 'Leer reseña',
+    pros: 'Ventajas y puntos fuertes',
+    cons: 'Desventajas y limitaciones',
+    verdict: 'Nuestro veredicto',
+    overall_score: 'Puntuación general de confianza',
+
+    // Coupons Directory
+    coupons_eyebrow: 'Centro de ofertas',
+    coupons_title: 'Códigos promocionales y cupones verificados',
+    coupons_desc: 'Explora códigos de descuento probados, vales promocionales y ventas flash verificadas hoy mismo.',
+    search_coupons_placeholder: 'Buscar por tienda o código (ej. Nike, SAVE20)...',
+    all_offers: 'Todas las ofertas',
+    filter_codes: 'Códigos promocionales',
+    filter_deals: 'Ventas y ofertas',
+    filter_free_shipping: 'Envío gratis',
+    sort_by: 'Ordenar por',
+    sort_popular: 'Más populares',
+    sort_newest: 'Más recientes',
+    sort_expiring: 'Próximos a expirar',
+    no_coupons_found: 'No se encontraron cupones que coincidan con tus criterios',
+
+    // Categories Hub
+    categories_eyebrow: 'Centro de categorías',
+    categories_title: 'Todas las categorías de compra',
+    categories_desc: 'Explora descuentos, códigos promocionales y rebajas diarias organizadas por departamento de productos.',
+
+    // Blogs Hub
+    blogs_eyebrow: 'Editorial de compras',
+    blogs_title: 'Guías de ahorro, reseñas y trucos',
+    blogs_desc: 'Consejos de expertos, guías de compra de tiendas y estrategias probadas para ahorrar dinero.',
+    all_articles: 'Todos los artículos',
+    featured_guide: 'Guía destacada',
+    read_full_guide: 'Leer guía completa',
+
+    // Modals
+    modal_coupon_code: 'Copia este código y pégalo en el carrito de la tienda.',
+    modal_copied: '¡Copiado al portapapeles!',
+    modal_visit_store: 'Ir a la tienda',
+    modal_feedback_prompt: '¿Te funcionó este cupón?',
+    modal_feedback_yes: '¡Sí, funcionó!',
+    modal_feedback_no: 'Caducado o no válido',
+    modal_thanks: '¡Gracias por tu valoración!',
+    search_modal_placeholder: 'Buscar tiendas, ofertas, códigos promocionales...',
+    search_modal_trending: 'Búsquedas en tendencia',
+    search_modal_stores: 'Tiendas',
+    search_modal_coupons: 'Cupones',
+    search_modal_categories: 'Categorías',
+    search_modal_guides: 'Guías',
+    search_modal_no_results: 'No se encontraron resultados para',
+
+    // Newsletter
+    newsletter_badge: 'MANTENTE AL DÍA',
+    newsletter_title: 'Recibe ofertas verificadas cada semana',
+    newsletter_desc: 'Únete a más de 50.000 compradores y recibe semanalmente los mejores códigos verificados y bajadas de precio.',
+    newsletter_placeholder: 'Introduce tu correo electrónico...',
+    newsletter_btn: 'Suscribirse gratis',
+    newsletter_privacy: 'Cero spam. Cancela tu suscripción en cualquier momento con 1 clic.',
+    newsletter_success: '🎉 ¡Gracias por suscribirte! Tu primer resumen semanal de ofertas va en camino.',
+    subscribing: 'Suscribiendo...',
+
+    // Footer
+    footer_tagline: 'Tu destino preferido para códigos promocionales verificados, rebajas diarias y ahorros exclusivos.',
+    footer_quick_links: 'Enlaces rápidos',
+    footer_categories: 'Categorías',
+    footer_stores: 'Tiendas populares',
+    footer_legal: 'Información legal',
+    footer_terms: 'Términos y condiciones',
+    footer_privacy: 'Política de privacidad',
+    footer_rights: 'Todos los derechos reservados.',
+    footer_trust_1_title: '100% probado a diario',
+    footer_trust_1_desc: 'Cada código se prueba antes de publicarse para garantizar ahorros reales al comprar.',
+    footer_trust_2_title: 'Gratis y sin registro',
+    footer_trust_2_desc: 'Acceso instantáneo en 1 clic a códigos verificados sin necesidad de crear cuenta.',
+    footer_trust_3_title: 'Transparencia de afiliados',
+    footer_trust_3_desc: 'Colaboramos con marcas verificadas y podemos recibir una comisión por compras que califiquen.',
+    footer_promo_codes: 'Códigos descuento',
+    footer_free_shipping: 'Envío gratis',
+    footer_nike_codes: 'Códigos descuento Nike',
+    footer_amazon_deals: 'Ofertas Amazon',
+    footer_sephora_coupons: 'Cupones Sephora',
+    footer_affiliate_disclaimer: 'Podemos recibir una comisión por compras realizadas a través de enlaces en este sitio, sin coste adicional para ti.',
+  },
 };
 
 const KEY_ALIASES: Record<string, string> = {
@@ -996,6 +1376,8 @@ const LOCALIZED_DEAL_TITLES: Record<string, Record<Locale, string>> = {
     fr: '71% de réduction sur le forfait 2 ans + 3 mois offerts',
     it: '71% di sconto sul piano di 2 anni + 3 mesi extra gratis',
     nl: '71% korting op 2-jarig abonnement + 3 extra maanden gratis',
+    pl: '71% zniżki na plan 2-letni + 3 dodatkowe miesiące gratis',
+    es: '71% de descuento en el plan de 2 años + 3 meses gratis',
   },
   'Free 8-Piece Luxury Skincare Sample Bag with $45+ Order': {
     en: 'Free 8-Piece Luxury Skincare Sample Bag with $45+ Order',
@@ -1003,6 +1385,8 @@ const LOCALIZED_DEAL_TITLES: Record<string, Record<Locale, string>> = {
     fr: "Trousse de 8 échantillons de soins de luxe offerte dès 45$ d'achat",
     it: 'Borsa di 8 campioni di cura della pelle di lusso in omaggio con 45$+',
     nl: 'Gratis 8-delige luxe huidverzorgingsset bij besteding vanaf 45$',
+    pl: 'Darmowa 8-częściowa luksusowa saszetka próbek do pielęgnacji przy zamówieniu od 45$',
+    es: 'Bolsa de 8 muestras de lujo para el cuidado de la piel gratis con pedidos de más de 45$',
   },
   '$100 OFF Select Laptops & MacBooks': {
     en: '$100 OFF Select Laptops & MacBooks',
@@ -1010,6 +1394,8 @@ const LOCALIZED_DEAL_TITLES: Record<string, Record<Locale, string>> = {
     fr: '100$ de réduction sur une sélection de PC portables & MacBooks',
     it: '100$ di sconto su laptop e MacBook selezionati',
     nl: '100$ korting op geselecteerde laptops & MacBooks',
+    pl: '100$ zniżki na wybrane laptopy i MacBooki',
+    es: '100$ de descuento en portátiles y MacBooks seleccionados',
   },
   '20% OFF First Order with ASOS App': {
     en: '20% OFF First Order with ASOS App',
@@ -1017,6 +1403,8 @@ const LOCALIZED_DEAL_TITLES: Record<string, Record<Locale, string>> = {
     fr: '20% de réduction sur la 1ère commande avec l’application ASOS',
     it: '20% di sconto sul primo ordine con l’app ASOS',
     nl: '20% korting op de eerste bestelling met de ASOS-app',
+    pl: '20% zniżki na pierwsze zamówienie w aplikacji ASOS',
+    es: '20% de descuento en el primer pedido con la app ASOS',
   },
   '$15 OFF First Amazon App Order of $30+': {
     en: '$15 OFF First Amazon App Order of $30+',
@@ -1024,6 +1412,8 @@ const LOCALIZED_DEAL_TITLES: Record<string, Record<Locale, string>> = {
     fr: '15$ de réduction dès 30$ d’achat sur la 1ère commande Amazon App',
     it: '15$ di sconto sul primo ordine Amazon App da 30$+',
     nl: '15$ korting op de eerste Amazon App bestelling vanaf 30$',
+    pl: '15$ zniżki na pierwsze zamówienie w aplikacji Amazon od 30$',
+    es: '15$ de descuento en el primer pedido en la app de Amazon desde 30$',
   },
   'Up to 50% OFF Daily Lightning Deals': {
     en: 'Up to 50% OFF Daily Lightning Deals',
@@ -1031,6 +1421,8 @@ const LOCALIZED_DEAL_TITLES: Record<string, Record<Locale, string>> = {
     fr: "Jusqu'à 50% de réduction sur les ventes flash du jour",
     it: 'Fino al 50% di sconto sulle offerte lampo del giorno',
     nl: 'Tot 50% korting op dagelijkse bliksemdeals',
+    pl: 'Do 50% zniżki na codzienne błyskawiczne okazje',
+    es: 'Hasta un 50% de descuento en ofertas flash diarias',
   },
   '30% OFF Summer Styles & Sneakers': {
     en: '30% OFF Summer Styles & Sneakers',
@@ -1038,6 +1430,8 @@ const LOCALIZED_DEAL_TITLES: Record<string, Record<Locale, string>> = {
     fr: "30% de réduction sur les styles d'été et les baskets",
     it: '30% di sconto su stili estivi e sneaker',
     nl: '30% korting op zomerse stijlen & sneakers',
+    pl: '30% zniżki na letnie trendy i sneakersy',
+    es: '30% de descuento en moda de verano y zapatillas',
   },
   'Up to 50% OFF Daily Deals & Best Sellers': {
     en: 'Up to 50% OFF Daily Deals & Best Sellers',
@@ -1045,6 +1439,8 @@ const LOCALIZED_DEAL_TITLES: Record<string, Record<Locale, string>> = {
     fr: "Jusqu'à 50% de réduction sur les offres du jour et best-sellers",
     it: 'Fino al 50% di sconto su offerte del giorno e bestseller',
     nl: 'Tot 50% korting op dagaanbiedingen & bestsellers',
+    pl: 'Do 50% zniżki na codzienne okazje i bestsellery',
+    es: 'Hasta un 50% de descuento en ofertas diarias y superventas',
   },
   '40% OFF Sitewide Friends & Family Sale': {
     en: '40% OFF Sitewide Friends & Family Sale',
@@ -1052,6 +1448,8 @@ const LOCALIZED_DEAL_TITLES: Record<string, Record<Locale, string>> = {
     fr: '40% de réduction sur tout le site — Vente Privée',
     it: '40% di sconto su tutto il sito — Saldi Amici & Famiglia',
     nl: '40% korting op de hele site — Vrienden & Familie Sale',
+    pl: '40% zniżki na wszystko — Wyprzedaż Friends & Family',
+    es: '40% de descuento en toda la web — Venta Amigos y Familia',
   },
 };
 
@@ -1074,6 +1472,8 @@ const LOCALIZED_DISCOUNTS: Record<string, Record<Locale, string>> = {
     fr: 'Cadeau Offert',
     it: 'Regalo Gratis',
     nl: 'Gratis Cadeau',
+    pl: 'Gratis',
+    es: 'Regalo Gratis',
   },
   'Up to 50% OFF': {
     en: 'Up to 50% OFF',
@@ -1081,6 +1481,8 @@ const LOCALIZED_DISCOUNTS: Record<string, Record<Locale, string>> = {
     fr: "Jusqu'à 50% Offert",
     it: 'Fino al 50% Sconto',
     nl: 'Tot 50% Korting',
+    pl: 'Do 50% Rabatu',
+    es: 'Hasta 50% DTO',
   },
   '71% OFF': {
     en: '71% OFF',
@@ -1088,6 +1490,8 @@ const LOCALIZED_DISCOUNTS: Record<string, Record<Locale, string>> = {
     fr: '71% de Réduction',
     it: '71% di Sconto',
     nl: '71% Korting',
+    pl: '71% Rabatu',
+    es: '71% DTO',
   },
   '$100 OFF': {
     en: '$100 OFF',
@@ -1095,6 +1499,8 @@ const LOCALIZED_DISCOUNTS: Record<string, Record<Locale, string>> = {
     fr: '100$ de Réduction',
     it: '100$ di Sconto',
     nl: '100$ Korting',
+    pl: '100$ Rabatu',
+    es: '100$ DTO',
   },
   '20% OFF': {
     en: '20% OFF',
@@ -1102,6 +1508,8 @@ const LOCALIZED_DISCOUNTS: Record<string, Record<Locale, string>> = {
     fr: '20% de Réduction',
     it: '20% di Sconto',
     nl: '20% Korting',
+    pl: '20% Rabatu',
+    es: '20% DTO',
   },
   '$15 OFF': {
     en: '$15 OFF',
@@ -1109,6 +1517,8 @@ const LOCALIZED_DISCOUNTS: Record<string, Record<Locale, string>> = {
     fr: '15$ de Réduction',
     it: '15$ di Sconto',
     nl: '15$ Korting',
+    pl: '15$ Rabatu',
+    es: '15$ DTO',
   },
   '30% OFF': {
     en: '30% OFF',
@@ -1116,6 +1526,8 @@ const LOCALIZED_DISCOUNTS: Record<string, Record<Locale, string>> = {
     fr: '30% de Réduction',
     it: '30% di Sconto',
     nl: '30% Korting',
+    pl: '30% Rabatu',
+    es: '30% DTO',
   },
   '40% OFF': {
     en: '40% OFF',
@@ -1123,6 +1535,8 @@ const LOCALIZED_DISCOUNTS: Record<string, Record<Locale, string>> = {
     fr: '40% de Réduction',
     it: '40% di Sconto',
     nl: '40% Korting',
+    pl: '40% Rabatu',
+    es: '40% DTO',
   },
   'Free Shipping': {
     en: 'Free Shipping',
@@ -1130,6 +1544,8 @@ const LOCALIZED_DISCOUNTS: Record<string, Record<Locale, string>> = {
     fr: 'Livraison Gratuite',
     it: 'Spedizione Gratuita',
     nl: 'Gratis Verzending',
+    pl: 'Darmowa Dostawa',
+    es: 'Envío Gratis',
   },
 };
 
@@ -1150,6 +1566,8 @@ const LOCALIZED_CATEGORIES: Record<string, Record<Locale, string>> = {
     fr: 'Mode & Vêtements',
     it: 'Moda & Abbigliamento',
     nl: 'Mode & Kleding',
+    pl: 'Moda i Odzież',
+    es: 'Moda y Ropa',
   },
   'Electronics & Computers': {
     en: 'Electronics & Computers',
@@ -1157,6 +1575,8 @@ const LOCALIZED_CATEGORIES: Record<string, Record<Locale, string>> = {
     fr: 'Électronique & Informatique',
     it: 'Elettronica & Computer',
     nl: 'Elektronica & Computers',
+    pl: 'Elektronika i Komputery',
+    es: 'Electrónica e Informática',
   },
   'Beauty & Skincare': {
     en: 'Beauty & Skincare',
@@ -1164,6 +1584,8 @@ const LOCALIZED_CATEGORIES: Record<string, Record<Locale, string>> = {
     fr: 'Beauté & Soins',
     it: 'Bellezza & Cura della Pelle',
     nl: 'Schoonheid & Huidverzorging',
+    pl: 'Uroda i Pielęgnacja',
+    es: 'Belleza y Cuidado de la Piel',
   },
   'Home & Garden': {
     en: 'Home & Garden',
@@ -1171,6 +1593,8 @@ const LOCALIZED_CATEGORIES: Record<string, Record<Locale, string>> = {
     fr: 'Maison & Jardin',
     it: 'Casa & Giardino',
     nl: 'Huis & Tuin',
+    pl: 'Dom i Ogród',
+    es: 'Hogar y Jardín',
   },
   'Travel & Flights': {
     en: 'Travel & Flights',
@@ -1178,6 +1602,8 @@ const LOCALIZED_CATEGORIES: Record<string, Record<Locale, string>> = {
     fr: 'Voyages & Vols',
     it: 'Viaggi & Voli',
     nl: 'Reizen & Vluchten',
+    pl: 'Podróże i Loty',
+    es: 'Viajes y Vuelos',
   },
   'Sports & Outdoors': {
     en: 'Sports & Outdoors',
@@ -1185,6 +1611,8 @@ const LOCALIZED_CATEGORIES: Record<string, Record<Locale, string>> = {
     fr: 'Sports & Plein Air',
     it: 'Sport & Tempo Libero',
     nl: 'Sport & Buitenactiviteiten',
+    pl: 'Sport i Turystyka',
+    es: 'Deportes y Aire Libre',
   },
   'Food & Beverages': {
     en: 'Food & Beverages',
@@ -1192,6 +1620,8 @@ const LOCALIZED_CATEGORIES: Record<string, Record<Locale, string>> = {
     fr: 'Alimentation & Boissons',
     it: 'Cibo & Bevande',
     nl: 'Eten & Drinken',
+    pl: 'Jedzenie i Napoje',
+    es: 'Alimentación y Bebidas',
   },
   'Software & Tech': {
     en: 'Software & Tech',
@@ -1199,6 +1629,8 @@ const LOCALIZED_CATEGORIES: Record<string, Record<Locale, string>> = {
     fr: 'Logiciels & High-Tech',
     it: 'Software & Tecnologia',
     nl: 'Software & Technologie',
+    pl: 'Oprogramowanie i Nowe Technologie',
+    es: 'Software y Tecnología',
   },
   // Blog categories
   'Shopping Guides': {
@@ -1207,6 +1639,8 @@ const LOCALIZED_CATEGORIES: Record<string, Record<Locale, string>> = {
     fr: "Guides d'achat",
     it: 'Guide allo shopping',
     nl: 'Winkelgidsen',
+    pl: 'Przewodniki Zakupowe',
+    es: 'Guías de Compra',
   },
   'Deals & Roundups': {
     en: 'Deals & Roundups',
@@ -1214,6 +1648,8 @@ const LOCALIZED_CATEGORIES: Record<string, Record<Locale, string>> = {
     fr: 'Bons plans & Sélections',
     it: 'Offerte & Riassunti',
     nl: 'Deals & Overzichten',
+    pl: 'Okazje i Przeglądy',
+    es: 'Ofertas y Selecciones',
   },
   'Money Saving Tips': {
     en: 'Money Saving Tips',
@@ -1221,6 +1657,8 @@ const LOCALIZED_CATEGORIES: Record<string, Record<Locale, string>> = {
     fr: 'Astuces d’économie',
     it: 'Consigli di risparmio',
     nl: 'Bespaartips',
+    pl: 'Porady Oszczędzania',
+    es: 'Consejos de Ahorro',
   },
 };
 
@@ -1243,6 +1681,8 @@ const LOCALIZED_CATEGORY_DESCRIPTIONS: Record<string, Record<Locale, string>> = 
     fr: 'Réductions sur les vêtements, chaussures et prêt-à-porter.',
     it: 'Sconti su abbigliamento, scarpe e moda firmata.',
     nl: 'Kortingen op kleding, schoenen en merkkleding.',
+    pl: 'Zniżki na ubrania, buty i markową odzież.',
+    es: 'Descuentos en ropa, calzado y prendas de marca.',
   },
   electronics: {
     en: 'Laptops, smartphones, TVs, and gaming gear promos.',
@@ -1250,6 +1690,8 @@ const LOCALIZED_CATEGORY_DESCRIPTIONS: Record<string, Record<Locale, string>> = 
     fr: 'Promos sur les PC portables, smartphones, téléviseurs et jeux vidéo.',
     it: 'Promozioni su laptop, smartphone, TV e accessori da gaming.',
     nl: 'Aanbiedingen voor laptops, smartphones, tv’s en gaming-apparatuur.',
+    pl: 'Promocje na laptopy, smartfony, telewizory i sprzęt dla graczy.',
+    es: 'Promociones en portátiles, smartphones, televisores y gaming.',
   },
   beauty: {
     en: 'Cosmetics, skincare, perfumes, and haircare coupons.',
@@ -1257,6 +1699,8 @@ const LOCALIZED_CATEGORY_DESCRIPTIONS: Record<string, Record<Locale, string>> = 
     fr: 'Coupons sur les cosmétiques, soins de la peau, parfums et cheveux.',
     it: 'Coupon per cosmetici, cura della pelle, profumi e capelli.',
     nl: 'Kortingsbonnen voor cosmetica, huidverzorging, parfums en haarverzorging.',
+    pl: 'Kupony na kosmetyki, pielęgnację skóry, perfumy i produkty do włosów.',
+    es: 'Cupones para cosméticos, cuidado de la piel, perfumes y cabello.',
   },
   'home-garden': {
     en: 'Furniture, kitchen appliances, and home decor sales.',
@@ -1264,6 +1708,8 @@ const LOCALIZED_CATEGORY_DESCRIPTIONS: Record<string, Record<Locale, string>> = 
     fr: 'Promotions sur les meubles, électroménager et décoration intérieure.',
     it: 'Saldi su mobili, elettrodomestici per la cucina e arredamento.',
     nl: 'Aanbiedingen voor meubels, keukenapparatuur en woondecoratie.',
+    pl: 'Wyprzedaże mebli, sprzętu kuchennego i dekoracji wnętrz.',
+    es: 'Rebajas en muebles, electrodomésticos de cocina y decoración.',
   },
   travel: {
     en: 'Hotels, airline tickets, car rentals, and vacation deals.',
@@ -1271,6 +1717,8 @@ const LOCALIZED_CATEGORY_DESCRIPTIONS: Record<string, Record<Locale, string>> = 
     fr: 'Bons plans hôtels, billets d’avion, locations de voiture et séjours.',
     it: 'Offerte per hotel, biglietti aerei, noleggio auto e vacanze.',
     nl: 'Deals voor hotels, vliegtickets, autoverhuur en vakanties.',
+    pl: 'Oferty na hotele, bilety lotnicze, wynajem samochodów i wakacje.',
+    es: 'Ofertas en hoteles, billetes de avión, alquiler de coches y viajes.',
   },
   sports: {
     en: 'Fitness gear, activewear, camping, and outdoor equipment.',
@@ -1278,6 +1726,8 @@ const LOCALIZED_CATEGORY_DESCRIPTIONS: Record<string, Record<Locale, string>> = 
     fr: 'Équipement de fitness, vêtements de sport, camping et plein air.',
     it: 'Attrezzatura fitness, abbigliamento sportivo, campeggio e outdoor.',
     nl: 'Fitnessapparatuur, sportkleding, camping- en outdoorartikelen.',
+    pl: 'Sprzęt fitness, odzież sportowa, kemping i wyposażenie outdoorowe.',
+    es: 'Equipamiento de fitness, ropa deportiva, acampada y actividades al aire libre.',
   },
   'food-dining': {
     en: 'Food delivery coupons, meal kits, and dining deals.',
@@ -1285,6 +1735,8 @@ const LOCALIZED_CATEGORY_DESCRIPTIONS: Record<string, Record<Locale, string>> = 
     fr: 'Codes promo livraison de repas, paniers repas et restaurants.',
     it: 'Coupon per consegna a domicilio, kit pasto e ristoranti.',
     nl: 'Kortingscodes voor maaltijdbezorging, maaltijdboxen en restaurants.',
+    pl: 'Kupony na dostawę jedzenia, zestawy posiłków i restauracje.',
+    es: 'Cupones para comida a domicilio, kits de recetas y restaurantes.',
   },
   software: {
     en: 'VPNs, antivirus, cloud storage, and SaaS subscription deals.',
@@ -1292,6 +1744,8 @@ const LOCALIZED_CATEGORY_DESCRIPTIONS: Record<string, Record<Locale, string>> = 
     fr: 'Promos sur les VPN, antivirus, stockage cloud et logiciels SaaS.',
     it: 'Offerte per VPN, antivirus, cloud storage e abbonamenti SaaS.',
     nl: 'Deals voor VPN’s, antivirus, cloudopslag en SaaS-abonnementen.',
+    pl: 'Promocje na VPN, antywirusy, chmurę i subskrypcje SaaS.',
+    es: 'Ofertas en VPNs, antivirus, almacenamiento en la nube y suscripciones SaaS.',
   },
 };
 
@@ -1312,6 +1766,8 @@ const LOCALIZED_BLOG_TITLES: Record<string, Record<Locale, string>> = {
     fr: 'Meilleurs soldes d’été et astuces pour cumuler les codes promo',
     it: 'I migliori saldi estivi e strategie per cumulare coupon',
     nl: 'Beste zomersolden en strategieën om kortingscodes te combineren',
+    pl: 'Najlepsze letnie wyprzedaże i strategie łączenia kuponów, których nie możesz przegapić',
+    es: 'Las mejores rebajas de verano y estrategias para combinar cupones que no debes perderte',
   },
   '10 Ways to Save More Online Shopping in 2026': {
     en: '10 Ways to Save More Online Shopping in 2026',
@@ -1319,6 +1775,8 @@ const LOCALIZED_BLOG_TITLES: Record<string, Record<Locale, string>> = {
     fr: '10 façons d’économiser plus lors de vos achats en ligne en 2026',
     it: '10 modi per risparmiare di più sullo shopping online nel 2026',
     nl: '10 manieren om meer te besparen bij online winkelen in 2026',
+    pl: '10 sposobów na większe oszczędności podczas zakupów online w 2026 roku',
+    es: '10 formas de ahorrar más en compras por internet en 2026',
   },
 };
 
@@ -1341,6 +1799,8 @@ const LOCALIZED_BLOG_EXCERPTS: Record<string, Record<Locale, string>> = {
     fr: 'Un récapitulatif complet des plus grosses baisses de prix de la saison en mode, électronique et voyage.',
     it: 'Una panoramica completa dei maggiori cali di prezzo di questa stagione su moda, elettronica e viaggi.',
     nl: 'Een compleet overzicht van de grootste prijsdalingen van dit seizoen op het gebied van mode, elektronica en reizen.',
+    pl: 'Kompleksowe zestawienie największych obniżek cen w tym sezonie w kategoriach moda, elektronika i podróże.',
+    es: 'Un resumen completo de las mayores bajadas de precio de esta temporada en moda, electrónica y viajes.',
   },
   'Discover insider strategies to stack promo codes, avoid hidden checkout fees, and unlock exclusive discounts.': {
     en: 'Discover insider strategies to stack promo codes, avoid hidden checkout fees, and unlock exclusive discounts.',
@@ -1348,6 +1808,8 @@ const LOCALIZED_BLOG_EXCERPTS: Record<string, Record<Locale, string>> = {
     fr: 'Découvrez des astuces d’initiés pour cumuler les codes promo, éviter les frais cachés et débloquer des remises exclusives.',
     it: 'Scopri strategie da esperti per cumulare codici promozionali, evitare costi nascosti e sbloccare sconti esclusivi.',
     nl: 'Ontdek insiderstrategieën om kortingscodes te combineren, verborgen kosten te vermijden en exclusieve kortingen te ontgrendelen.',
+    pl: 'Poznaj sprawdzone strategie łączenia kodów rabatowych, unikania ukrytych opłat i odblokowywania ekskluzywnych zniżek.',
+    es: 'Descubre estrategias de expertos para combinar códigos promocionales, evitar costes ocultos y desbloquear descuentos exclusivos.',
   },
 };
 
@@ -1371,6 +1833,8 @@ const LOCALIZED_REVIEWS: Record<string, { title: Record<Locale, string>; summary
       fr: 'Avis Shopping Amazon : Maximiser les Ventes Flash',
       it: 'Recensione Shopping Amazon: Massimizzare le Offerte Lampo',
       nl: 'Amazon Online Shopping Review: Dagelijkse Deals Benutten',
+      pl: 'Recenzja zakupów w Amazon: Jak najlepiej korzystać z codziennych okazji',
+      es: 'Reseña de compras en Amazon: Cómo aprovechar al máximo las ofertas diarias',
     },
     summary: {
       en: 'Unbeatable logistics, gigantic catalog, and massive daily Lightning Deal discounts.',
@@ -1378,6 +1842,8 @@ const LOCALIZED_REVIEWS: Record<string, { title: Record<Locale, string>; summary
       fr: 'Logistique imbattable, catalogue gigantesque et remises massives sur les ventes flash quotidiennes.',
       it: 'Logistica imbattibile, catalogo sterminato e grandi sconti giornalieri con le offerte lampo.',
       nl: 'Onverslaanbare logistiek, enorm assortiment en flinke dagelijkse kortingen op bliksemdeals.',
+      pl: 'Niezrównana logistyka, gigantyczny katalog produktów i ogromne codzienne zniżki w ofertach błyskawicznych.',
+      es: 'Logística inmejorable, catálogo gigantesco y grandes descuentos diarios en ofertas flash.',
     },
   },
   nike: {
@@ -1387,6 +1853,8 @@ const LOCALIZED_REVIEWS: Record<string, { title: Record<Locale, string>; summary
       fr: 'Avis Boutique Nike 2026 : Vaut-il le coup d’acheter en direct ?',
       it: 'Recensione Nike Store 2026: Conviene acquistare direttamente?',
       nl: 'Nike Store Review 2026: Is direct kopen de moeite waard?',
+      pl: 'Recenzja sklepu Nike 2026: Czy warto kupować bezpośrednio?',
+      es: 'Reseña de la tienda Nike 2026: ¿Merece la pena comprar directamente?',
     },
     summary: {
       en: 'Nike is unmatched for build quality, cutting-edge running tech, and generous member perks.',
@@ -1394,6 +1862,8 @@ const LOCALIZED_REVIEWS: Record<string, { title: Record<Locale, string>; summary
       fr: 'Nike est inégalé en termes de qualité de fabrication, de technologie de pointe et d’avantages membres.',
       it: 'Nike non ha rivali per qualità costruttiva, tecnologie di corsa all’avanguardia e vantaggi per i membri.',
       nl: 'Nike is ongeëvenaard in bouwkwaliteit, geavanceerde hardlooptechnologie en royale ledenvoordelen.',
+      pl: 'Nike nie ma sobie równych pod względem jakości wykonania, technologii biegowych i korzyści dla członków.',
+      es: 'Nike no tiene rival en calidad de fabricación, tecnología deportiva de vanguardia y ventajas para miembros.',
     },
   },
 };
@@ -1422,6 +1892,8 @@ const LOCALIZED_HIGHLIGHTS: Record<string, Record<Locale, string>> = {
     fr: 'Livraison gratuite en 1 jour avec Prime',
     it: 'Spedizione gratuita in 1 giorno con Prime',
     nl: 'Gratis 1-daagse levering met Prime',
+    pl: 'Darmowa dostawa w 1 dzień z Prime',
+    es: 'Envío gratis en 1 día con Prime',
   },
   'huge catalog covering all categories': {
     en: 'Huge catalog covering all categories',
@@ -1429,6 +1901,8 @@ const LOCALIZED_HIGHLIGHTS: Record<string, Record<Locale, string>> = {
     fr: 'Catalogue gigantesque couvrant toutes les catégories',
     it: 'Catalogo enorme su tutte le categorie',
     nl: 'Enorm assortiment in alle categorieën',
+    pl: 'Ogromny katalog obejmujący wszystkie kategorie',
+    es: 'Enorme catálogo que abarca todas las categorías',
   },
   'free shipping & returns for nike members': {
     en: 'Free shipping & returns for Nike Members',
@@ -1436,6 +1910,8 @@ const LOCALIZED_HIGHLIGHTS: Record<string, Record<Locale, string>> = {
     fr: 'Livraison et retours gratuits pour les membres Nike',
     it: 'Spedizione e resi gratuiti per i membri Nike',
     nl: 'Gratis verzending & retourneren voor Nike Members',
+    pl: 'Darmowa dostawa i zwroty dla członków klubu Nike',
+    es: 'Envío y devoluciones gratis para miembros de Nike',
   },
   'exclusive early product drops on the snkrs app': {
     en: 'Exclusive early product drops on the SNKRS app',
@@ -1443,6 +1919,8 @@ const LOCALIZED_HIGHLIGHTS: Record<string, Record<Locale, string>> = {
     fr: 'Lancements de produits exclusifs en avant-première sur l’application SNKRS',
     it: 'Lanci esclusivi in anteprima sull’app SNKRS',
     nl: 'Exclusieve vroege productlanceringen in de SNKRS-app',
+    pl: 'Ekskluzywne wczesne premiery produktów w aplikacji SNKRS',
+    es: 'Lanzamientos exclusivos anticipados en la aplicación SNKRS',
   },
 };
 
@@ -1463,13 +1941,17 @@ const LOCALIZED_STORE_DESCRIPTIONS: Record<string, Record<Locale, string>> = {
     fr: 'Leader mondial des chaussures de sport, vêtements de sport et équipements.',
     it: 'Leader mondiale nelle calzature sportive, abbigliamento activewear e attrezzature.',
     nl: 'Wereldleider in sportschoenen, sportkleding en sportuitrusting.',
+    pl: 'Światowy lider w dziedzinie obuwia sportowego, odzieży treningowej i sprzętu.',
+    es: 'Líder mundial en calzado deportivo, ropa de entrenamiento y accesorios.',
   },
   amazon: {
     en: 'The biggest online retailer with millions of daily discounts and Lightning Deals.',
     de: 'Der größte Online-Händler mit Millionen täglichen Rabatten und Blitzangeboten.',
     fr: 'Le plus grand détaillant en ligne avec des millions de réductions et ventes flash.',
-    it: 'Il più grande rivenditore online con milioni di sconti e offerte lampo giornaliere.',
+    it: 'Il più grande rivenditore online con millions di sconti e offerte lampo giornaliere.',
     nl: 'De grootste online retailer met miljoenen dagelijkse kortingen en bliksemdeals.',
+    pl: 'Największy sklep internetowy z milionami codziennych zniżek i ofert błyskawicznych.',
+    es: 'El mayor comercio online con millones de descuentos diarios y ofertas flash.',
   },
   asos: {
     en: 'Destination for fashion-loving 20-somethings offering 850+ top clothing brands.',
@@ -1477,6 +1959,8 @@ const LOCALIZED_STORE_DESCRIPTIONS: Record<string, Record<Locale, string>> = {
     fr: 'La destination mode des jeunes avec plus de 850 marques de vêtements tendance.',
     it: 'La destinazione per gli amanti della moda con oltre 850 marchi di tendenza.',
     nl: 'De ultieme modebestemming met meer dan 850 toonaangevende kledingmerken.',
+    pl: 'Ulubione miejsce modowe młodych ludzi, oferujące ponad 850 wiodących marek.',
+    es: 'El destino de moda favorito con más de 850 marcas de ropa líderes.',
   },
   sephora: {
     en: 'Premier beauty destination with prestige cosmetics, skincare, and fragrance brands.',
@@ -1484,6 +1968,8 @@ const LOCALIZED_STORE_DESCRIPTIONS: Record<string, Record<Locale, string>> = {
     fr: 'Destination beauté d’exception proposant cosmétiques prestigieux, soins et parfums.',
     it: 'La destinazione beauty d’eccellenza con cosmetici di prestigio, skincare e fragranze.',
     nl: 'Dé toonaangevende beautybestemming met prestigieuze cosmetica, verzorging en parfums.',
+    pl: 'Wiodąca sieć perfumerii z luksusowymi kosmetykami, pielęgnacją i zapachami.',
+    es: 'Destino de belleza de referencia con cosméticos de lujo, cuidado facial y fragancias.',
   },
   apple: {
     en: 'Iconic consumer electronics, MacBooks, iPhones, iPads, and digital services.',
@@ -1491,6 +1977,8 @@ const LOCALIZED_STORE_DESCRIPTIONS: Record<string, Record<Locale, string>> = {
     fr: 'Électronique grand public emblématique, MacBooks, iPhones, iPads et services.',
     it: 'Elettronica di consumo iconica, MacBook, iPhone, iPad e servizi digitali.',
     nl: 'Toonaangevende consumentenelektronica, MacBooks, iPhones, iPads en digitale diensten.',
+    pl: 'Kultowa elektronika użytkowa, komputery MacBook, telefony iPhone, iPady i usługi cyfrowe.',
+    es: 'Electrónica icónica de consumo, MacBook, iPhone, iPad y servicios digitales.',
   },
   'best-buy': {
     en: 'Leading technology retailer specializing in TVs, computers, appliances, and smart home.',
@@ -1498,6 +1986,8 @@ const LOCALIZED_STORE_DESCRIPTIONS: Record<string, Record<Locale, string>> = {
     fr: 'Spécialiste de la technologie en téléviseurs, ordinateurs, électroménager et domotique.',
     it: 'Rivenditore leader per TV, computer, elettrodomestici e tecnologia smart home.',
     nl: 'Toonaangevende technologieverkoper gespecialiseerd in tv’s, computers en smart home.',
+    pl: 'Wiodący sprzedawca elektroniki specjalizujący się w telewizorach, komputerach i smart home.',
+    es: 'Comercio líder en tecnología especializado en televisores, ordenadores y domótica.',
   },
   'booking.com': {
     en: 'Global travel accommodation platform with millions of hotels, flights, and car rentals.',
@@ -1505,6 +1995,8 @@ const LOCALIZED_STORE_DESCRIPTIONS: Record<string, Record<Locale, string>> = {
     fr: 'Plateforme mondiale d’hébergement avec des millions d’hôtels, vols et locations.',
     it: 'Piattaforma di viaggi globale con milioni di hotel, voli e noleggi auto.',
     nl: 'Wereldwijd reisplatform met miljoenen hotels, vluchten en autoverhuur.',
+    pl: 'Globalna platforma rezerwacji z milionami hoteli, lotów i wynajmu samochodów.',
+    es: 'Plataforma global de viajes con millones de hoteles, vuelos y coches de alquiler.',
   },
   nordvpn: {
     en: 'Top-tier cybersecurity and VPN provider with high-speed encryption worldwide.',
@@ -1512,6 +2004,8 @@ const LOCALIZED_STORE_DESCRIPTIONS: Record<string, Record<Locale, string>> = {
     fr: 'Fournisseur VPN et cybersécurité de premier plan avec chiffrement ultra-rapide.',
     it: 'Provider leader di cybersecurity e VPN con crittografia ad alta velocità in tutto il mondo.',
     nl: 'Hoogwaardige cyberbeveiligings- en VPN-provider met wereldwijde snelle versleuteling.',
+    pl: 'Najwyżej oceniany dostawca cyberbezpieczeństwa i VPN z szybkim szyfrowaniem na całym świecie.',
+    es: 'Proveedor líder de ciberseguridad y VPN con cifrado de alta velocidad en todo el mundo.',
   },
 };
 

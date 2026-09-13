@@ -20,6 +20,8 @@ export const metadata: Metadata = {
       'fr-FR': `${SITE_URL}/fr`,
       'it-IT': `${SITE_URL}/it`,
       'nl-NL': `${SITE_URL}/nl`,
+      'pl-PL': `${SITE_URL}/pl`,
+      'es-ES': `${SITE_URL}/es`,
     },
   },
 };

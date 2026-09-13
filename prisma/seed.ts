@@ -65,13 +65,15 @@ async function main() {
     { code: 'FR', name: 'France', currencySymbol: '€', currencyCode: 'EUR', flagIcon: '🇫🇷', sortOrder: 6 },
     { code: 'IT', name: 'Italy', currencySymbol: '€', currencyCode: 'EUR', flagIcon: '🇮🇹', sortOrder: 7 },
     { code: 'NL', name: 'Netherlands', currencySymbol: '€', currencyCode: 'EUR', flagIcon: '🇳🇱', sortOrder: 8 },
+    { code: 'PL', name: 'Poland', currencySymbol: 'zł', currencyCode: 'PLN', flagIcon: '🇵🇱', sortOrder: 9 },
+    { code: 'ES', name: 'Spain', currencySymbol: '€', currencyCode: 'EUR', flagIcon: '🇪🇸', sortOrder: 10 },
   ];
 
   const countries: Record<string, any> = {};
   for (const c of countriesData) {
     countries[c.code] = await prisma.country.create({ data: c });
   }
-  console.log('✅ 8 Countries seeded.');
+  console.log('✅ 10 Countries seeded.');
 
   // 4. Seed Categories
   const categoriesData = [

@@ -2,17 +2,19 @@ import { headers, cookies } from 'next/headers';
 import { Locale, getTranslation } from '@/lib/translations';
 import { getRegionByCode, getRegionBySlug } from '@/lib/regions';
 
+const VALID_LOCALES: Locale[] = ['en', 'de', 'fr', 'it', 'nl', 'pl', 'es'];
+
 export async function getServerLocale(): Promise<Locale> {
   try {
     const headersList = await headers();
     const localeHeader = headersList.get('x-locale') as Locale | null;
-    if (localeHeader && ['en', 'de', 'fr', 'it', 'nl'].includes(localeHeader)) {
+    if (localeHeader && VALID_LOCALES.includes(localeHeader)) {
       return localeHeader;
     }
     const regionSlugHeader = headersList.get('x-region-slug');
     if (regionSlugHeader) {
       const reg = getRegionBySlug(regionSlugHeader);
-      if (reg && ['en', 'de', 'fr', 'it', 'nl'].includes(reg.lang)) {
+      if (reg && VALID_LOCALES.includes(reg.lang as Locale)) {
         return reg.lang as Locale;
       }
     }
@@ -25,7 +27,7 @@ export async function getServerLocale(): Promise<Locale> {
     const cookieCountry = cookieStore.get('gmp_country')?.value;
     if (cookieCountry) {
       const reg = getRegionByCode(cookieCountry);
-      if (reg && ['en', 'de', 'fr', 'it', 'nl'].includes(reg.lang)) {
+      if (reg && VALID_LOCALES.includes(reg.lang as Locale)) {
         return reg.lang as Locale;
       }
     }

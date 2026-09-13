@@ -51,7 +51,7 @@ export default function AutoTranslator() {
           new window.google.translate.TranslateElement(
             {
               pageLanguage: 'en',
-              includedLanguages: 'en,de,fr,it,nl',
+              includedLanguages: 'en,de,fr,it,nl,pl,es',
               autoDisplay: false,
               layout: 0,
             },

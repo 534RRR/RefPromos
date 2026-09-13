@@ -21,6 +21,8 @@ const REGION_SLUG_MAP: Record<string, { code: string; lang: string }> = {
   fr: { code: 'FR', lang: 'fr' },
   it: { code: 'IT', lang: 'it' },
   nl: { code: 'NL', lang: 'nl' },
+  pl: { code: 'PL', lang: 'pl' },
+  es: { code: 'ES', lang: 'es' },
 };
 
 const CODE_TO_SLUG: Record<string, string> = {
@@ -33,6 +35,8 @@ const CODE_TO_SLUG: Record<string, string> = {
   FR: 'fr',
   IT: 'it',
   NL: 'nl',
+  PL: 'pl',
+  ES: 'es',
 };
 
 export async function middleware(request: NextRequest) {

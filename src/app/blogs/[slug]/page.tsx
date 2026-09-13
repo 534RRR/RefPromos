@@ -110,7 +110,13 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
     updatedAt: blog.updatedAt,
   });
 
-  const formattedDate = new Date(blog.publishedAt).toLocaleDateString(locale === 'de' ? 'de-DE' : locale === 'fr' ? 'fr-FR' : locale === 'it' ? 'it-IT' : locale === 'nl' ? 'nl-NL' : 'en-US', {
+  const formattedDate = new Date(blog.publishedAt).toLocaleDateString(
+    locale === 'de' ? 'de-DE' :
+    locale === 'fr' ? 'fr-FR' :
+    locale === 'it' ? 'it-IT' :
+    locale === 'nl' ? 'nl-NL' :
+    locale === 'pl' ? 'pl-PL' :
+    locale === 'es' ? 'es-ES' : 'en-US', {
     month: 'long',
     day: 'numeric',
     year: 'numeric',

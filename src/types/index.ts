@@ -1,4 +1,4 @@
-export type CountryCode = 'US' | 'UK' | 'AU' | 'CA' | 'DE' | 'FR' | 'IT' | 'NL';
+export type CountryCode = 'US' | 'UK' | 'AU' | 'CA' | 'DE' | 'FR' | 'IT' | 'NL' | 'PL' | 'ES';
 
 export interface CountryItem {
   id: string;

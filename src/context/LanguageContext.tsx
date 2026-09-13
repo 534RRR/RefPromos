@@ -91,7 +91,7 @@ export function LanguageProvider({
 
   const currentLang = useMemo<Locale>(() => {
     const lang = currentRegion.lang as Locale;
-    return ['en', 'de', 'fr', 'it', 'nl'].includes(lang) ? lang : 'en';
+    return ['en', 'de', 'fr', 'it', 'nl', 'pl', 'es'].includes(lang) ? lang : 'en';
   }, [currentRegion]);
 
   const t = useCallback(

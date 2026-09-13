@@ -101,6 +101,28 @@ export const REGIONS: Region[] = [
     currencySymbol: '€',
     currencyCode: 'EUR',
   },
+  {
+    code: 'PL',
+    slug: 'pl',
+    name: 'Poland',
+    fullName: 'Poland',
+    flag: '🇵🇱',
+    lang: 'pl',
+    langName: 'Polski',
+    currencySymbol: 'zł',
+    currencyCode: 'PLN',
+  },
+  {
+    code: 'ES',
+    slug: 'es',
+    name: 'Spain',
+    fullName: 'Spain',
+    flag: '🇪🇸',
+    lang: 'es',
+    langName: 'Español',
+    currencySymbol: '€',
+    currencyCode: 'EUR',
+  },
 ];
 
 export const DEFAULT_REGION = REGIONS[0]; // USA
