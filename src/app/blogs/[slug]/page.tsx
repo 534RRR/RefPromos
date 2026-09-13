@@ -10,9 +10,42 @@ import { getServerTranslator } from '@/lib/serverLocale';
 import {
   getLocalizedBlogTitle,
   getLocalizedBlogExcerpt,
+  getLocalizedBlogContent,
   getLocalizedCategoryName,
 } from '@/lib/translations';
 import { Clock, User, Calendar, Tag, ArrowLeft, BookOpen } from 'lucide-react';
+
+function renderMarkdownParagraph(text: string) {
+  const parts = text.split(/(\*\*[^*]+\*\*|`[^`]+`)/g);
+  return parts.map((part, i) => {
+    if (part.startsWith('**') && part.endsWith('**')) {
+      return (
+        <strong key={i} style={{ color: 'var(--text-heading)', fontWeight: 800 }}>
+          {part.slice(2, -2)}
+        </strong>
+      );
+    }
+    if (part.startsWith('`') && part.endsWith('`')) {
+      return (
+        <code
+          key={i}
+          style={{
+            background: 'var(--bg-subtle)',
+            padding: '0.15rem 0.45rem',
+            borderRadius: '4px',
+            border: '1px solid var(--border)',
+            fontSize: '0.9em',
+            color: 'var(--primary)',
+            fontWeight: 700,
+          }}
+        >
+          {part.slice(1, -1)}
+        </code>
+      );
+    }
+    return part;
+  });
+}
 
 interface BlogPostPageProps {
   params: Promise<{ slug: string }>;
@@ -49,7 +82,7 @@ export async function generateMetadata(props: BlogPostPageProps): Promise<Metada
 }
 
 export default async function BlogPostPage(props: BlogPostPageProps) {
-  const { locale, t } = await getServerTranslator();
+  const { locale, t, formatRegionLink } = await getServerTranslator();
   const params = await Promise.resolve(props.params);
   const blog = await prisma.blog.findUnique({
     where: { slug: params.slug },
@@ -98,12 +131,13 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
 
   const localizedBlogTitle = getLocalizedBlogTitle(blog.title, locale);
   const localizedBlogExcerpt = getLocalizedBlogExcerpt(blog.excerpt, locale);
+  const localizedBlogContent = getLocalizedBlogContent(blog.slug, blog.content, locale);
 
   const articleSchema = generateArticleSchema({
     title: localizedBlogTitle,
     slug: blog.slug,
     excerpt: localizedBlogExcerpt,
-    content: blog.content,
+    content: localizedBlogContent,
     featuredImage: blog.featuredImage,
     authorName: blog.authorName,
     publishedAt: blog.publishedAt,
@@ -135,8 +169,8 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
 
       <Breadcrumbs
         items={[
-          { name: t('nav_guides', 'Guides & Articles'), url: '/blogs' },
-          { name: localizedBlogTitle, url: `/blogs/${blog.slug}` },
+          { name: t('nav_guides', 'Guides & Articles'), url: formatRegionLink('/blogs') },
+          { name: localizedBlogTitle, url: formatRegionLink(`/blogs/${blog.slug}`) },
         ]}
       />
 
@@ -217,17 +251,30 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
               marginBottom: '3rem',
             }}
           >
-            {blog.content.split('\n\n').map((paragraph, idx) => {
-              if (paragraph.startsWith('### ') || paragraph.startsWith('## ')) {
+            {localizedBlogContent.split('\n\n').map((paragraph, idx) => {
+              const trimmed = paragraph.trim();
+              if (trimmed.startsWith('### ') || trimmed.startsWith('## ') || trimmed.startsWith('# ')) {
                 return (
                   <h3 key={idx} style={{ fontSize: '1.45rem', fontWeight: 900, marginTop: '2.25rem', marginBottom: '0.75rem', color: 'var(--text-heading)', letterSpacing: '-0.02em' }}>
-                    {paragraph.replace(/^#+\s*/, '')}
+                    {trimmed.replace(/^#+\s*/, '')}
                   </h3>
+                );
+              }
+              if (trimmed.startsWith('- ')) {
+                const listItems = trimmed.split('\n').filter(Boolean);
+                return (
+                  <ul key={idx} style={{ paddingLeft: '1.4rem', marginBottom: '1.4rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                    {listItems.map((li, liIdx) => (
+                      <li key={liIdx} style={{ lineHeight: '1.7' }}>
+                        {renderMarkdownParagraph(li.replace(/^-\s*/, ''))}
+                      </li>
+                    ))}
+                  </ul>
                 );
               }
               return (
                 <p key={idx} style={{ marginBottom: '1.4rem' }}>
-                  {paragraph}
+                  {renderMarkdownParagraph(paragraph)}
                 </p>
               );
             })}
@@ -256,7 +303,7 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
 
           {/* Back to Guides */}
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderTop: '1px solid var(--border)', paddingTop: '1.75rem' }}>
-            <Link href="/blogs" className="btn btn-secondary" style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+            <Link href={formatRegionLink('/blogs')} className="btn btn-secondary" style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
               <ArrowLeft size={16} /> {t('all_shopping_guides', 'All Shopping Guides')}
             </Link>
           </div>
@@ -281,7 +328,7 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
                 {relatedBlogs.map((relBlog) => (
                   <Link
                     key={relBlog.id}
-                    href={`/blogs/${relBlog.slug}`}
+                    href={formatRegionLink(`/blogs/${relBlog.slug}`)}
                     style={{
                       display: 'flex',
                       flexDirection: 'column',

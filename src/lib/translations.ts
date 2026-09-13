@@ -192,6 +192,104 @@ export const TRANSLATIONS: Record<Locale, Translations> = {
     footer_nike_codes: 'Nike Promo Codes',
     footer_amazon_deals: 'Amazon Deals',
     footer_sephora_coupons: 'Sephora Coupons',
+    // About Us
+    about_mission_eyebrow: 'Our Mission',
+    about_hero_title: 'We Help Millions of Smart Shoppers Save on Every Purchase',
+    about_hero_desc: 'RefPromos was founded to eliminate expired discount codes and provide online shoppers with 100% verified, tested coupon codes and real deals.',
+    metric_brands_sub: 'Top global brands worldwide',
+    metric_codes_sub: 'Tested & updated daily',
+    shopper_savings: 'Shopper Savings',
+    metric_savings_sub: 'In verified discounts',
+    global_regions: 'Global Regions',
+    metric_regions_sub: 'US, UK, AU, CA, DE, FR, IT, NL, PL, ES',
+    how_it_works_title: 'How RefPromos Works For You',
+    pillar_1_title: '1. Manual Testing & Verification',
+    pillar_1_desc: 'Our team tests codes at actual checkout before publishing. If a code fails to provide the promised discount or has expired, it is immediately flagged or archived.',
+    pillar_2_title: '2. 100% Free & Frictionless',
+    pillar_2_desc: 'We believe smart shopping should never require paid subscriptions or complex accounts. You can find, copy, and apply any promo code instantly with 1 click.',
+    pillar_3_title: '3. Transparent Partnerships',
+    pillar_3_desc: 'When you make a purchase using our affiliate links, we may earn a small commission from the merchant at zero additional cost to you, enabling us to keep the platform free.',
+    ready_to_save_title: 'Ready to Start Saving?',
+    ready_to_save_desc: 'Explore trending coupons and brand deals right now.',
+
+    // Blog Detail & Navigation
+    all_shopping_guides: 'All Shopping Guides',
+    mentioned_promo_codes: 'Mentioned Promo Codes & Deals',
+    related_guides: 'Related Guides',
+
+    // Contact Us
+    contact_eyebrow: 'Support & Inquiries',
+    contact_title: "We'd Love to Hear From You",
+    contact_desc: 'Have a question about a discount code, want to submit a merchant deal, or explore an affiliate partnership? Send us a message.',
+    contact_success_title: 'Message Sent Successfully!',
+    contact_success_desc: 'Thank you for reaching out to RefPromos. Our support team typically replies within 24 business hours.',
+    send_another: 'Send Another Message',
+    your_name: 'Your Name *',
+    email_address: 'Email Address *',
+    subject_label: 'Subject',
+    general_inquiry: 'General Inquiry',
+    report_broken: 'Report an Expired / Broken Coupon',
+    merchant_partner: 'Merchant / Brand Partnership',
+    press_editorial: 'Press / Editorial Inquiry',
+    message_label: 'Message *',
+    message_placeholder: 'Describe your question or feedback...',
+    sending_label: 'Sending...',
+    send_message: 'Send Message',
+    email_support: 'Direct Mailboxes',
+    support_desk: 'Customer & Coupon Support',
+    general_inquiries: 'General Inquiries & Information',
+    response_times: 'Response Times',
+    response_times_desc: 'Our editorial and verification desk operates Monday through Friday, 9:00 AM – 6:00 PM EST. Inquiries are reviewed in the order received.',
+    for_merchants: 'For Merchant Partners',
+    for_merchants_desc: 'Want your brand listed on RefPromos or wish to provide exclusive discount codes for our community? Contact',
+
+    // Privacy Policy
+    privacy_eyebrow: 'Legal & Compliance',
+    privacy_title: 'Privacy Policy & Affiliate Disclosure',
+    privacy_last_updated: 'Last Updated: August 2026',
+    privacy_section_1_title: '1. Introduction & Scope',
+    privacy_section_1_desc: 'Welcome to RefPromos (referred to as "we", "us", or "our"). We are committed to safeguarding your privacy and ensuring transparent information practices when you use our website (refpromos.com) and services. This Privacy Policy explains what information we collect, how it is used, and your rights regarding your data.',
+    privacy_section_2_title: '2. Affiliate Disclosure (FTC Compliance)',
+    privacy_section_2_desc_1: 'RefPromos is a free online deals and coupon resource supported by affiliate partnerships. When you click on coupon codes, deals, or store links on our website and make a subsequent purchase at the merchant\'s site, we may receive an affiliate commission from the retailer at no extra cost to you.',
+    privacy_section_2_desc_2: 'Our editorial integrity is paramount: our coupon verification processes, store ratings, and review opinions remain independent of affiliate commissions.',
+    privacy_section_3_title: '3. Information We Collect',
+    privacy_section_3_desc: 'We adhere to strict data minimization principles:',
+    privacy_data_non_personal: 'Non-Personal & Analytical Data: Browser type, operating system, referring URL, country/region preferences, and anonymized click timestamps.',
+    privacy_data_ip: 'IP Addresses: Processed through one-way cryptographic SHA-256 hashing to prevent duplicate click fraud without identifying individuals.',
+    privacy_data_voluntary: 'Voluntary Submissions: Your name and email address when you voluntarily contact our support desk or subscribe to our newsletter.',
+    privacy_section_4_title: '4. Cookies & Tracking Technologies',
+    privacy_section_4_desc: 'We use essential cookies and lightweight analytics cookies to remember your selected geographic region (e.g. US, UK, AU, CA, DE, FR, IT, NL, PL, ES) and track outbound merchant referrals. You may disable cookies at any time through your browser settings without losing access to our core website.',
+    privacy_section_5_title: '5. Your Privacy Rights & Data Erasure (GDPR & CCPA Compliance)',
+    privacy_section_5_desc_1: 'Under global privacy frameworks including the General Data Protection Regulation (GDPR) and the California Consumer Privacy Act (CCPA), you retain full sovereignty over your personal data:',
+    privacy_rights_access: 'Right to Access: Request a copy of any personal data or communications held in our systems.',
+    privacy_rights_erasure: 'Right to Erasure (Right to be Forgotten): Request the permanent deletion of your email, account records, and associated click telemetry.',
+    privacy_rights_optout: 'Right to Opt-Out: Opt out of marketing digests or telemetry tracking at any time without penalty.',
+    privacy_section_5_desc_2: 'To initiate an automated data deletion request, you can submit an erasure request to our privacy endpoint at /api/privacy/delete-data with your registered email, or email our Data Protection Desk directly at info@refpromos.com. Requests are processed within 48 hours.',
+    privacy_section_6_title: '6. Data Security & Storage Architecture',
+    privacy_section_6_desc: 'We implement defense-in-depth security measures to protect user telemetry and credentials:',
+    privacy_sec_hashing: 'Salted Hashing: Raw visitor IP addresses are never saved to disk; they are immediately hashed using SHA-256 with an isolated server-side salt.',
+    privacy_sec_passwords: 'Password Encryption: All staff and administrator passwords use bcrypt hashing with a minimum work factor of 10. Plaintext passwords are never logged, stored, or transmitted.',
+    privacy_sec_cookies: 'Secure Cookies: Session tokens are stored exclusively in HTTP-only, Secure, SameSite cookies inaccessible to client-side scripts. Client-side local storage contains zero personal identifying information (PII).',
+    privacy_section_7_title: '7. Contact Us Regarding Privacy',
+    privacy_section_7_desc: 'For questions, data access inquiries, or deletion requests regarding your personal information, contact our Data Protection Officer at:',
+
+    // Terms & Conditions
+    terms_eyebrow: 'Terms of Service',
+    terms_title: 'Terms and Conditions',
+    terms_last_updated: 'Last Updated: August 2026',
+    terms_section_1_title: '1. Acceptance of Terms',
+    terms_section_1_desc: 'By accessing or browsing RefPromos (the "Website"), you agree to comply with and be bound by these Terms and Conditions. If you disagree with any portion of these terms, please discontinue use of our services immediately.',
+    terms_section_2_title: '2. Nature of Deals & Coupon Codes',
+    terms_section_2_desc: 'RefPromos publishes promotional coupons, discount codes, and sales aggregated from merchants and brand partners. While we take rigorous measures to test and verify every offer before publication:',
+    terms_rule_1: 'Merchant coupon validity, discount percentage, pricing, and expiration dates are subject to change at the sole discretion of the retailer without prior notice.',
+    terms_rule_2: 'We do not guarantee that all third-party discounts will be honored by the merchant at all times.',
+    terms_rule_3: 'All transactions occur directly on the respective merchant\'s website. RefPromos does not process payments or handle order fulfillment.',
+    terms_section_3_title: '3. Intellectual Property Rights',
+    terms_section_3_desc: 'All original content, design layouts, logos, and software code on RefPromos are protected by international copyright and trademark laws. Third-party brand names, logos, and trademarks (e.g. Nike, Amazon, Sephora) belong to their respective owners and are used solely for identification and referral purposes.',
+    terms_section_4_title: '4. Limitation of Liability',
+    terms_section_4_desc: 'To the fullest extent permitted by applicable law, RefPromos and its affiliates shall not be liable for any indirect, incidental, or consequential damages resulting from the use or inability to use any promotional offer listed on the site.',
+    terms_section_5_title: '5. Contact Information',
+    terms_section_5_desc: 'For legal inquiries or notices regarding these terms, please email:',
     footer_affiliate_disclaimer: 'We may earn a commission from purchases made through links on this site, at no additional cost to you.',
   },
 
@@ -382,6 +480,104 @@ export const TRANSLATIONS: Record<Locale, Translations> = {
     footer_nike_codes: 'Nike Gutscheine',
     footer_amazon_deals: 'Amazon Angebote',
     footer_sephora_coupons: 'Sephora Beauty-Codes',
+    // About Us
+    about_mission_eyebrow: 'Unsere Mission',
+    about_hero_title: 'Wir helfen Millionen cleverer Käufer, bei jedem Einkauf zu sparen',
+    about_hero_desc: 'RefPromos wurde gegründet, um abgelaufene Gutscheincodes abzuschaffen und Online-Käufern zu 100 % geprüfte, funktionierende Rabattcodes und echte Angebote zu bieten.',
+    metric_brands_sub: 'Führende globale Marken weltweit',
+    metric_codes_sub: 'Täglich geprüft & aktualisiert',
+    shopper_savings: 'Kunden-Ersparnisse',
+    metric_savings_sub: 'An geprüften Rabatten',
+    global_regions: 'Globale Regionen',
+    metric_regions_sub: 'US, UK, AU, CA, DE, FR, IT, NL, PL, ES',
+    how_it_works_title: 'Wie RefPromos für Sie funktioniert',
+    pillar_1_title: '1. Manuelle Prüfung & Verifizierung',
+    pillar_1_desc: 'Unser Team testet Gutscheincodes vor der Veröffentlichung direkt an der Kasse. Funktioniert ein Code nicht oder ist abgelaufen, wird er sofort markiert oder archiviert.',
+    pillar_2_title: '2. 100% Kostenlos & Ohne Barrieren',
+    pillar_2_desc: 'Wir finden, cleveres Sparen sollte weder Abos noch Pflicht-Accounts erfordern. Sie können jeden Rabattcode mit 1 Klick sofort finden, kopieren und einlösen.',
+    pillar_3_title: '3. Transparente Partnerschaften',
+    pillar_3_desc: 'Wenn Sie über unsere Partnerlinks einkaufen, erhalten wir möglicherweise eine kleine Provision vom Händler – für Sie entstehen dadurch keinerlei Zusatzkosten.',
+    ready_to_save_title: 'Bereit, mit dem Sparen zu beginnen?',
+    ready_to_save_desc: 'Entdecken Sie jetzt beliebte Gutscheine und Top-Markenangebote.',
+
+    // Blog Detail & Navigation
+    all_shopping_guides: 'Alle Einkaufsratgeber',
+    mentioned_promo_codes: 'Erwähnte Gutscheincodes & Angebote',
+    related_guides: 'Ähnliche Ratgeber',
+
+    // Contact Us
+    contact_eyebrow: 'Support & Anfragen',
+    contact_title: 'Wir freuen uns auf Ihre Nachricht',
+    contact_desc: 'Haben Sie Fragen zu einem Gutscheincode, möchten ein Angebot einreichen oder eine Partnerschaft anfragen? Schreiben Sie uns.',
+    contact_success_title: 'Nachricht erfolgreich gesendet!',
+    contact_success_desc: 'Vielen Dank für Ihre Nachricht an RefPromos. Unser Team antwortet in der Regel innerhalb von 24 Arbeitsstunden.',
+    send_another: 'Weitere Nachricht senden',
+    your_name: 'Ihr Name *',
+    email_address: 'E-Mail-Adresse *',
+    subject_label: 'Betreff',
+    general_inquiry: 'Allgemeine Anfrage',
+    report_broken: 'Abgelaufenen / Defekten Gutschein melden',
+    merchant_partner: 'Händler- & Markenpartnerschaft',
+    press_editorial: 'Presse- & Redaktionsanfrage',
+    message_label: 'Nachricht *',
+    message_placeholder: 'Beschreiben Sie Ihre Frage oder Ihr Feedback...',
+    sending_label: 'Wird gesendet...',
+    send_message: 'Nachricht senden',
+    email_support: 'Offizielle E-Mail-Adressen',
+    support_desk: 'Kundenservice & Gutschein-Support',
+    general_inquiries: 'Allgemeine Anfragen & Auskünfte',
+    response_times: 'Antwortzeiten',
+    response_times_desc: 'Unsere Redaktion und Gutscheinprüfung arbeitet Montag bis Freitag, 9:00 – 18:00 Uhr MEZ. Anfragen werden in der Reihenfolge des Eingangs bearbeitet.',
+    for_merchants: 'Für Händler & Werbepartner',
+    for_merchants_desc: 'Möchten Sie Ihre Marke auf RefPromos listen oder exklusive Gutscheincodes für unsere Community bereitstellen? Kontaktieren Sie',
+
+    // Privacy Policy
+    privacy_eyebrow: 'Rechtliches & Compliance',
+    privacy_title: 'Datenschutzerklärung & Affiliate-Offenlegung',
+    privacy_last_updated: 'Zuletzt aktualisiert: August 2026',
+    privacy_section_1_title: '1. Einleitung & Geltungsbereich',
+    privacy_section_1_desc: 'Willkommen bei RefPromos (bezeichnet als „wir“, „uns“ oder „unser“). Wir verpflichten uns zum Schutz Ihrer Privatsphäre und zu transparenten Informationspraktiken bei der Nutzung unserer Website (refpromos.com) und unserer Dienste. Diese Datenschutzerklärung erläutert, welche Daten wir erfassen, wie sie verwendet werden und welche Rechte Sie bezüglich Ihrer Daten haben.',
+    privacy_section_2_title: '2. Affiliate-Offenlegung (FTC-Konformität)',
+    privacy_section_2_desc_1: 'RefPromos ist eine kostenlose Plattform für Gutscheine und Angebote, die durch Affiliate-Partnerschaften finanziert wird. Wenn Sie auf Gutscheincodes, Angebote oder Shop-Links auf unserer Website klicken und anschließend einen Kauf beim Händler tätigen, erhalten wir möglicherweise eine Provision – ohne zusätzliche Kosten für Sie.',
+    privacy_section_2_desc_2: 'Unsere redaktionelle Unabhängigkeit steht an erster Stelle: Unsere Gutscheinprüfung, Shop-Bewertungen und Testergebnisse erfolgen unabhängig von Affiliate-Provisionen.',
+    privacy_section_3_title: '3. Daten, die wir erfassen',
+    privacy_section_3_desc: 'Wir befolgen den Grundsatz der Datensparsamkeit:',
+    privacy_data_non_personal: 'Nicht-personenbezogene & analytische Daten: Browsertyp, Betriebssystem, verweisende URL, bevorzugte Region und anonymisierte Klick-Zeitstempel.',
+    privacy_data_ip: 'IP-Adressen: Werden mittels kryptografischem SHA-256-Hashing anonymisiert, um Klickbetrug zu verhindern, ohne Personen identifizieren zu können.',
+    privacy_data_voluntary: 'Freiwillige Angaben: Ihr Name und Ihre E-Mail-Adresse, wenn Sie unseren Support kontaktieren oder den Newsletter abonnieren.',
+    privacy_section_4_title: '4. Cookies & Tracking-Technologien',
+    privacy_section_4_desc: 'Wir verwenden notwendige Cookies und datensparsame Analyse-Cookies, um Ihre ausgewählte Region (z. B. US, UK, AU, CA, DE, FR, IT, NL, PL, ES) zu speichern und Partnershop-Weiterleitungen zu erfassen. Sie können Cookies jederzeit in Ihrem Browser deaktivieren.',
+    privacy_section_5_title: '5. Ihre Datenschutzrechte & Datenlöschung (DSGVO & CCPA)',
+    privacy_section_5_desc_1: 'Gemäß der Datenschutz-Grundverordnung (DSGVO) behalten Sie die volle Kontrolle über Ihre personenbezogenen Daten:',
+    privacy_rights_access: 'Auskunftsrecht: Fordern Sie eine Kopie aller bei uns gespeicherten personenbezogenen Daten an.',
+    privacy_rights_erasure: 'Recht auf Löschung (Recht auf Vergessenwerden): Fordern Sie die dauerhafte Löschung Ihrer E-Mail-Adresse und zugehöriger Datensätze an.',
+    privacy_rights_optout: 'Widerspruchsrecht: Sie können Marketing-Mitteilungen und Analysen jederzeit kostenlos widersprechen.',
+    privacy_section_5_desc_2: 'Um eine automatisierte Löschung zu veranlassen, nutzen Sie /api/privacy/delete-data oder schreiben Sie an info@refpromos.com. Anfragen werden innerhalb von 48 Stunden bearbeitet.',
+    privacy_section_6_title: '6. Datensicherheit & Speicherarchitektur',
+    privacy_section_6_desc: 'Wir setzen moderne Sicherheitsmaßnahmen ein, um Daten und Benutzerkonten zu schützen:',
+    privacy_sec_hashing: 'Gesalzenes Hashing: IP-Adressen werden niemals im Klartext gespeichert, sondern sofort mit einem geheimen Server-Salt gehasht.',
+    privacy_sec_passwords: 'Passwort-Verschlüsselung: Alle internen Kennwörter nutzen bcrypt mit hohem Work-Factor. Klartext-Passwörter werden niemals übertragen oder gespeichert.',
+    privacy_sec_cookies: 'Sichere Cookies: Session-Tokens werden ausschließlich in HTTP-Only, Secure, SameSite-Cookies gespeichert.',
+    privacy_section_7_title: '7. Kontakt bezüglich Datenschutz',
+    privacy_section_7_desc: 'Für Fragen, Auskunftsanfragen oder Löschanträge wenden Sie sich an unseren Datenschutzbeauftragten unter:',
+
+    // Terms & Conditions
+    terms_eyebrow: 'Nutzungsbedingungen',
+    terms_title: 'Allgemeine Geschäftsbedingungen',
+    terms_last_updated: 'Zuletzt aktualisiert: August 2026',
+    terms_section_1_title: '1. Annahme der Bedingungen',
+    terms_section_1_desc: 'Durch den Zugriff auf RefPromos (die „Website“) erklären Sie sich mit diesen Bedingungen einverstanden. Wenn Sie nicht einverstanden sind, beenden Sie bitte die Nutzung der Website.',
+    terms_section_2_title: '2. Art der Angebote & Gutscheincodes',
+    terms_section_2_desc: 'RefPromos veröffentlicht Gutscheine, Rabattcodes und Angebote von Partnerhändlern. Trotz sorgfältiger Prüfung vor der Veröffentlichung:',
+    terms_rule_1: 'Gültigkeit, Rabatthöhe, Preise und Fristen unterliegen der alleinigen Verantwortung des jeweiligen Händlers und können sich jederzeit ohne Vorankündigung ändern.',
+    terms_rule_2: 'Wir können nicht garantieren, dass Angebote zu jedem Zeitpunkt von Drittanbietern eingelöst werden.',
+    terms_rule_3: 'Alle Käufe finden direkt auf der Website des Händlers statt. RefPromos wickelt weder Zahlungen noch Bestellungen ab.',
+    terms_section_3_title: '3. Geistiges Eigentum',
+    terms_section_3_desc: 'Alle originären Inhalte, Layouts, Logos und Programmcodes auf RefPromos sind urheberrechtlich geschützt. Markennamen Dritter (z. B. Nike, Amazon, Sephora) gehören ihren Eigentümern und dienen nur zur Identifikation.',
+    terms_section_4_title: '4. Haftungsbeschränkung',
+    terms_section_4_desc: 'Soweit gesetzlich zulässig, haftet RefPromos nicht für mittelbare oder unmittelbare Schäden, die aus der Nutzung der aufgeführten Rabatte entstehen.',
+    terms_section_5_title: '5. Kontaktinformationen',
+    terms_section_5_desc: 'Bei rechtlichen Fragen zu diesen Bedingungen schreiben Sie bitte an:',
     footer_affiliate_disclaimer: 'Wir erhalten möglicherweise eine Provision für Käufe über Links auf dieser Website – für Sie entstehen dadurch keinerlei zusätzliche Kosten.',
   },
 
@@ -572,6 +768,104 @@ export const TRANSLATIONS: Record<Locale, Translations> = {
     footer_nike_codes: 'Codes Promo Nike',
     footer_amazon_deals: 'Bons Plans Amazon',
     footer_sephora_coupons: 'Codes Réduction Sephora',
+    // About Us
+    about_mission_eyebrow: 'Notre Mission',
+    about_hero_title: 'Nous aidons des millions d’acheteurs avisés à économiser sur chaque commande',
+    about_hero_desc: 'RefPromos a été créé pour éliminer les codes promo expirés et offrir aux acheteurs en ligne des codes 100 % vérifiés, testés et de vrais bons plans.',
+    metric_brands_sub: 'Grandes marques internationales',
+    metric_codes_sub: 'Testés et mis à jour quotidiennement',
+    shopper_savings: 'Économies Réalisées',
+    metric_savings_sub: 'En réductions vérifiées',
+    global_regions: 'Régions Mondiales',
+    metric_regions_sub: 'US, UK, AU, CA, DE, FR, IT, NL, PL, ES',
+    how_it_works_title: 'Comment RefPromos fonctionne pour vous',
+    pillar_1_title: '1. Test Manuel & Vérification',
+    pillar_1_desc: 'Notre équipe teste chaque code directement au panier avant publication. Si un code ne fonctionne pas ou est expiré, il est immédiatement signalé ou retiré.',
+    pillar_2_title: '2. 100% Gratuit & Sans Contrainte',
+    pillar_2_desc: 'Nous croyons que faire des économies ne doit jamais exiger d’abonnement payant ni de compte complexe. Trouvez, copiez et appliquez un code en 1 clic.',
+    pillar_3_title: '3. Partenariats Transparents',
+    pillar_3_desc: 'Lorsque vous effectuez un achat via nos liens d’affiliation, nous pouvons percevoir une commission du marchand sans aucun surcoût pour vous.',
+    ready_to_save_title: 'Prêt à commencer à économiser ?',
+    ready_to_save_desc: 'Découvrez dès maintenant les codes promo et offres tendance.',
+
+    // Blog Detail & Navigation
+    all_shopping_guides: 'Tous les Guides d’Achat',
+    mentioned_promo_codes: 'Codes Promo et Bons Plans Mentionnés',
+    related_guides: 'Guides Similaires',
+
+    // Contact Us
+    contact_eyebrow: 'Support & Demandes',
+    contact_title: 'Nous sommes à votre écoute',
+    contact_desc: 'Une question sur un code promo, un bon plan à partager ou un projet de partenariat ? Envoyez-nous un message.',
+    contact_success_title: 'Message envoyé avec succès !',
+    contact_success_desc: 'Merci d’avoir contacté RefPromos. Notre équipe vous répond généralement sous 24 heures ouvrées.',
+    send_another: 'Envoyer un autre message',
+    your_name: 'Votre Nom *',
+    email_address: 'Adresse E-mail *',
+    subject_label: 'Sujet',
+    general_inquiry: 'Demande Générale',
+    report_broken: 'Signaler un code expiré ou invalide',
+    merchant_partner: 'Partenariat Marchand & Marque',
+    press_editorial: 'Presse & Relations Éditoriales',
+    message_label: 'Message *',
+    message_placeholder: 'Décrivez votre question ou vos remarques...',
+    sending_label: 'Envoi en cours...',
+    send_message: 'Envoyer le message',
+    email_support: 'Adresses E-mail Officielles',
+    support_desk: 'Support Client & Codes Promo',
+    general_inquiries: 'Renseignements Généraux & Informations',
+    response_times: 'Délais de Réponse',
+    response_times_desc: 'Notre équipe éditoriale et de vérification opère du lundi au vendredi, de 9h00 à 18h00. Les demandes sont traitées dans l’ordre d’arrivée.',
+    for_merchants: 'Pour les Partenaires Marchands',
+    for_merchants_desc: 'Vous souhaitez référencer votre marque sur RefPromos ou proposer des codes promo exclusifs à notre communauté ? Contactez',
+
+    // Privacy Policy
+    privacy_eyebrow: 'Mentions Légales & Conformité',
+    privacy_title: 'Politique de Confidentialité & Déclaration d’Affiliation',
+    privacy_last_updated: 'Dernière mise à jour : Août 2026',
+    privacy_section_1_title: '1. Introduction & Champ d’Application',
+    privacy_section_1_desc: 'Bienvenue sur RefPromos (« nous », « notre »). Nous nous engageons à protéger votre vie privée et à assurer des pratiques d’information transparentes sur notre site (refpromos.com) et nos services.',
+    privacy_section_2_title: '2. Déclaration d’Affiliation (Conformité FTC)',
+    privacy_section_2_desc_1: 'RefPromos est un service gratuit de bons plans soutenu par des partenariats d’affiliation. Lorsque vous cliquez sur un lien et achetez chez un marchand, nous pouvons recevoir une commission sans aucun coût supplémentaire pour vous.',
+    privacy_section_2_desc_2: 'Notre indépendance éditoriale est primordiale : les avis et tests de coupons restent totalement indépendants des commissions reçues.',
+    privacy_section_3_title: '3. Données Collectées',
+    privacy_section_3_desc: 'Nous appliquons des règles strictes de minimisation des données :',
+    privacy_data_non_personal: 'Données Non Nominatives & Analytiques : Type de navigateur, système d’exploitation, URL référente, préférence de région et horodatages anonymisés.',
+    privacy_data_ip: 'Adresses IP : Hachées de manière irréversible via SHA-256 pour prévenir la fraude sans identifier les personnes.',
+    privacy_data_voluntary: 'Données Volontaires : Votre nom et e-mail lors de l’envoi d’un message ou de l’inscription à notre lettre d’information.',
+    privacy_section_4_title: '4. Cookies & Technologies de Suivi',
+    privacy_section_4_desc: 'Nous utilisons des cookies essentiels et analytiques légers pour mémoriser votre pays (ex. FR, DE, US, PL, ES) et suivre les redirections marchandes.',
+    privacy_section_5_title: '5. Vos Droits & Suppression des Données (RGPD)',
+    privacy_section_5_desc_1: 'Conformément au RGPD, vous disposez d’un droit d’accès, de rectification et d’effacement de vos données personnelles.',
+    privacy_rights_access: 'Droit d’Accès : Obtenez une copie des données vous concernant.',
+    privacy_rights_erasure: 'Droit à l’Oubli : Demandez la suppression définitive de vos données.',
+    privacy_rights_optout: 'Droit d’Opposition : Refusez les communications marketing à tout moment.',
+    privacy_section_5_desc_2: 'Pour exercer vos droits, rendez-vous sur /api/privacy/delete-data ou écrivez à info@refpromos.com. Traitement sous 48 heures.',
+    privacy_section_6_title: '6. Sécurité des Données',
+    privacy_section_6_desc: 'Nous mettons en œuvre des mesures de protection rigoureuses :',
+    privacy_sec_hashing: 'Hachage Salé : Les IP brutes ne sont jamais stockées sur disque.',
+    privacy_sec_passwords: 'Chiffrement des Mots de Passe : Hachage bcrypt pour tous les accès d’administration.',
+    privacy_sec_cookies: 'Cookies Sécurisés : Tokens de session strictement limités en HTTP-Only et SameSite.',
+    privacy_section_7_title: '7. Contact Concernant la Confidentialité',
+    privacy_section_7_desc: 'Pour toute question relative à vos données, contactez notre DPO à :',
+
+    // Terms & Conditions
+    terms_eyebrow: 'Conditions d’Utilisation',
+    terms_title: 'Conditions Générales d’Utilisation',
+    terms_last_updated: 'Dernière mise à jour : Août 2026',
+    terms_section_1_title: '1. Acceptation des Conditions',
+    terms_section_1_desc: 'En naviguant sur RefPromos, vous acceptez de respecter les présentes Conditions Générales. En cas de désaccord, veuillez cesser toute utilisation du site.',
+    terms_section_2_title: '2. Nature des Offres & Codes Promo',
+    terms_section_2_desc: 'RefPromos publie des codes de réduction et offres agrégés auprès des marchands partenaires. Malgré nos vérifications régulières :',
+    terms_rule_1: 'La validité, le montant des réductions et les prix peuvent être modifiés par les marchands à tout moment et sans préavis.',
+    terms_rule_2: 'Nous ne pouvons garantir que chaque offre sera honorée par les tiers en continu.',
+    terms_rule_3: 'Les achats s’effectuent exclusivement sur les sites des commerçants concernés. RefPromos n’encaisse aucun paiement.',
+    terms_section_3_title: '3. Propriété Intellectuelle',
+    terms_section_3_desc: 'Les contenus et marques originales de RefPromos sont protégés. Les logos et marques de tiers appartiennent à leurs propriétaires légitimes respectifs.',
+    terms_section_4_title: '4. Limitation de Responsabilité',
+    terms_section_4_desc: 'Dans toute la mesure permise par la loi, RefPromos ne saurait être tenu responsable des dommages directs ou indirects résultant de l’utilisation du site.',
+    terms_section_5_title: '5. Coordonnées',
+    terms_section_5_desc: 'Pour toute question d’ordre légal concernant ces conditions, contactez :',
     footer_affiliate_disclaimer: 'Nous pouvons percevoir une commission sur les achats effectués via les liens de ce site, sans aucun coût supplémentaire pour vous.',
   },
 
@@ -762,6 +1056,104 @@ export const TRANSLATIONS: Record<Locale, Translations> = {
     footer_nike_codes: 'Codici Promo Nike',
     footer_amazon_deals: 'Offerte Amazon',
     footer_sephora_coupons: 'Coupon Sephora',
+    // About Us
+    about_mission_eyebrow: 'La Nostra Missione',
+    about_hero_title: 'Aiutiamo milioni di acquirenti intelligenti a risparmiare su ogni acquisto',
+    about_hero_desc: 'RefPromos è nata per eliminare i codici promozionali scaduti e offrire agli acquirenti online codici sconto testati al 100% e offerte reali.',
+    metric_brands_sub: 'Migliori marchi globali in tutto il mondo',
+    metric_codes_sub: 'Testati e aggiornati ogni giorno',
+    shopper_savings: 'Risparmi dei Clienti',
+    metric_savings_sub: 'In sconti verificati',
+    global_regions: 'Regioni Globali',
+    metric_regions_sub: 'US, UK, AU, CA, DE, FR, IT, NL, PL, ES',
+    how_it_works_title: 'Come funziona RefPromos per te',
+    pillar_1_title: '1. Test Manuale e Verifica',
+    pillar_1_desc: 'Il nostro team verifica i codici direttamente al checkout prima della pubblicazione. Se un codice non applica lo sconto o è scaduto, viene subito rimosso.',
+    pillar_2_title: '2. 100% Gratuito e Senza Ostacoli',
+    pillar_2_desc: 'Crediamo che lo shopping intelligente non debba mai richiedere abbonamenti a pagamento o account complessi. Copia e applica qualsiasi codice con 1 clic.',
+    pillar_3_title: '3. Partnership Trasparenti',
+    pillar_3_desc: 'Quando acquisti tramite i nostri link di affiliazione, potremmo ricevere una piccola commissione dal rivenditore senza alcun costo extra per te.',
+    ready_to_save_title: 'Pronto per iniziare a risparmiare?',
+    ready_to_save_desc: 'Scopri subito i coupon di tendenza e le offerte dei migliori marchi.',
+
+    // Blog Detail & Navigation
+    all_shopping_guides: 'Tutte le Guide allo Shopping',
+    mentioned_promo_codes: 'Codici Promo e Offerte Menzionati',
+    related_guides: 'Guide Correlate',
+
+    // Contact Us
+    contact_eyebrow: 'Supporto & Richieste',
+    contact_title: 'Ci farebbe piacere sentirti',
+    contact_desc: 'Hai una domanda su un codice sconto, vuoi segnalare un\'offerta o proporre una partnership? Inviaci un messaggio.',
+    contact_success_title: 'Messaggio inviato con successo!',
+    contact_success_desc: 'Grazie per aver contattato RefPromos. Il nostro team di supporto risponde generalmente entro 24 ore lavorative.',
+    send_another: 'Invia un altro messaggio',
+    your_name: 'Il tuo Nome *',
+    email_address: 'Indirizzo Email *',
+    subject_label: 'Oggetto',
+    general_inquiry: 'Richiesta Generale',
+    report_broken: 'Segnala un coupon scaduto o non valido',
+    merchant_partner: 'Partnership Rivenditore & Marchio',
+    press_editorial: 'Stampa & Ufficio Stampa',
+    message_label: 'Messaggio *',
+    message_placeholder: 'Descrivi la tua richiesta o il tuo feedback...',
+    sending_label: 'Invio in corso...',
+    send_message: 'Invia Messaggio',
+    email_support: 'Caselle Email Ufficiali',
+    support_desk: 'Assistenza Clienti e Coupon',
+    general_inquiries: 'Richieste Generali e Informazioni',
+    response_times: 'Tempi di Risposta',
+    response_times_desc: 'La nostra redazione e il servizio verifica operano dal lunedì al venerdì, dalle 9:00 alle 18:00. Le richieste sono gestite in ordine di ricezione.',
+    for_merchants: 'Per Rivenditori e Partner',
+    for_merchants_desc: 'Vuoi promuovere il tuo marchio su RefPromos o fornire coupon esclusivi alla nostra community? Scrivi a',
+
+    // Privacy Policy
+    privacy_eyebrow: 'Note Legali e Conformità',
+    privacy_title: 'Informativa sulla Privacy e Trasparenza Affiliazioni',
+    privacy_last_updated: 'Ultimo aggiornamento: Agosto 2026',
+    privacy_section_1_title: '1. Introduzione e Ambito',
+    privacy_section_1_desc: 'Benvenuti su RefPromos. Ci impegniamo a proteggere la tua privacy e a garantire la massima trasparenza sul nostro sito (refpromos.com).',
+    privacy_section_2_title: '2. Trasparenza Affiliazioni (FTC)',
+    privacy_section_2_desc_1: 'RefPromos è un servizio gratuito supportato da affiliazioni. Quando effettui un acquisto tramite i nostri link, potremmo ricevere una commissione senza alcun costo aggiuntivo per te.',
+    privacy_section_2_desc_2: 'La nostra integrità editoriale è fondamentale: valutazioni e recensioni sono indipendenti dalle commissioni.',
+    privacy_section_3_title: '3. Dati che Raccogliamo',
+    privacy_section_3_desc: 'Rispettiamo il principio di minimizzazione dei dati:',
+    privacy_data_non_personal: 'Dati Non Personali e Analitici: Tipo di browser, sistema operativo, URL di provenienza e timestamp anonimi.',
+    privacy_data_ip: 'Indirizzi IP: Anonimizzati tramite hash crittografico SHA-256 per prevenire frodi senza identificare gli utenti.',
+    privacy_data_voluntary: 'Dati Volontari: Nome ed email quando compili il modulo di contatto o la newsletter.',
+    privacy_section_4_title: '4. Cookie e Tecnologie di Tracciamento',
+    privacy_section_4_desc: 'Utilizziamo cookie tecnici per memorizzare la tua regione geografica e tracciare i referral dei negozi.',
+    privacy_section_5_title: '5. Diritti di Privacy e Cancellazione (GDPR)',
+    privacy_section_5_desc_1: 'Ai sensi del GDPR, hai pieno controllo sui tuoi dati personali:',
+    privacy_rights_access: 'Diritto di Accesso: Richiedi una copia dei dati conservati.',
+    privacy_rights_erasure: 'Diritto all\'Oblio: Richiedi la cancellazione definitiva dei tuoi dati.',
+    privacy_rights_optout: 'Diritto di Opposizione: Disiscriviti in ogni momento dalle comunicazioni.',
+    privacy_section_5_desc_2: 'Per inoltrare una richiesta di cancellazione dati, visita /api/privacy/delete-data o scrivi a info@refpromos.com.',
+    privacy_section_6_title: '6. Sicurezza dei Dati',
+    privacy_section_6_desc: 'Adottiamo misure di sicurezza all\'avanguardia: hash salato per gli IP, crittografia bcrypt per le password e cookie protetti HTTP-Only.',
+    privacy_sec_hashing: 'Hash Salato: Gli IP non vengono mai salvati in chiaro sul disco.',
+    privacy_sec_passwords: 'Crittografia Password: Bcrypt con fattore elevato per tutte le credenziali interne.',
+    privacy_sec_cookies: 'Cookie Protetti: Cookie di sessione sicuri e inaccessibili agli script lato client.',
+    privacy_section_7_title: '7. Contatti sulla Privacy',
+    privacy_section_7_desc: 'Per domande relative alla privacy e ai tuoi diritti, contatta:',
+
+    // Terms & Conditions
+    terms_eyebrow: 'Termini di Servizio',
+    terms_title: 'Termini e Condizioni di Utilizzo',
+    terms_last_updated: 'Ultimo aggiornamento: Agosto 2026',
+    terms_section_1_title: '1. Accettazione dei Termini',
+    terms_section_1_desc: 'Accedendo a RefPromos accetti i presenti Termini e Condizioni. Se non sei d\'accordo, ti invitiamo a non utilizzare il sito.',
+    terms_section_2_title: '2. Natura delle Offerte e dei Coupon',
+    terms_section_2_desc: 'Pubblichiamo codici sconto e promozioni dei negozi partner. Nonostante i nostri accurati controlli:',
+    terms_rule_1: 'Validità, percentuali di sconto e prezzi possono variare a discrezione dei singoli rivenditori senza preavviso.',
+    terms_rule_2: 'Non possiamo garantire che ogni coupon sia accettato in qualsiasi momento da terze parti.',
+    terms_rule_3: 'Le transazioni avvengono direttamente sui siti dei rispettivi venditori. RefPromos non gestisce pagamenti.',
+    terms_section_3_title: '3. Proprietà Intellettuale',
+    terms_section_3_desc: 'I contenuti e la grafica di RefPromos sono protetti da copyright. I marchi dei negozi appartengono ai rispettivi titolari.',
+    terms_section_4_title: '4. Limitazione di Responsabilità',
+    terms_section_4_desc: 'Nei limiti previsti dalla legge, RefPromos non risponde di eventuali danni derivanti dall\'uso dei coupon elencati.',
+    terms_section_5_title: '5. Informazioni di Contatto',
+    terms_section_5_desc: 'Per comunicazioni legali relative a questi termini, scrivere a:',
     footer_affiliate_disclaimer: 'Potremmo guadagnare una commissione dagli acquisti effettuati tramite i link presenti su questo sito, senza alcun costo aggiuntivo per te.',
   },
 
@@ -952,6 +1344,104 @@ export const TRANSLATIONS: Record<Locale, Translations> = {
     footer_nike_codes: 'Nike Kortingscodes',
     footer_amazon_deals: 'Amazon Aanbiedingen',
     footer_sephora_coupons: 'Sephora Beauty Coupons',
+    // About Us
+    about_mission_eyebrow: 'Onze Missie',
+    about_hero_title: 'Wij helpen miljoenen slimme shoppers te besparen op elke aankoop',
+    about_hero_desc: 'RefPromos is opgericht om verlopen kortingscodes uit te bannen en online shoppers te voorzien van 100% geverifieerde actiecodes en echte deals.',
+    metric_brands_sub: 'Toonaangevende wereldwijde merken',
+    metric_codes_sub: 'Dagelijks getest en bijgewerkt',
+    shopper_savings: 'Besparingen van Shoppers',
+    metric_savings_sub: 'Aan geverifieerde kortingen',
+    global_regions: 'Wereldwijde Regio’s',
+    metric_regions_sub: 'US, UK, AU, CA, DE, FR, IT, NL, PL, ES',
+    how_it_works_title: 'Hoe RefPromos voor jou werkt',
+    pillar_1_title: '1. Handmatige Test & Verificatie',
+    pillar_1_desc: 'Ons team test codes bij het afrekenen voordat ze gepubliceerd worden. Als een code verloopt of niet werkt, wordt deze meteen gearchiveerd.',
+    pillar_2_title: '2. 100% Gratis & Zonder Drempels',
+    pillar_2_desc: 'Wij vinden dat slim winkelen nooit een betaald abonnement of account mag vereisen. Vind, kopieer en gebruik elke actiecode direct in 1 klik.',
+    pillar_3_title: '3. Transparante Partnerschappen',
+    pillar_3_desc: 'Wanneer je een aankoop doet via onze links, kunnen we een commissie ontvangen van de winkelier zonder extra kosten voor jou.',
+    ready_to_save_title: 'Klaar om te beginnen met besparen?',
+    ready_to_save_desc: 'Bekijk nu populaire kortingscodes en topdeals van topmerken.',
+
+    // Blog Detail & Navigation
+    all_shopping_guides: 'Alle Koopgidsen',
+    mentioned_promo_codes: 'Genoemde Kortingscodes & Deals',
+    related_guides: 'Gerelateerde Gidsen',
+
+    // Contact Us
+    contact_eyebrow: 'Ondersteuning & Vragen',
+    contact_title: 'We horen graag van je',
+    contact_desc: 'Heb je een vraag over een kortingscode, wil je een deal aanmelden of samenwerken? Stuur ons een bericht.',
+    contact_success_title: 'Bericht succesvol verzonden!',
+    contact_success_desc: 'Bedankt voor je bericht aan RefPromos. Ons supportteam reageert meestal binnen 24 werkuren.',
+    send_another: 'Nog een bericht versturen',
+    your_name: 'Jouw Naam *',
+    email_address: 'E-mailadres *',
+    subject_label: 'Onderwerp',
+    general_inquiry: 'Algemene Vraag',
+    report_broken: 'Verlopen of niet-werkende code melden',
+    merchant_partner: 'Winkel- of Merkpartnerschap',
+    press_editorial: 'Pers & Redactionele Vragen',
+    message_label: 'Bericht *',
+    message_placeholder: 'Beschrijf je vraag of opmerking...',
+    sending_label: 'Verzenden...',
+    send_message: 'Bericht Verzenden',
+    email_support: 'Officiële E-mailadressen',
+    support_desk: 'Klantenservice & Kortingshulp',
+    general_inquiries: 'Algemene Vragen & Informatie',
+    response_times: 'Reactietijden',
+    response_times_desc: 'Onze redactie en verificatieafdeling werkt van maandag tot en met vrijdag, 9:00 – 18:00 uur. Vragen worden behandeld op volgorde van binnenkomst.',
+    for_merchants: 'Voor Winkels & Partners',
+    for_merchants_desc: 'Wil je jouw merk op RefPromos vermelden of exclusieve kortingscodes aanbieden aan onze community? Neem contact op via',
+
+    // Privacy Policy
+    privacy_eyebrow: 'Juridisch & Naleving',
+    privacy_title: 'Privacybeleid & Affiliate Verantwoording',
+    privacy_last_updated: 'Laatst bijgewerkt: Augustus 2026',
+    privacy_section_1_title: '1. Inleiding & Reikwijdte',
+    privacy_section_1_desc: 'Welkom bij RefPromos. Wij hechten grote waarde aan jouw privacy en transparante informatiepraktijken op refpromos.com.',
+    privacy_section_2_title: '2. Affiliate Verantwoording (FTC)',
+    privacy_section_2_desc_1: 'RefPromos is een gratis platform ondersteund door affiliate links. Wanneer je via onze links koopt, ontvangen wij mogelijk een commissie zonder extra kosten voor jou.',
+    privacy_section_2_desc_2: 'Onze redactionele onafhankelijkheid staat centraal: onze beoordelingen zijn onafhankelijk van commissies.',
+    privacy_section_3_title: '3. Gegevens die wij verzamelen',
+    privacy_section_3_desc: 'Wij houden ons aan strikte dataminimalisatie:',
+    privacy_data_non_personal: 'Niet-persoonlijke gegevens: Browsertype, besturingssysteem, geselecteerde regio en geanonimiseerde kliks.',
+    privacy_data_ip: 'IP-adressen: Gehasht met cryptografische SHA-256 om fraude tegen te gaan zonder personen te identificeren.',
+    privacy_data_voluntary: 'Vrijwillige gegevens: Naam en e-mailadres wanneer je contact opneemt.',
+    privacy_section_4_title: '4. Cookies & Tracking',
+    privacy_section_4_desc: 'Wij gebruiken essentiële cookies om jouw landvoorkeur te onthouden.',
+    privacy_section_5_title: '5. Jouw Privacyrechten (AVG/GDPR)',
+    privacy_section_5_desc_1: 'Onder de AVG heb je volledige controle over jouw gegevens:',
+    privacy_rights_access: 'Recht op Inzage: Vraag een kopie aan van jouw opgeslagen gegevens.',
+    privacy_rights_erasure: 'Recht op Vergetelheid: Verzoek om definitieve verwijdering van jouw gegevens.',
+    privacy_rights_optout: 'Recht van Bezwaar: Meld je op elk moment af voor berichten.',
+    privacy_section_5_desc_2: 'Dien een verwijderverzoek in via /api/privacy/delete-data of mail naar info@refpromos.com.',
+    privacy_section_6_title: '6. Gegevensbeveiliging',
+    privacy_section_6_desc: 'Wij hanteren sterke beveiligingsmaatregelen: gehashte IP-adressen, bcrypt voor beheerders en HTTP-only cookies.',
+    privacy_sec_hashing: 'Salted Hashing: IP-adressen worden direct onomkeerbaar gehasht.',
+    privacy_sec_passwords: 'Wachtwoordversleuteling: Bcrypt met hoge work factor voor alle beheerders.',
+    privacy_sec_cookies: 'Veilige Cookies: Sessiecookies zijn beveiligd met HTTP-Only en SameSite.',
+    privacy_section_7_title: '7. Contact over Privacy',
+    privacy_section_7_desc: 'Voor vragen over jouw gegevens neem je contact op met:',
+
+    // Terms & Conditions
+    terms_eyebrow: 'Algemene Voorwaarden',
+    terms_title: 'Algemene Gebruiksvoorwaarden',
+    terms_last_updated: 'Laatst bijgewerkt: Augustus 2026',
+    terms_section_1_title: '1. Aanvaarding van de Voorwaarden',
+    terms_section_1_desc: 'Door RefPromos te bezoeken ga je akkoord met deze voorwaarden. Indien je niet akkoord gaat, verzoeken we je het gebruik te staken.',
+    terms_section_2_title: '2. Aard van Aanbiedingen & Codes',
+    terms_section_2_desc: 'RefPromos publiceert actiecodes en kortingen van partnerwinkels. Hoewel we alles zorgvuldig testen:',
+    terms_rule_1: 'Geldigheid, kortingspercentages en prijzen kunnen op elk moment door de winkelier worden aangepast.',
+    terms_rule_2: 'Wij kunnen niet garanderen dat externe partijen kortingen te allen tijde honoreren.',
+    terms_rule_3: 'Aankopen vinden rechtstreeks plaats op de website van de winkelier.',
+    terms_section_3_title: '3. Intellectueel Eigendom',
+    terms_section_3_desc: 'Alle originele content en code op RefPromos is auteursrechtelijk beschermd. Merknamen behoren toe aan de respectievelijke eigenaren.',
+    terms_section_4_title: '4. Beperking van Aansprakelijkheid',
+    terms_section_4_desc: 'Voor zover wettelijk toegestaan is RefPromos niet aansprakelijk voor schade voortvloeiend uit het gebruik van aanbiedingen.',
+    terms_section_5_title: '5. Contactgegevens',
+    terms_section_5_desc: 'Voor juridische vragen over deze voorwaarden kun je mailen naar:',
     footer_affiliate_disclaimer: 'We kunnen een commissie ontvangen voor aankopen via links op deze site, zonder extra kosten voor u.',
   },
 
@@ -1142,6 +1632,104 @@ export const TRANSLATIONS: Record<Locale, Translations> = {
     footer_nike_codes: 'Kody promocyjne Nike',
     footer_amazon_deals: 'Okazje Amazon',
     footer_sephora_coupons: 'Kupony Sephora',
+    // About Us
+    about_mission_eyebrow: 'Nasza Misja',
+    about_hero_title: 'Pomagamy milionom sprytnych kupujących oszczędzać na każdych zakupach',
+    about_hero_desc: 'RefPromos powstało, aby wyeliminować niedziałające kody rabatowe i zapewnić kupującym w 100% sprawdzone, przetestowane zniżki oraz prawdziwe promocje.',
+    metric_brands_sub: 'Najlepsze światowe marki',
+    metric_codes_sub: 'Testowane i aktualizowane codziennie',
+    shopper_savings: 'Oszczędności Kupujących',
+    metric_savings_sub: 'W zweryfikowanych rabatach',
+    global_regions: 'Regiony Globalne',
+    metric_regions_sub: 'US, UK, AU, CA, DE, FR, IT, NL, PL, ES',
+    how_it_works_title: 'Jak działa RefPromos dla Ciebie',
+    pillar_1_title: '1. Ręczne testowanie i weryfikacja',
+    pillar_1_desc: 'Nasz zespół testuje kody przy kasie przed publikacją. Jeśli kod nie nalicza rabatu lub wygasł, zostaje natychmiast oznaczony lub usunięty.',
+    pillar_2_title: '2. W 100% za darmo i bez barier',
+    pillar_2_desc: 'Wierzymy, że mądre zakupy nie powinny wymagać płatnych subskrypcji ani zakładania konta. Możesz znaleźć i skopiować każdy kod jednym kliknięciem.',
+    pillar_3_title: '3. Przejrzyste partnerstwa',
+    pillar_3_desc: 'Gdy dokonujesz zakupu za pośrednictwem naszych linków afiliacyjnych, możemy otrzymać prowizję od sprzedawcy bez żadnych dodatkowych kosztów dla Ciebie.',
+    ready_to_save_title: 'Gotowy, aby zacząć oszczędzać?',
+    ready_to_save_desc: 'Odkryj najpopularniejsze kupony i okazje znanych marek już teraz.',
+
+    // Blog Detail & Navigation
+    all_shopping_guides: 'Wszystkie poradniki zakupowe',
+    mentioned_promo_codes: 'Wymienione kody promocyjne i okazje',
+    related_guides: 'Podobne poradniki',
+
+    // Contact Us
+    contact_eyebrow: 'Wsparcie i zapytania',
+    contact_title: 'Chętnie odpowiemy na Twoje pytania',
+    contact_desc: 'Masz pytanie o kod rabatowy, chcesz zgłosić nową okazję lub nawiązać współpracę? Wyślij do nas wiadomość.',
+    contact_success_title: 'Wiadomość została wysłana!',
+    contact_success_desc: 'Dziękujemy za kontakt z RefPromos. Nasz zespół zazwyczaj odpowiada w ciągu 24 godzin roboczych.',
+    send_another: 'Wyślij kolejną wiadomość',
+    your_name: 'Twoje imię i nazwisko *',
+    email_address: 'Adres e-mail *',
+    subject_label: 'Temat',
+    general_inquiry: 'Zapytanie ogólne',
+    report_broken: 'Zgłoś niedziałający / wygasły kupon',
+    merchant_partner: 'Współpraca ze sklepem lub marką',
+    press_editorial: 'Zapytanie prasowe / redakcyjne',
+    message_label: 'Wiadomość *',
+    message_placeholder: 'Opisz swoje pytanie lub opinię...',
+    sending_label: 'Wysyłanie...',
+    send_message: 'Wyślij wiadomość',
+    email_support: 'Oficjalne skrzynki e-mail',
+    support_desk: 'Pomoc dla klientów i kody rabatowe',
+    general_inquiries: 'Ogólne zapytania i informacje',
+    response_times: 'Czas odpowiedzi',
+    response_times_desc: 'Nasz zespół redakcyjny i weryfikacyjny pracuje od poniedziałku do piątku w godzinach 9:00 – 18:00. Zgłoszenia są rozpatrywane w kolejności nadejścia.',
+    for_merchants: 'Dla sklepów i partnerów',
+    for_merchants_desc: 'Chcesz umieścić swoją markę na RefPromos lub zaoferować ekskluzywne kody rabatowe dla naszej społeczności? Skontaktuj się pod adresem',
+
+    // Privacy Policy
+    privacy_eyebrow: 'Kwestie prawne i zgodność',
+    privacy_title: 'Polityka Prywatności i Informacja o Afiliacji',
+    privacy_last_updated: 'Ostatnia aktualizacja: Sierpień 2026',
+    privacy_section_1_title: '1. Wprowadzenie i Zakres',
+    privacy_section_1_desc: 'Witamy w RefPromos. Zobowiązujemy się do ochrony Twojej prywatności i przejrzystych zasad przetwarzania informacji w serwisie refpromos.com.',
+    privacy_section_2_title: '2. Informacja o Afiliacji (Zgodność z FTC)',
+    privacy_section_2_desc_1: 'RefPromos to darmowy serwis z okazjami wspierany przez partnerstwa afiliacyjne. Gdy klikniesz link i zrobisz zakupy, możemy otrzymać prowizję bez żadnych kosztów dla Ciebie.',
+    privacy_section_2_desc_2: 'Niezależność redakcyjna jest dla nas kluczowa: testy i oceny kodów są niezależne od prowizji partnerskich.',
+    privacy_section_3_title: '3. Gromadzone Dane',
+    privacy_section_3_desc: 'Przestrzegamy zasady minimalizacji danych:',
+    privacy_data_non_personal: 'Dane nieosobowe i analityczne: Typ przeglądarki, system operacyjny, preferencje kraju i zanonimizowane znaczniki czasu.',
+    privacy_data_ip: 'Adresy IP: Szyfrowane jednokierunkowo algorytmem SHA-256 w celu zapobiegania nadużyciom, bez możliwości identyfikacji tożsamości.',
+    privacy_data_voluntary: 'Dane dobrowolne: Imię i adres e-mail przy kontakcie z obsługą lub zapisie na newsletter.',
+    privacy_section_4_title: '4. Pliki Cookie i Technologie Śledzące',
+    privacy_section_4_desc: 'Używamy niezbędnych plików cookie, aby zapamiętać Twój wybrany region i monitorować przekierowania do sklepów.',
+    privacy_section_5_title: '5. Twoje Prawa i Usuwanie Danych (RODO)',
+    privacy_section_5_desc_1: 'Zgodnie z RODO przysługuje Ci pełna kontrola nad Twoimi danymi osobowymi:',
+    privacy_rights_access: 'Prawo do wglądu: Poproś o kopię swoich danych zgromadzonych w naszym systemie.',
+    privacy_rights_erasure: 'Prawo do bycia zapomnianym: Zażądaj trwałego usunięcia swojego adresu e-mail i powiązanych rekordów.',
+    privacy_rights_optout: 'Prawo do sprzeciwu: W każdej chwili możesz zrezygnować z otrzymywania powiadomień.',
+    privacy_section_5_desc_2: 'Wniosek o usunięcie danych możesz złożyć przez endpoint /api/privacy/delete-data lub pisząc na info@refpromos.com.',
+    privacy_section_6_title: '6. Bezpieczeństwo Danych',
+    privacy_section_6_desc: 'Stosujemy rygorystyczne środki bezpieczeństwa: haszowanie z solą adresów IP, bcrypt dla haseł administracyjnych oraz bezpieczne ciasteczka HTTP-Only.',
+    privacy_sec_hashing: 'Solone Haszowanie: Adresy IP nigdy nie są zapisywane w postaci jawnej.',
+    privacy_sec_passwords: 'Szyfrowanie Haseł: Wszystkie hasła personelu są chronione funkcją bcrypt.',
+    privacy_sec_cookies: 'Bezpieczne Ciasteczka: Pliki cookie sesji są chronione atrybutami HTTP-Only i SameSite.',
+    privacy_section_7_title: '7. Kontakt w Sprawach Prywatności',
+    privacy_section_7_desc: 'W przypadku pytań dotyczących ochrony danych prosimy o kontakt pod adresem:',
+
+    // Terms & Conditions
+    terms_eyebrow: 'Regulamin Serwisu',
+    terms_title: 'Regulamin i Warunki Korzystania',
+    terms_last_updated: 'Ostatnia aktualizacja: Sierpień 2026',
+    terms_section_1_title: '1. Akceptacja Warunków',
+    terms_section_1_desc: 'Korzystając z serwisu RefPromos, wyrażasz zgodę na niniejsze Warunki. Jeśli się z nimi nie zgadzasz, prosimy o zaprzestanie korzystania z witryny.',
+    terms_section_2_title: '2. Charakter Promocji i Kodów Rabatowych',
+    terms_section_2_desc: 'RefPromos publikuje kupony rabatowe i promocje partnerów handlowych. Mimo regularnej weryfikacji ofert:',
+    terms_rule_1: 'Ważność kuponów, wysokość zniżek i ceny mogą ulec zmianie według wyłącznego uznania sprzedawcy bez wcześniejszego uprzedzenia.',
+    terms_rule_2: 'Nie gwarantujemy, że każda oferta zostanie w dowolnym momencie zrealizowana przez stronę trzecią.',
+    terms_rule_3: 'Wszystkie zakupy odbywają się bezpośrednio na stronach poszczególnych sprzedawców. RefPromos nie przetwarza płatności.',
+    terms_section_3_title: '3. Własność Intelektualna',
+    terms_section_3_desc: 'Wszystkie oryginalne treści na RefPromos są chronione prawem autorskim. Znaki towarowe sklepów należą do ich prawnych właścicieli.',
+    terms_section_4_title: '4. Ograniczenie Odpowiedzialności',
+    terms_section_4_desc: 'W granicach dozwolonych przez prawo RefPromos nie ponosi odpowiedzialności za szkody wynikające z korzystania z publikowanych ofert.',
+    terms_section_5_title: '5. Informacje Kontaktowe',
+    terms_section_5_desc: 'W przypadku zapytań prawnych dotyczących niniejszego regulaminu prosimy o kontakt pod adresem:',
     footer_affiliate_disclaimer: 'Możemy otrzymać prowizję od zakupów dokonanych za pośrednictwem linków na tej stronie, bez żadnych dodatkowych kosztów dla Ciebie.',
   },
 
@@ -1332,6 +1920,104 @@ export const TRANSLATIONS: Record<Locale, Translations> = {
     footer_nike_codes: 'Códigos descuento Nike',
     footer_amazon_deals: 'Ofertas Amazon',
     footer_sephora_coupons: 'Cupones Sephora',
+    // About Us
+    about_mission_eyebrow: 'Nuestra Misión',
+    about_hero_title: 'Ayudamos a millones de compradores inteligentes a ahorrar en cada compra',
+    about_hero_desc: 'RefPromos fue fundada para eliminar los códigos caducados y ofrecer a los compradores online códigos de descuento 100% verificados y ofertas reales.',
+    metric_brands_sub: 'Principales marcas globales en todo el mundo',
+    metric_codes_sub: 'Probados y actualizados a diario',
+    shopper_savings: 'Ahorro de los Compradores',
+    metric_savings_sub: 'En descuentos verificados',
+    global_regions: 'Regiones Globales',
+    metric_regions_sub: 'US, UK, AU, CA, DE, FR, IT, NL, PL, ES',
+    how_it_works_title: 'Cómo funciona RefPromos para ti',
+    pillar_1_title: '1. Pruebas y verificación manual',
+    pillar_1_desc: 'Nuestro equipo prueba los códigos en el proceso de pago real antes de publicarlos. Si un código no funciona o ha caducado, se retira inmediatamente.',
+    pillar_2_title: '2. 100% Gratis y sin complicaciones',
+    pillar_2_desc: 'Creemos que comprar de forma inteligente no debería exigir suscripciones ni registros complejos. Encuentra, copia y aplica cualquier código en 1 clic.',
+    pillar_3_title: '3. Asociaciones transparentes',
+    pillar_3_desc: 'Cuando compras a través de nuestros enlaces de afiliados, podemos recibir una comisión del comerciante sin ningún coste adicional para ti.',
+    ready_to_save_title: '¿Listo para empezar a ahorrar?',
+    ready_to_save_desc: 'Explora los cupones y ofertas más populares de las mejores marcas ahora mismo.',
+
+    // Blog Detail & Navigation
+    all_shopping_guides: 'Todas las guías de compra',
+    mentioned_promo_codes: 'Códigos promocionales y ofertas mencionados',
+    related_guides: 'Guías relacionadas',
+
+    // Contact Us
+    contact_eyebrow: 'Soporte y consultas',
+    contact_title: 'Nos encantaría saber de ti',
+    contact_desc: '¿Tienes dudas sobre un código promocional, quieres enviar una oferta o explorar una asociación? Envíanos un mensaje.',
+    contact_success_title: '¡Mensaje enviado con éxito!',
+    contact_success_desc: 'Gracias por ponerte en contacto con RefPromos. Nuestro equipo suele responder en un plazo de 24 horas laborales.',
+    send_another: 'Enviar otro mensaje',
+    your_name: 'Tu Nombre *',
+    email_address: 'Correo Electrónico *',
+    subject_label: 'Asunto',
+    general_inquiry: 'Consulta General',
+    report_broken: 'Reportar un cupón caducado o no válido',
+    merchant_partner: 'Asociación con comercios y marcas',
+    press_editorial: 'Consulta de prensa o editorial',
+    message_label: 'Mensaje *',
+    message_placeholder: 'Describe tu pregunta o sugerencia...',
+    sending_label: 'Enviando...',
+    send_message: 'Enviar Mensaje',
+    email_support: 'Buzones de correo oficiales',
+    support_desk: 'Atención al cliente y cupones',
+    general_inquiries: 'Consultas generales e información',
+    response_times: 'Tiempos de respuesta',
+    response_times_desc: 'Nuestro equipo editorial y de verificación opera de lunes a viernes, de 9:00 a 18:00. Las solicitudes se revisan por orden de llegada.',
+    for_merchants: 'Para marcas y comercios asociados',
+    for_merchants_desc: '¿Quieres incluir tu marca en RefPromos o proporcionar códigos de descuento exclusivos para nuestra comunidad? Escribe a',
+
+    // Privacy Policy
+    privacy_eyebrow: 'Legal y Cumplimiento',
+    privacy_title: 'Política de Privacidad y Declaración de Afiliados',
+    privacy_last_updated: 'Última actualización: Agosto 2026',
+    privacy_section_1_title: '1. Introducción y Ámbito',
+    privacy_section_1_desc: 'Bienvenido a RefPromos. Nos comprometemos a salvaguardar tu privacidad y garantizar prácticas de información transparentes en refpromos.com.',
+    privacy_section_2_title: '2. Declaración de Afiliados (Conformidad FTC)',
+    privacy_section_2_desc_1: 'RefPromos es un recurso gratuito financiado mediante asociaciones de afiliados. Cuando realizas una compra a través de nuestros enlaces, podemos recibir una comisión sin coste extra para ti.',
+    privacy_section_2_desc_2: 'Nuestra integridad editorial es prioritaria: las comprobaciones y reseñas de códigos son independientes de las comisiones.',
+    privacy_section_3_title: '3. Datos que recopilamos',
+    privacy_section_3_desc: 'Cumplimos estrictos principios de minimización de datos:',
+    privacy_data_non_personal: 'Datos analíticos no personales: Tipo de navegador, sistema operativo, país preferido y marcas de tiempo anonimizadas.',
+    privacy_data_ip: 'Direcciones IP: Procesadas mediante hash criptográfico SHA-256 para prevenir fraudes sin identificar a los usuarios.',
+    privacy_data_voluntary: 'Datos voluntarios: Tu nombre y correo electrónico al utilizar el formulario de contacto o suscribirte.',
+    privacy_section_4_title: '4. Cookies y Tecnologías de Seguimiento',
+    privacy_section_4_desc: 'Utilizamos cookies esenciales para recordar tu país seleccionado y gestionar las redirecciones de tiendas asociadas.',
+    privacy_section_5_title: '5. Tus Derechos de Privacidad y Borrado de Datos (RGPD)',
+    privacy_section_5_desc_1: 'Conforme al RGPD, mantienes el control total sobre tus datos personales:',
+    privacy_rights_access: 'Derecho de Acceso: Solicita una copia de tus datos personales registrados.',
+    privacy_rights_erasure: 'Derecho al Olvido: Solicita la eliminación definitiva de tu correo y registros.',
+    privacy_rights_optout: 'Derecho de Oposición: Cancela la suscripción a comunicaciones en cualquier momento.',
+    privacy_section_5_desc_2: 'Para solicitar el borrado automatizado de tus datos, visita /api/privacy/delete-data o contacta con info@refpromos.com.',
+    privacy_section_6_title: '6. Seguridad y Almacenamiento de Datos',
+    privacy_section_6_desc: 'Aplicamos sólidas medidas de seguridad: hashing con sal para las IP, encriptación bcrypt para contraseñas de administración y cookies seguras HTTP-Only.',
+    privacy_sec_hashing: 'Hash con Sal: Las direcciones IP nunca se guardan en texto claro en el disco.',
+    privacy_sec_passwords: 'Encriptación de Contraseñas: Bcrypt con alto factor de trabajo para todas las claves de acceso.',
+    privacy_sec_cookies: 'Cookies Seguras: Las cookies de sesión son accesibles únicamente vía HTTP-Only y SameSite.',
+    privacy_section_7_title: '7. Contacto sobre Privacidad',
+    privacy_section_7_desc: 'Para cualquier consulta relacionada con la privacidad, ponte en contacto con nuestro delegado de protección de datos en:',
+
+    // Terms & Conditions
+    terms_eyebrow: 'Términos de Servicio',
+    terms_title: 'Términos y Condiciones de Uso',
+    terms_last_updated: 'Última actualización: Agosto 2026',
+    terms_section_1_title: '1. Aceptación de los Términos',
+    terms_section_1_desc: 'Al acceder o navegar por RefPromos, aceptas cumplir con estos Términos y Condiciones. Si no estás de acuerdo, por favor cesa el uso de nuestros servicios.',
+    terms_section_2_title: '2. Naturaleza de las Ofertas y Códigos de Descuento',
+    terms_section_2_desc: 'RefPromos publica cupones de descuento y promociones de comercios asociados. A pesar de nuestras estrictas comprobaciones:',
+    terms_rule_1: 'La validez de los cupones, el porcentaje de descuento y los precios están sujetos a cambios a entera discreción del vendedor sin previo aviso.',
+    terms_rule_2: 'No garantizamos que todos los descuentos de terceros sean aceptados en todo momento por los comercios.',
+    terms_rule_3: 'Todas las transacciones ocurren directamente en el sitio del vendedor correspondiente. RefPromos no gestiona pagos.',
+    terms_section_3_title: '3. Derechos de Propiedad Intelectual',
+    terms_section_3_desc: 'Todos los contenidos y diseños originales de RefPromos están protegidos por las leyes de derechos de autor. Las marcas de terceros pertenecen a sus propietarios.',
+    terms_section_4_title: '4. Limitación de Responsabilidad',
+    terms_section_4_desc: 'En la máxima medida permitida por la ley, RefPromos no se hace responsable de daños derivados del uso de ofertas promocionales.',
+    terms_section_5_title: '5. Información de Contacto',
+    terms_section_5_desc: 'Para consultas legales relacionadas con estos términos, escribe a:',
     footer_affiliate_disclaimer: 'Podemos recibir una comisión por compras realizadas a través de enlaces en este sitio, sin coste adicional para ti.',
   },
 };
@@ -2015,4 +2701,184 @@ export function getLocalizedStoreDescription(storeSlug: string, fallback: string
     return item[locale];
   }
   return fallback || '';
+}
+
+
+// Localized full body content for seeded blog articles
+const LOCALIZED_BLOG_CONTENT: Record<string, Record<Locale, string>> = {
+  '10-ways-to-save-more-online-shopping-2026': {
+    en: `# 10 Smart Ways to Save Money Online in 2026
+
+Online shopping doesn't have to break your wallet. With a few smart shopping habits, you can routinely save 20% to 50% on every order.
+
+## 1. Always Check for Verified Promo Codes First
+Before clicking the checkout button, take 30 seconds to check RefPromos for active coupons. A simple code like \`SAVE25\` or \`FREESHIP\` can instantly drop your order total.
+
+## 2. Leverage First-Order Mobile App Promos
+Many major retailers like ASOS, Amazon, and Nike offer higher discount rates (15% to 20% off) exclusively on their mobile apps.
+
+## 3. Stack Promo Codes with Clearance Sales
+The greatest savings occur when you apply a promo code on top of an existing clearance or seasonal sale item.
+
+## 4. Join Free Brand Loyalty Programs
+Most stores offer free loyalty programs (e.g., Nike Membership or Sephora Beauty Insider) that provide free standard shipping with zero minimum spend requirements.`,
+    de: `# 10 Clevere Spartipps für Online-Einkäufe im Jahr 2026
+
+Online-Shopping muss das Budget nicht sprengen. Mit ein paar cleveren Einkaufsgewohnheiten können Sie bei fast jeder Bestellung 20 % bis 50 % sparen.
+
+## 1. Immer zuerst nach geprüften Gutscheincodes suchen
+Bevor Sie zur Kasse gehen, nehmen Sie sich 30 Sekunden Zeit und prüfen Sie RefPromos auf aktive Gutscheine. Ein einfacher Code wie \`SAVE25\` oder \`FREESHIP\` senkt die Gesamtsumme sofort.
+
+## 2. Neukunden-Rabatte in mobilen Apps nutzen
+Viele große Händler wie ASOS, Amazon und Nike bieten exklusiv in ihren mobilen Apps höhere Rabattsätze (15 % bis 20 % Rabatt) an.
+
+## 3. Gutscheincodes mit Sale-Angeboten kombinieren
+Die größten Ersparnisse erzielen Sie, wenn Sie einen Gutscheincode auf bereits reduzierte Artikel im Ausverkauf oder Saison-Sale anwenden.
+
+## 4. Kostenlosen Treueprogrammen von Marken beitreten
+Die meisten Shops bieten kostenlose Treueprogramme (z. B. Nike Membership oder Sephora Beauty Insider) an, die kostenlosen Standardversand ohne Mindestbestellwert bieten.`,
+    fr: `# 10 Astuces Malin pour Économiser de l'Argent en Ligne en 2026
+
+Le shopping en ligne ne doit pas ruiner votre portefeuille. Avec quelques bonnes habitudes d'achat, vous pouvez facilement économiser de 20 % à 50 % sur chaque commande.
+
+## 1. Vérifiez toujours les codes promo actifs avant de payer
+Avant de cliquer sur le bouton de paiement, prenez 30 secondes pour vérifier les bons plans sur RefPromos. Un simple code comme \`SAVE25\` ou \`FREESHIP\` peut immédiatement réduire le montant total de votre panier.
+
+## 2. Profitez des remises exclusives sur les applications mobiles
+De nombreux grands détaillants comme ASOS, Amazon et Nike proposent des taux de réduction plus avantageux (15 % à 20 % de réduction) réservés à leurs applications pour smartphones.
+
+## 3. Cumulez les codes promo avec les soldes et déstockages
+Les économies les plus spectaculaires sont réalisées lorsque vous appliquez un code de réduction sur un article déjà remisé en période de soldes ou de fin de série.
+
+## 4. Rejoignez gratuitement les programmes de fidélité des marques
+La majorité des boutiques proposent des programmes membres gratuits (par ex. Nike Membership ou Sephora Beauty Insider) offrant la livraison gratuite sans minimum d'achat.`,
+    it: `# 10 Strategie Intelligenti per Risparmiare Online nel 2026
+
+Lo shopping online non deve prosciugare il tuo conto in banca. Con poche e semplici abitudini, puoi risparmiare regolarmente tra il 20% e il 50% su ogni ordine.
+
+## 1. Controlla sempre i codici sconto verificati prima del checkout
+Prima di procedere al pagamento, dedica 30 secondi a verificare su RefPromos se sono disponibili coupon attivi. Un semplice codice promozionale come \`SAVE25\` o \`FREESHIP\` ridurrà all'istante il totale del tuo ordine.
+
+## 2. Sfrutta le promozioni per il primo ordine sulle app mobili
+Molti grandi brand come ASOS, Amazon e Nike offrono sconti esclusivi e percentuali più alte (dal 15% al 20% in meno) a chi acquista dalle loro app mobili.
+
+## 3. Cumula i codici promozionali con gli sconti di fine stagione
+Il risparmio maggiore si ottiene applicando un codice coupon sopra ad articoli già scontati della sezione outlet o durante i saldi stagionali.
+
+## 4. Iscriviti ai programmi fedeltà gratuiti dei marchi
+La maggior parte dei negozi offre programmi fedeltà a costo zero (come Nike Membership o Sephora Beauty Insider) che garantiscono spedizione standard gratuita senza alcun importo minimo di spesa.`,
+    nl: `# 10 Slimme Manieren om Online Geld te Besparen in 2026
+
+Online winkelen hoeft niet duur te zijn. Met een paar slimme winkelgewoonten kun je standaard 20% tot 50% besparen op elke bestelling.
+
+## 1. Controleer altijd eerst op geverifieerde kortingscodes
+Neem voordat je afrekent 30 seconden de tijd om RefPromos te raadplegen voor actieve kortingscodes. Een eenvoudige code zoals \`SAVE25\` of \`FREESHIP\` verlaagt direct je totaalbedrag.
+
+## 2. Benut app-kortingen voor je eerste bestelling
+Veel grote retailers zoals ASOS, Amazon en Nike bieden exclusieve kortingspercentages (15% tot 20% korting) speciaal voor bestellingen via hun mobiele app.
+
+## 3. Combineer actiecodes met sale en opruiming
+De allerhoogste besparingen behaal je door een kortingscode toe te passen bovenop een product dat al in de opruiming of seizoenssale is afgeprijsd.
+
+## 4. Meld je aan voor gratis loyaliteitsprogramma's
+Veel winkels bieden gratis lidmaatschappen aan (zoals Nike Membership of Sephora Beauty Insider) waarmee je gratis standaardverzending krijgt zonder minimum bestelbedrag.`,
+    pl: `# 10 Sprytnych Sposobów na Oszczędzanie Pieniędzy Online w 2026 Roku
+
+Zakupy przez internet nie muszą drenować Twojego portfela. Dzięki kilku prostym nawykom zakupowym możesz rutynowo oszczędzać od 20% do nawet 50% na każdym zamówieniu.
+
+## 1. Zawsze najpierw sprawdź zweryfikowane kody promocyjne
+Przed kliknięciem przycisku zapłaty poświęć 30 sekund na sprawdzenie aktywnych kodów na RefPromos. Prosty kod rabatowy, taki jak \`SAVE25\` czy \`FREESHIP\`, potrafi natychmiast obniżyć łączną kwotę zamówienia.
+
+## 2. Wykorzystaj promocje na pierwsze zamówienie w aplikacjach mobilnych
+Wielu czołowych sprzedawców, takich jak ASOS, Amazon czy Nike, oferuje wyższe rabaty (od 15% do 20% zniżki) wyłącznie użytkownikom swoich aplikacji na telefon.
+
+## 3. Łącz kody rabatowe z wyprzedażami
+Największe korzyści finansowe osiąga się wtedy, gdy połączysz aktywny kod promocyjny z produktem już przecenionym w ramach sezonowej wyprzedaży lub outletu.
+
+## 4. Dołącz do bezpłatnych programów lojalnościowych marek
+Większość znanych marek oferuje bezpłatne programy klubowe (np. Nike Membership czy Sephora Beauty Insider), które zapewniają darmową standardową dostawę bez minimalnej wartości koszyka.`,
+    es: `# 10 Formas Inteligentes de Ahorrar Dinero al Comprar por Internet en 2026
+
+Comprar online no tiene por qué arruinar tu bolsillo. Con unos pocos hábitos de compra inteligentes, puedes ahorrar habitualmente entre un 20% y un 50% en cada pedido.
+
+## 1. Comprueba siempre los códigos promocionales verificados antes de pagar
+Antes de pulsar el botón de finalizar compra, tómate 30 segundos para revisar los cupones activos en RefPromos. Un código tan sencillo como \`SAVE25\` o \`FREESHIP\` puede reducir de inmediato el total de tu cesta.
+
+## 2. Aprovecha los descuentos por primer pedido en aplicaciones móviles
+Muchas de las principales tiendas, como ASOS, Amazon y Nike, ofrecen mayores descuentos (del 15% al 20% de rebaja) de forma exclusiva a través de sus apps móviles.
+
+## 3. Combina códigos descuento con artículos en liquidación o rebajas
+El mayor ahorro posible se consigue al aplicar un cupón descuento sobre un artículo que ya cuenta con una rebaja previa de temporada o en outlet.
+
+## 4. Únete gratis a los programas de fidelización de las marcas
+La gran mayoría de marcas cuentan con programas para miembros 100% gratuitos (como Nike Membership o Sephora Beauty Insider) que incluyen envío estándar gratuito sin importe mínimo de compra.`,
+  },
+  'best-summer-sales-coupon-stacking-guide': {
+    en: `# Best Summer Sales & Coupon Stacking Strategies
+
+Summer is one of the premier shopping periods of the year. From mid-season fashion markdowns to 4th of July tech doorbusters, here is how you can maximize every dollar.
+
+## Top Retailers with Massive Summer Markdowns:
+- **Nike**: Up to 40% off summer running apparel and lifestyle sneakers.
+- **ASOS**: Clearance discounts up to 70% off seasonal swimwear and dresses.
+- **Best Buy**: Laptops and gaming monitor doorbusters.`,
+    de: `# Die besten Sommer-Sales & Strategien zur Gutschein-Kombination
+
+Der Sommer ist eine der attraktivsten Einkaufszeiten des Jahres. Von Rabatten zur Saisonmitte bis hin zu spektakulären Technik-Angeboten – so holen Sie das Maximum aus jedem Euro heraus.
+
+## Top-Händler mit riesigen Sommer-Rabatten:
+- **Nike**: Bis zu 40 % Rabatt auf Sommer-Laufbekleidung und Lifestyle-Sneaker.
+- **ASOS**: Bis zu 70 % Ausverkaufsrabatt auf saisonale Bademode und Kleider.
+- **Best Buy**: Spitzenangebote für Laptops und Gaming-Monitore.`,
+    fr: `# Les Meilleurs Soldes d’Été & Stratégies pour Cumuler les Codes Promo
+
+L’été est l’une des périodes shopping les plus avantageuses de l’année. Des démarques de mi-saison aux promotions exceptionnelles sur la tech, découvrez comment optimiser chaque euro dépensé.
+
+## Les Meilleurs Marchands avec des Soldes Massifs :
+- **Nike** : Jusqu’à 40 % de réduction sur les tenues de running et les baskets tendance d’été.
+- **ASOS** : Jusqu’à 70 % de remise en déstockage sur les maillots de bain et robes de saison.
+- **Best Buy** : Offres imbattables sur les ordinateurs portables et moniteurs gaming.`,
+    it: `# I Migliori Saldi Estivi & Strategie per Cumulare i Coupon
+
+L'estate è uno dei momenti più propizi dell'anno per fare acquisti vantaggiosi. Dai ribassi di metà stagione alle offerte speciali sull'elettronica, ecco come ottenere il massimo valore da ogni euro.
+
+## I Migliori Negozi con Grandi Saldi Estivi:
+- **Nike**: Fino al 40% di sconto su abbigliamento da corsa e sneaker per l'estate.
+- **ASOS**: Saldi fino al 70% su costumi da bagno e abiti di stagione.
+- **Best Buy**: Occasioni imperdibili su computer portatili e monitor per gaming.`,
+    nl: `# De Beste Zomersales & Strategieën om Kortingscodes te Combineren
+
+De zomer is een van de aantrekkelijkste winkelperiodes van het jaar. Van prijsverlagingen halverwege het seizoen tot flinke tech-aanbiedingen: zo haal je het meeste uit elke euro.
+
+## Topwinkels met Enorme Zomerkortingen:
+- **Nike**: Tot 40% korting op zomerse hardloopkleding en populaire sneakers.
+- **ASOS**: Opruimingskortingen tot 70% op seizoensgebonden badmode en jurken.
+- **Best Buy**: Topdeals voor laptops en gaming monitoren.`,
+    pl: `# Najlepsze Letnie Wyprzedaże i Strategie Łączenia Kuponów
+
+Lato to jeden z najgorętszych okresów zakupowych w roku. Od śródsezonowych obniżek odzieży po wielkie okazje na elektronikę – podpowiadamy, jak wyciągnąć maksimum z każdej wydanej złotówki.
+
+## Najlepsi Sprzedawcy z Potężnymi Letnimi Rabatami:
+- **Nike**: Do 40% zniżki na letnią odzież biegową i sneakersy lifestyle.
+- **ASOS**: Wyprzedaż do 70% na stroje kąpielowe i letnie sukienki.
+- **Best Buy**: Wyjątkowe okazje na laptopy oraz monitory gamingowe.`,
+    es: `# Las Mejores Rebajas de Verano & Estrategias para Combinar Cupones
+
+El verano es uno de los mejores periodos de compras de todo el año. Desde las rebajas de mitad de temporada en moda hasta las mejores gangas en electrónica, aquí te explicamos cómo exprimir al máximo cada euro.
+
+## Principales Tiendas con Grandes Rebajas de Verano:
+- **Nike**: Hasta un 40% de descuento en ropa de running de verano y zapatillas deportivas.
+- **ASOS**: Descuentos de liquidación de hasta el 70% en bañadores, bikinis y vestidos de temporada.
+- **Best Buy**: Grandes chollos en portátiles y monitores para videojuegos.`,
+  },
+};
+
+export function getLocalizedBlogContent(slug: string, fallback: string, locale: Locale): string {
+  if (!slug) return fallback;
+  const normalized = slug.toLowerCase().trim();
+  const entry = LOCALIZED_BLOG_CONTENT[normalized];
+  if (entry && entry[locale]) {
+    return entry[locale];
+  }
+  return fallback;
 }

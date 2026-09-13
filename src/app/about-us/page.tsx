@@ -16,11 +16,11 @@ export const metadata: Metadata = {
 };
 
 export default async function AboutUsPage() {
-  const { t } = await getServerTranslator();
+  const { t, formatRegionLink } = await getServerTranslator();
 
   return (
     <div className="container" style={{ padding: '2rem 1.5rem 5rem 1.5rem' }}>
-      <Breadcrumbs items={[{ name: t('nav_about', 'About Us'), url: '/about-us' }]} />
+      <Breadcrumbs items={[{ name: t('nav_about', 'About Us'), url: formatRegionLink('/about-us') }]} />
 
       {/* Hero */}
       <div style={{ maxWidth: '780px', margin: '0 auto 3.5rem auto', textAlign: 'center' }}>
@@ -40,25 +40,25 @@ export default async function AboutUsPage() {
         <div className="card" style={{ textAlign: 'center', padding: '2rem 1.25rem' }}>
           <div className="about-metric-value" style={{ fontSize: '2.4rem', fontWeight: 900, color: 'var(--primary)', marginBottom: '0.25rem', lineHeight: 1.1 }}>500+</div>
           <div style={{ fontSize: '0.95rem', fontWeight: 800, color: 'var(--text-heading)' }}>{t('stat_top_brands', 'Retail Partners')}</div>
-          <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '0.35rem' }}>Top global brands worldwide</p>
+          <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '0.35rem' }}>{t('metric_brands_sub', 'Top global brands worldwide')}</p>
         </div>
 
         <div className="card" style={{ textAlign: 'center', padding: '2rem 1.25rem' }}>
           <div className="about-metric-value" style={{ fontSize: '2.4rem', fontWeight: 900, color: 'var(--text-heading)', marginBottom: '0.25rem', lineHeight: 1.1 }}>20,000+</div>
           <div style={{ fontSize: '0.95rem', fontWeight: 800, color: 'var(--text-heading)' }}>{t('stat_verified_coupons', 'Verified Codes')}</div>
-          <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '0.35rem' }}>Tested &amp; updated daily</p>
+          <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '0.35rem' }}>{t('metric_codes_sub', 'Tested & updated daily')}</p>
         </div>
 
         <div className="card" style={{ textAlign: 'center', padding: '2rem 1.25rem' }}>
           <div className="about-metric-value" style={{ fontSize: '2.4rem', fontWeight: 900, color: 'var(--primary)', marginBottom: '0.25rem', lineHeight: 1.1 }}>$1.2M+</div>
           <div style={{ fontSize: '0.95rem', fontWeight: 800, color: 'var(--text-heading)' }}>{t('shopper_savings', 'Shopper Savings')}</div>
-          <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '0.35rem' }}>In verified discounts</p>
+          <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '0.35rem' }}>{t('metric_savings_sub', 'In verified discounts')}</p>
         </div>
 
         <div className="card" style={{ textAlign: 'center', padding: '2rem 1.25rem' }}>
-          <div className="about-metric-value" style={{ fontSize: '2.4rem', fontWeight: 900, color: 'var(--text-heading)', marginBottom: '0.25rem', lineHeight: 1.1 }}>8</div>
+          <div className="about-metric-value" style={{ fontSize: '2.4rem', fontWeight: 900, color: 'var(--text-heading)', marginBottom: '0.25rem', lineHeight: 1.1 }}>10</div>
           <div style={{ fontSize: '0.95rem', fontWeight: 800, color: 'var(--text-heading)' }}>{t('global_regions', 'Global Regions')}</div>
-          <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '0.35rem' }}>US, UK, AU, CA, DE, FR, IT, NL</p>
+          <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '0.35rem' }}>{t('metric_regions_sub', 'US, UK, AU, CA, DE, FR, IT, NL, PL, ES')}</p>
         </div>
       </div>
 
@@ -129,10 +129,10 @@ export default async function AboutUsPage() {
           {t('ready_to_save_desc', 'Explore trending coupons and brand deals right now.')}
         </p>
         <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
-          <Link href="/coupons" className="btn btn-primary btn-lg">
+          <Link href={formatRegionLink('/coupons')} className="btn btn-primary btn-lg">
             {t('nav_coupons', 'Explore Coupons')} <ArrowRight size={16} />
           </Link>
-          <Link href="/stores" className="btn btn-secondary btn-lg" style={{ background: 'rgba(255, 255, 255, 0.1)', color: '#ffffff', borderColor: 'rgba(255, 255, 255, 0.2)' }}>
+          <Link href={formatRegionLink('/stores')} className="btn btn-secondary btn-lg" style={{ background: 'rgba(255, 255, 255, 0.1)', color: '#ffffff', borderColor: 'rgba(255, 255, 255, 0.2)' }}>
             {t('nav_stores', 'Browse Stores')}
           </Link>
         </div>

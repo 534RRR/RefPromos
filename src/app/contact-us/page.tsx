@@ -6,7 +6,7 @@ import { Mail, ShieldCheck, CheckCircle2, Send, Clock } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 
 export default function ContactUsPage() {
-  const { t } = useLanguage();
+  const { t, formatRegionLink } = useLanguage();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -45,7 +45,7 @@ export default function ContactUsPage() {
 
   return (
     <div className="container" style={{ padding: '2rem 1.5rem 5rem 1.5rem' }}>
-      <Breadcrumbs items={[{ name: t('nav_contact', 'Contact Us'), url: '/contact-us' }]} />
+      <Breadcrumbs items={[{ name: t('nav_contact', 'Contact Us'), url: formatRegionLink('/contact-us') }]} />
 
       {/* Header */}
       <div style={{ maxWidth: '680px', marginBottom: '3rem' }}>
@@ -238,7 +238,7 @@ export default function ContactUsPage() {
               <Clock size={18} color="var(--primary)" /> {t('response_times', 'Response Times')}
             </h3>
             <p style={{ color: 'var(--text-muted)', fontSize: '0.88rem', lineHeight: '1.6', margin: 0 }}>
-              Our editorial and verification desk operates Monday through Friday, 9:00 AM – 6:00 PM EST. Inquiries are reviewed in the order received.
+              {t('response_times_desc', 'Our editorial and verification desk operates Monday through Friday, 9:00 AM – 6:00 PM EST. Inquiries are reviewed in the order received.')}
             </p>
           </div>
 
@@ -247,7 +247,10 @@ export default function ContactUsPage() {
               <ShieldCheck size={18} color="var(--primary)" /> {t('for_merchants', 'For Merchant Partners')}
             </h3>
             <p style={{ color: 'var(--text-main)', fontSize: '0.88rem', lineHeight: '1.6', margin: 0 }}>
-              Want your brand listed on RefPromos or wish to provide exclusive discount codes for our community? Contact <a href="mailto:contact@refpromos.com" style={{ fontWeight: 800, textDecoration: 'underline', color: 'var(--primary)' }}>contact@refpromos.com</a>.
+              {t('for_merchants_desc', 'Want your brand listed on RefPromos or wish to provide exclusive discount codes for our community? Contact')}{' '}
+              <a href="mailto:contact@refpromos.com" style={{ fontWeight: 800, textDecoration: 'underline', color: 'var(--primary)' }}>
+                contact@refpromos.com
+              </a>.
             </p>
           </div>
 

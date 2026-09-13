@@ -38,10 +38,41 @@ export async function getServerLocale(): Promise<Locale> {
   return 'en';
 }
 
+export async function getServerRegion() {
+  try {
+    const headersList = await headers();
+    const regionSlugHeader = headersList.get('x-region-slug');
+    if (regionSlugHeader) {
+      return getRegionBySlug(regionSlugHeader);
+    }
+  } catch {
+    // If headers() is called outside request context
+  }
+
+  try {
+    const cookieStore = await cookies();
+    const cookieCountry = cookieStore.get('gmp_country')?.value;
+    if (cookieCountry) {
+      return getRegionByCode(cookieCountry);
+    }
+  } catch {
+    // If cookies() is called outside request context
+  }
+
+  return getRegionBySlug('us');
+}
+
 export async function getServerTranslator() {
   const locale = await getServerLocale();
+  const region = await getServerRegion();
   return {
     locale,
+    region,
     t: (key: string, fallback?: string) => getTranslation(locale, key, fallback),
+    formatRegionLink: (path: string) => {
+      const cleanPath = path.startsWith('/') ? path : `/${path}`;
+      if (region.slug === 'us') return cleanPath;
+      return `/${region.slug}${cleanPath}`;
+    },
   };
 }
