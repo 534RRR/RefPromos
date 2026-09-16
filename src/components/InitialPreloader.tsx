@@ -3,28 +3,40 @@
 import { useEffect, useState } from 'react';
 
 export default function InitialPreloader() {
-  const [visible, setVisible] = useState(true);
+  const [phase, setPhase] = useState<'visible' | 'fading' | 'gone'>('visible');
 
   useEffect(() => {
-    const hidePreloader = () => setVisible(false);
-    const previousOverflow = document.body.style.overflow;
+    // Start the fade-out, then fully remove after animation
+    const dismiss = () => {
+      setPhase((prev) => (prev === 'visible' ? 'fading' : prev));
+    };
 
-    document.body.style.overflow = 'hidden';
-
+    // If the page has already finished loading, dismiss immediately
     if (document.readyState === 'complete') {
-      hidePreloader();
-      document.body.style.overflow = previousOverflow;
-      return undefined;
+      dismiss();
+    } else {
+      // Listen for the load event
+      window.addEventListener('load', dismiss, { once: true });
     }
 
-    window.addEventListener('load', hidePreloader, { once: true });
+    // Safety timeout: always dismiss after 4 seconds no matter what
+    const safetyTimer = setTimeout(dismiss, 4000);
+
     return () => {
-      window.removeEventListener('load', hidePreloader);
-      document.body.style.overflow = previousOverflow;
+      window.removeEventListener('load', dismiss);
+      clearTimeout(safetyTimer);
     };
   }, []);
 
-  if (!visible) return null;
+  // Once fading starts, remove from DOM after the animation completes
+  useEffect(() => {
+    if (phase === 'fading') {
+      const removeTimer = setTimeout(() => setPhase('gone'), 400);
+      return () => clearTimeout(removeTimer);
+    }
+  }, [phase]);
+
+  if (phase === 'gone') return null;
 
   return (
     <div
@@ -40,12 +52,12 @@ export default function InitialPreloader() {
         background: '#050807',
         color: '#ffffff',
         fontFamily: 'Arial, sans-serif',
+        opacity: phase === 'fading' ? 0 : 1,
+        transition: 'opacity 0.35s ease-out',
+        pointerEvents: phase === 'fading' ? 'none' : 'auto',
       }}
     >
       <style>{`
-        // @keyframes refpromos-initial-spin {
-        //   to { transform: rotate(360deg); }
-        // }
         @keyframes refpromos-initial-progress {
           0% { transform: translateX(-100%); }
           100% { transform: translateX(300%); }
@@ -96,18 +108,6 @@ export default function InitialPreloader() {
             }}
           />
         </div>
-
-        {/* <div
-          aria-hidden="true"
-          style={{
-            width: '20px',
-            height: '20px',
-            border: '2px solid rgba(255, 255, 255, .2)',
-            borderTopColor: '#00e575',
-            borderRadius: '50%',
-            animation: 'refpromos-initial-spin .8s linear infinite',
-          }}
-        /> */}
       </div>
     </div>
   );
