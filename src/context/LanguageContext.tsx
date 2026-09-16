@@ -19,6 +19,7 @@ interface LanguageContextType {
   changeRegion: (codeOrSlug: string) => void;
   regions: Region[];
   hasRegionInUrl: boolean;
+  regionSelected: boolean;
   formatRegionLink: (path: string) => string;
 }
 
@@ -61,12 +62,25 @@ export function LanguageProvider({
     return initialHasRegionInUrl ?? false;
   });
 
+  // regionSelected: true when the user has explicitly picked a region (URL slug or cookie)
+  const [regionSelected, setRegionSelected] = useState<boolean>(() => {
+    if (initialHasRegionInUrl) return true;
+    // Check cookie on initial render (SSR-safe: will be false on server, corrected in useEffect)
+    return false;
+  });
+
   // Sync region state from URL on mount and when pathname changes
   useEffect(() => {
     const fromPath = detectRegionFromPath();
+
+    // Check if user has a region cookie (means they chose a region before)
+    const hasCookie = typeof window !== 'undefined' &&
+      document.cookie.split('; ').some((c) => c.startsWith('gmp_country='));
+
     if (fromPath) {
       setCurrentRegion(fromPath);
       setHasRegionInUrl(true);
+      setRegionSelected(true);
       // Synchronize cookie and localStorage
       const secure = window.location.protocol === 'https:' ? '; Secure' : '';
       document.cookie = `gmp_country=${fromPath.code}; path=/; max-age=31536000; SameSite=Lax${secure}`;
@@ -74,10 +88,24 @@ export function LanguageProvider({
     } else if (initialRegion && initialHasRegionInUrl) {
       setCurrentRegion(initialRegion);
       setHasRegionInUrl(true);
+      setRegionSelected(true);
+    } else if (hasCookie) {
+      // User has a cookie but no slug in URL — they selected a region before
+      const cookieVal = document.cookie
+        .split('; ')
+        .find((c) => c.startsWith('gmp_country='))
+        ?.split('=')[1];
+      if (cookieVal) {
+        const region = getRegionByCode(cookieVal);
+        setCurrentRegion(region);
+        setRegionSelected(true);
+      }
+      setHasRegionInUrl(false);
     } else {
-      // When on root '/' or any URL without a region slug, keep clean English (DEFAULT_REGION)
+      // No region in URL, no cookie — first-time visitor, no region selected
       setCurrentRegion(DEFAULT_REGION);
       setHasRegionInUrl(false);
+      setRegionSelected(false);
     }
   }, [pathname, detectRegionFromPath, initialRegion, initialHasRegionInUrl]);
 
@@ -90,9 +118,11 @@ export function LanguageProvider({
   }, [currentRegion]);
 
   const currentLang = useMemo<Locale>(() => {
+    // If no region selected, always use English
+    if (!regionSelected) return 'en';
     const lang = currentRegion.lang as Locale;
     return ['en', 'de', 'fr', 'it', 'nl', 'pl', 'es'].includes(lang) ? lang : 'en';
-  }, [currentRegion]);
+  }, [currentRegion, regionSelected]);
 
   const t = useCallback(
     (key: string, fallback?: string) => {
@@ -110,9 +140,8 @@ export function LanguageProvider({
             r.slug.toLowerCase() === codeOrSlug.toLowerCase()
         ) || DEFAULT_REGION;
 
-      setCurrentRegion(targetRegion);
-
-      // Save cookie and local storage
+      // Save cookie and local storage immediately, then reload to new URL
+      // Translation happens AFTER reload via AutoTranslator component
       if (typeof window !== 'undefined') {
         const secure = window.location.protocol === 'https:' ? '; Secure' : '';
         document.cookie = `gmp_country=${targetRegion.code}; path=/; max-age=31536000; SameSite=Lax${secure}`;
@@ -132,26 +161,7 @@ export function LanguageProvider({
           remainingSegments.length > 0 ? '/' + remainingSegments.join('/') : ''
         }`;
 
-        // Trigger Google Translate cookie for dynamic auto-translation
-        const lang = targetRegion.lang;
-        const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-        if (lang !== 'en') {
-          document.cookie = `googtrans=/en/${lang}; path=/;`;
-          if (!isLocal) {
-            document.cookie = `googtrans=/en/${lang}; path=/; domain=${window.location.hostname};`;
-            const parts = window.location.hostname.split('.');
-            if (parts.length > 2) {
-              document.cookie = `googtrans=/en/${lang}; path=/; domain=.${parts.slice(-2).join('.')};`;
-            }
-          }
-        } else {
-          document.cookie = 'googtrans=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;';
-          if (!isLocal) {
-            document.cookie = `googtrans=; path=/; domain=${window.location.hostname}; expires=Thu, 01 Jan 1970 00:00:00 UTC;`;
-          }
-        }
-
-        // Hard reload to new region URL — ensures full page refresh with correct language/content
+        // Hard reload to new region URL — AutoTranslator will handle translation on the new page
         window.location.href = newPath;
       }
     },
@@ -178,6 +188,7 @@ export function LanguageProvider({
         changeRegion,
         regions: REGIONS,
         hasRegionInUrl,
+        regionSelected,
         formatRegionLink,
       }}
     >

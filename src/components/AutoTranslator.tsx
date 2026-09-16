@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import { usePathname } from 'next/navigation';
 import { useLanguage } from '@/context/LanguageContext';
 
 declare global {
@@ -36,11 +37,13 @@ function setGoogleTransCookie(lang: string) {
 }
 
 export default function AutoTranslator() {
+  const pathname = usePathname();
   const { currentLang } = useLanguage();
   const scriptInjected = useRef(false);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
+    if (pathname?.startsWith('/cms_admin_login') || pathname?.startsWith('/admin')) return;
 
     // Set cookie immediately before script loads
     setGoogleTransCookie(currentLang);

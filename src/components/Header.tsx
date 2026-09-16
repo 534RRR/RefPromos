@@ -2,13 +2,15 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Search, Menu, X, ChevronDown, Check, Globe } from 'lucide-react';
 import GlobalSearchModal from './GlobalSearchModal';
 import ThemeToggle from './ThemeToggle';
 import { useLanguage } from '@/context/LanguageContext';
 
 export default function Header() {
-  const { currentRegion, changeRegion, t, regions, formatRegionLink } = useLanguage();
+  const pathname = usePathname();
+  const { currentRegion, changeRegion, t, regions, formatRegionLink, hasRegionInUrl, regionSelected } = useLanguage();
   const [showCountryMenu, setShowCountryMenu] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchModalOpen, setSearchModalOpen] = useState(false);
@@ -43,6 +45,9 @@ export default function Header() {
     // We'll let changeRegion set the cookie first, then navigate
   };
 
+  if (pathname === '/cms_admin_login/login') {
+    return null;
+  }
 
   return (
     <>
@@ -57,30 +62,18 @@ export default function Header() {
             gap: '1.25rem',
           }}
         >
-          {/* Brand Logo — always navigates to root '/' and strips any region slug */}
+          {/* Brand Logo — navigates to region home (preserves current region) */}
           <Link
-            href="/"
+            href={hasRegionInUrl ? `/${currentRegion.slug}` : '/'}
             onClick={(e) => {
               e.preventDefault();
-              // Comprehensive cleanup of Google Translate cookies
-              const host = window.location.hostname;
-              const domains = ['', host, `.${host}`];
-              const paths = ['/', '/en'];
-              domains.forEach((d) => {
-                paths.forEach((p) => {
-                  const domainAttr = d ? `; domain=${d}` : '';
-                  const pathAttr = p ? `; path=${p}` : '; path=/';
-                  document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC${pathAttr}${domainAttr}`;
-                });
-              });
-              // Reset stored region to US / English
-              localStorage.setItem('gmp_country', 'US');
-              document.cookie = 'gmp_country=US; path=/; max-age=31536000; SameSite=Lax;';
+              // Determine the target path based on current region
+              const targetPath = hasRegionInUrl ? `/${currentRegion.slug}` : '/';
 
-              if (window.location.pathname === '/' && !window.location.search && !window.location.hash) {
+              if (window.location.pathname === targetPath && !window.location.search && !window.location.hash) {
                 window.location.reload();
               } else {
-                window.location.href = '/';
+                window.location.href = targetPath;
               }
             }}
             style={{
@@ -202,7 +195,7 @@ export default function Header() {
                 aria-expanded={showCountryMenu}
               >
                 <Globe size={15} color="var(--primary)" />
-                <span>{currentRegion.name}</span>
+                <span>{regionSelected ? currentRegion.name : 'Select a Region'}</span>
                 <ChevronDown size={14} color="var(--slate-400)" />
               </button>
 

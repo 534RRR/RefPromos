@@ -15,14 +15,22 @@ import {
 } from '@/lib/translations';
 import { Clock, User, Calendar, Tag, ArrowLeft, BookOpen } from 'lucide-react';
 
-function renderMarkdownParagraph(text: string) {
-  const parts = text.split(/(\*\*[^*]+\*\*|`[^`]+`)/g);
+function renderMarkdownParagraph(text: string, formatRegionLink?: (path: string) => string) {
+  // Split on: **bold**, *italic*, `code`, and [link text](url)
+  const parts = text.split(/(\*\*[^*]+\*\*|\*[^*]+\*|`[^`]+`|\[[^\]]+\]\([^)]+\))/g);
   return parts.map((part, i) => {
     if (part.startsWith('**') && part.endsWith('**')) {
       return (
         <strong key={i} style={{ color: 'var(--text-heading)', fontWeight: 800 }}>
           {part.slice(2, -2)}
         </strong>
+      );
+    }
+    if (part.startsWith('*') && part.endsWith('*') && !part.startsWith('**')) {
+      return (
+        <em key={i} style={{ fontStyle: 'italic' }}>
+          {part.slice(1, -1)}
+        </em>
       );
     }
     if (part.startsWith('`') && part.endsWith('`')) {
@@ -41,6 +49,29 @@ function renderMarkdownParagraph(text: string) {
         >
           {part.slice(1, -1)}
         </code>
+      );
+    }
+    // Markdown link: [text](url)
+    const linkMatch = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+    if (linkMatch) {
+      const linkText = linkMatch[1];
+      const linkUrl = linkMatch[2];
+      const isInternal = linkUrl.startsWith('/');
+      const href = isInternal && formatRegionLink ? formatRegionLink(linkUrl) : linkUrl;
+      return (
+        <a
+          key={i}
+          href={href}
+          style={{
+            color: 'var(--primary)',
+            fontWeight: 700,
+            textDecoration: 'underline',
+            textUnderlineOffset: '2px',
+          }}
+          {...(!isInternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+        >
+          {linkText}
+        </a>
       );
     }
     return part;
@@ -260,13 +291,31 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
                   </h3>
                 );
               }
+              if (trimmed.startsWith('> ')) {
+                return (
+                  <blockquote
+                    key={idx}
+                    style={{
+                      borderLeft: '4px solid var(--primary)',
+                      padding: '0.85rem 1.25rem',
+                      margin: '1.4rem 0',
+                      background: 'var(--bg-subtle)',
+                      borderRadius: '0 var(--radius-md) var(--radius-md) 0',
+                      fontStyle: 'italic',
+                      color: 'var(--text-heading)',
+                    }}
+                  >
+                    {renderMarkdownParagraph(trimmed.replace(/^>\s*/, ''), formatRegionLink)}
+                  </blockquote>
+                );
+              }
               if (trimmed.startsWith('- ')) {
                 const listItems = trimmed.split('\n').filter(Boolean);
                 return (
                   <ul key={idx} style={{ paddingLeft: '1.4rem', marginBottom: '1.4rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                     {listItems.map((li, liIdx) => (
                       <li key={liIdx} style={{ lineHeight: '1.7' }}>
-                        {renderMarkdownParagraph(li.replace(/^-\s*/, ''))}
+                        {renderMarkdownParagraph(li.replace(/^-\s*/, ''), formatRegionLink)}
                       </li>
                     ))}
                   </ul>
@@ -274,7 +323,7 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
               }
               return (
                 <p key={idx} style={{ marginBottom: '1.4rem' }}>
-                  {renderMarkdownParagraph(paragraph)}
+                  {renderMarkdownParagraph(paragraph, formatRegionLink)}
                 </p>
               );
             })}

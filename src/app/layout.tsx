@@ -6,6 +6,7 @@ import Footer from '@/components/Footer';
 import CodeModal from '@/components/CodeModal';
 import AnalyticsScripts from '@/components/AnalyticsScripts';
 import InitialPreloader from '@/components/InitialPreloader';
+import RegionSelector from '@/components/RegionSelector';
 import AutoTranslator from '@/components/AutoTranslator';
 import { LanguageProvider } from '@/context/LanguageContext';
 import { getRegionByCode, getRegionBySlug, DEFAULT_REGION, Region } from '@/lib/regions';
@@ -83,6 +84,7 @@ export default async function RootLayout({
       <body suppressHydrationWarning>
         <LanguageProvider initialRegion={initialRegion} initialHasRegionInUrl={hasRegionInUrl}>
           <InitialPreloader />
+          <RegionSelector />
           <AnalyticsScripts />
           <AutoTranslator />
           <Header />

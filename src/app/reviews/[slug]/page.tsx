@@ -15,6 +15,67 @@ import {
 } from '@/lib/translations';
 import { Star, Check, X, ShieldCheck, ExternalLink, Tag } from 'lucide-react';
 
+function renderMarkdownParagraph(text: string, formatRegionLink?: (path: string) => string) {
+  const parts = text.split(/(\*\*[^*]+\*\*|\*[^*]+\*|`[^`]+`|\[[^\]]+\]\([^)]+\))/g);
+  return parts.map((part, i) => {
+    if (part.startsWith('**') && part.endsWith('**')) {
+      return (
+        <strong key={i} style={{ color: 'var(--text-heading)', fontWeight: 800 }}>
+          {part.slice(2, -2)}
+        </strong>
+      );
+    }
+    if (part.startsWith('*') && part.endsWith('*') && !part.startsWith('**')) {
+      return (
+        <em key={i} style={{ fontStyle: 'italic' }}>
+          {part.slice(1, -1)}
+        </em>
+      );
+    }
+    if (part.startsWith('`') && part.endsWith('`')) {
+      return (
+        <code
+          key={i}
+          style={{
+            background: 'var(--bg-subtle)',
+            padding: '0.15rem 0.45rem',
+            borderRadius: '4px',
+            border: '1px solid var(--border)',
+            fontSize: '0.9em',
+            color: 'var(--primary)',
+            fontWeight: 700,
+          }}
+        >
+          {part.slice(1, -1)}
+        </code>
+      );
+    }
+    const linkMatch = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+    if (linkMatch) {
+      const linkText = linkMatch[1];
+      const linkUrl = linkMatch[2];
+      const isInternal = linkUrl.startsWith('/');
+      const href = isInternal && formatRegionLink ? formatRegionLink(linkUrl) : linkUrl;
+      return (
+        <a
+          key={i}
+          href={href}
+          style={{
+            color: 'var(--primary)',
+            fontWeight: 700,
+            textDecoration: 'underline',
+            textUnderlineOffset: '2px',
+          }}
+          {...(!isInternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+        >
+          {linkText}
+        </a>
+      );
+    }
+    return part;
+  });
+}
+
 interface ReviewPageProps {
   params: Promise<{ slug: string }>;
 }
@@ -55,7 +116,7 @@ export async function generateMetadata(props: ReviewPageProps): Promise<Metadata
 }
 
 export default async function StoreReviewDetailPage(props: ReviewPageProps) {
-  const { locale, t } = await getServerTranslator();
+  const { locale, t, formatRegionLink } = await getServerTranslator();
   const params = await Promise.resolve(props.params);
   const review = await prisma.review.findUnique({
     where: { slug: params.slug },
@@ -250,11 +311,51 @@ export default async function StoreReviewDetailPage(props: ReviewPageProps) {
 
           {/* Detailed Content */}
           <div style={{ fontSize: '1.02rem', lineHeight: '1.8', color: 'var(--text-main)', marginBottom: '2.5rem' }}>
-            {review.detailedContent.split('\n\n').map((para, i) => (
-              <p key={i} style={{ marginBottom: '1.35rem' }}>
-                {para}
-              </p>
-            ))}
+            {review.detailedContent.split('\n\n').map((para, i) => {
+              const trimmed = para.trim();
+              if (trimmed.startsWith('### ') || trimmed.startsWith('## ') || trimmed.startsWith('# ')) {
+                return (
+                  <h3 key={i} style={{ fontSize: '1.35rem', fontWeight: 900, marginTop: '2rem', marginBottom: '0.75rem', color: 'var(--text-heading)', letterSpacing: '-0.02em' }}>
+                    {trimmed.replace(/^#+\s*/, '')}
+                  </h3>
+                );
+              }
+              if (trimmed.startsWith('> ')) {
+                return (
+                  <blockquote
+                    key={i}
+                    style={{
+                      borderLeft: '4px solid var(--primary)',
+                      padding: '0.85rem 1.25rem',
+                      margin: '1.4rem 0',
+                      background: 'var(--bg-subtle)',
+                      borderRadius: '0 var(--radius-md) var(--radius-md) 0',
+                      fontStyle: 'italic',
+                      color: 'var(--text-heading)',
+                    }}
+                  >
+                    {renderMarkdownParagraph(trimmed.replace(/^>\s*/, ''), formatRegionLink)}
+                  </blockquote>
+                );
+              }
+              if (trimmed.startsWith('- ')) {
+                const listItems = trimmed.split('\n').filter(Boolean);
+                return (
+                  <ul key={i} style={{ paddingLeft: '1.4rem', marginBottom: '1.4rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                    {listItems.map((li, liIdx) => (
+                      <li key={liIdx} style={{ lineHeight: '1.7' }}>
+                        {renderMarkdownParagraph(li.replace(/^-\s*/, ''), formatRegionLink)}
+                      </li>
+                    ))}
+                  </ul>
+                );
+              }
+              return (
+                <p key={i} style={{ marginBottom: '1.35rem' }}>
+                  {renderMarkdownParagraph(para, formatRegionLink)}
+                </p>
+              );
+            })}
           </div>
 
           {/* Verdict */}

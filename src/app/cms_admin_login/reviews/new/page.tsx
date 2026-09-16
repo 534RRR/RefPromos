@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { ArrowLeft, Save, Plus, Trash2, Check, X, Star, Sparkles, Code, Eye } from 'lucide-react';
+import { ArrowLeft, Save, Plus, Trash2, Check, X, Star, Sparkles, Code, Eye, Link2, ExternalLink } from 'lucide-react';
 
 interface StoreOption {
   id: string;
@@ -81,6 +81,23 @@ export default function AdminNewReviewPage() {
     const next = [...cons];
     next[index] = val;
     setCons(next);
+  };
+
+  const handleInsertSnippet = (prefix: string, suffix: string = '') => {
+    setDetailedContent((prev) => prev + `\n${prefix} ` + suffix);
+  };
+
+  const handleInsertLink = (isInternal = true) => {
+    const url = window.prompt(
+      isInternal
+        ? 'Enter internal URL (e.g. /stores/nike, /coupons, /blogs/guide-slug):'
+        : 'Enter external website URL (e.g. https://store.com):',
+      isInternal ? '/stores/' : 'https://'
+    );
+    if (!url) return;
+    const text = window.prompt('Enter link anchor text (e.g. Nike Promo Codes):', isInternal ? 'View Store Deals' : 'Visit Store');
+    if (!text) return;
+    setDetailedContent((prev) => prev + (prev.endsWith('\n') ? '' : '\n') + `[${text}](${url})`);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -364,12 +381,84 @@ export default function AdminNewReviewPage() {
               </button>
             </div>
 
+            {!previewMode && (
+              <>
+                <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap', background: 'var(--bg-subtle)', padding: '0.5rem', borderRadius: 'var(--radius-sm)' }}>
+                  <button type="button" onClick={() => handleInsertSnippet('## Section Heading')} className="btn btn-secondary btn-sm" style={{ padding: '0.2rem 0.5rem', fontSize: '0.75rem' }}>H2</button>
+                  <button type="button" onClick={() => handleInsertSnippet('### Sub Heading')} className="btn btn-secondary btn-sm" style={{ padding: '0.2rem 0.5rem', fontSize: '0.75rem' }}>H3</button>
+                  <button type="button" onClick={() => handleInsertSnippet('**Bold text**')} className="btn btn-secondary btn-sm" style={{ padding: '0.2rem 0.5rem', fontSize: '0.75rem' }}>Bold</button>
+                  <button type="button" onClick={() => handleInsertSnippet('*Italic text*')} className="btn btn-secondary btn-sm" style={{ padding: '0.2rem 0.5rem', fontSize: '0.75rem' }}>Italic</button>
+                  <button type="button" onClick={() => handleInsertSnippet('- Bullet item')} className="btn btn-secondary btn-sm" style={{ padding: '0.2rem 0.5rem', fontSize: '0.75rem' }}>List</button>
+                  <button type="button" onClick={() => handleInsertSnippet('> Highlighted tip or note')} className="btn btn-secondary btn-sm" style={{ padding: '0.2rem 0.5rem', fontSize: '0.75rem' }}>Quote</button>
+                  <button type="button" onClick={() => handleInsertLink(true)} className="btn btn-secondary btn-sm" style={{ padding: '0.2rem 0.5rem', fontSize: '0.75rem', display: 'inline-flex', alignItems: 'center', gap: '0.25rem' }}>
+                    <Link2 size={12} /> Internal Link
+                  </button>
+                  <button type="button" onClick={() => handleInsertLink(false)} className="btn btn-secondary btn-sm" style={{ padding: '0.2rem 0.5rem', fontSize: '0.75rem', display: 'inline-flex', alignItems: 'center', gap: '0.25rem' }}>
+                    <ExternalLink size={12} /> External Link
+                  </button>
+                </div>
+                <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: '0.35rem', marginTop: '-0.35rem', lineHeight: '1.4' }}>
+                  <span>💡 <strong>Internal Links:</strong> Use paths like <code>[Nike Promo Codes](/stores/nike)</code> or <code>[Browse Deals](/coupons)</code>. The site automatically prefixes the visitor&apos;s region (e.g. <code>/uk/stores/nike</code>).</span>
+                </div>
+              </>
+            )}
+
             {previewMode ? (
               <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: 'var(--radius-md)', padding: '1.5rem', minHeight: '280px', fontSize: '1rem', lineHeight: '1.7', color: 'var(--text-main)' }}>
                 {detailedContent.split('\n\n').map((p, idx) => {
-                  if (p.startsWith('### ')) return <h3 key={idx} style={{ fontSize: '1.2rem', fontWeight: 800, margin: '1rem 0 0.5rem' }}>{p.replace('### ', '')}</h3>;
-                  if (p.startsWith('## ')) return <h2 key={idx} style={{ fontSize: '1.4rem', fontWeight: 800, margin: '1.25rem 0 0.5rem' }}>{p.replace('## ', '')}</h2>;
-                  return <p key={idx} style={{ marginBottom: '1rem' }}>{p}</p>;
+                  const trimmed = p.trim();
+                  if (trimmed.startsWith('### ')) return <h3 key={idx} style={{ fontSize: '1.2rem', fontWeight: 800, margin: '1rem 0 0.5rem', color: 'var(--text-heading)' }}>{trimmed.replace('### ', '')}</h3>;
+                  if (trimmed.startsWith('## ')) return <h2 key={idx} style={{ fontSize: '1.4rem', fontWeight: 800, margin: '1.25rem 0 0.5rem', color: 'var(--text-heading)' }}>{trimmed.replace('## ', '')}</h2>;
+                  if (trimmed.startsWith('> ')) {
+                    return (
+                      <blockquote key={idx} style={{ borderLeft: '3px solid var(--primary)', padding: '0.5rem 1rem', margin: '0.75rem 0', background: 'var(--bg-subtle)', fontStyle: 'italic', borderRadius: '4px' }}>
+                        {trimmed.replace(/^>\s*/, '')}
+                      </blockquote>
+                    );
+                  }
+                  if (trimmed.startsWith('- ')) {
+                    const items = trimmed.split('\n').filter(Boolean);
+                    return (
+                      <ul key={idx} style={{ paddingLeft: '1.4rem', margin: '0.5rem 0' }}>
+                        {items.map((li, i) => (
+                          <li key={i} style={{ marginBottom: '0.25rem' }}>
+                            {li.replace(/^-\s*/, '')}
+                          </li>
+                        ))}
+                      </ul>
+                    );
+                  }
+                  // Inline formatting
+                  const parts = trimmed.split(/(\*\*[^*]+\*\*|\*[^*]+\*|`[^`]+`|\[[^\]]+\]\([^)]+\))/g);
+                  return (
+                    <p key={idx} style={{ marginBottom: '1rem' }}>
+                      {parts.map((part, i) => {
+                        if (part.startsWith('**') && part.endsWith('**')) return <strong key={i}>{part.slice(2, -2)}</strong>;
+                        if (part.startsWith('*') && part.endsWith('*') && !part.startsWith('**')) return <em key={i}>{part.slice(1, -1)}</em>;
+                        if (part.startsWith('`') && part.endsWith('`')) return <code key={i} style={{ background: 'var(--bg-subtle)', padding: '0.1rem 0.35rem', borderRadius: '3px', fontSize: '0.88em', color: 'var(--primary)' }}>{part.slice(1, -1)}</code>;
+                        const linkMatch = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+                        if (linkMatch) {
+                          const isInternal = linkMatch[2].startsWith('/');
+                          return (
+                            <a
+                              key={i}
+                              href={linkMatch[2]}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              style={{ color: 'var(--primary)', fontWeight: 700, textDecoration: 'underline' }}
+                              title={isInternal ? `Internal Link: ${linkMatch[2]}` : `External Link: ${linkMatch[2]}`}
+                            >
+                              {linkMatch[1]}
+                              <span style={{ fontSize: '0.72em', marginLeft: '0.2rem', opacity: 0.75 }}>
+                                {isInternal ? '(internal)' : '↗'}
+                              </span>
+                            </a>
+                          );
+                        }
+                        return part;
+                      })}
+                    </p>
+                  );
                 })}
               </div>
             ) : (

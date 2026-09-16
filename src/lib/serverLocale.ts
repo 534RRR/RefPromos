@@ -65,14 +65,47 @@ export async function getServerRegion() {
 export async function getServerTranslator() {
   const locale = await getServerLocale();
   const region = await getServerRegion();
+
+  let regionSlug: string | null = null;
+  try {
+    const headersList = await headers();
+    regionSlug = headersList.get('x-region-slug');
+  } catch {
+    // If called outside request context
+  }
+
   return {
     locale,
     region,
+    hasRegionInUrl: Boolean(regionSlug),
     t: (key: string, fallback?: string) => getTranslation(locale, key, fallback),
     formatRegionLink: (path: string) => {
+      if (
+        !path ||
+        path.startsWith('http://') ||
+        path.startsWith('https://') ||
+        path.startsWith('//') ||
+        path.startsWith('#') ||
+        path.startsWith('mailto:')
+      ) {
+        return path;
+      }
       const cleanPath = path.startsWith('/') ? path : `/${path}`;
-      if (region.slug === 'us') return cleanPath;
-      return `/${region.slug}${cleanPath}`;
+      if (regionSlug) {
+        return `/${regionSlug}${cleanPath === '/' ? '' : cleanPath}`;
+      }
+      return cleanPath;
     },
   };
 }
+
+/**
+ * Returns the current region's country code (e.g. 'US', 'UK', 'DE')
+ * from the request headers or cookie. Used for server-side Prisma queries
+ * that need to filter by CouponCountry / DealCountry relations.
+ */
+export async function getServerRegionCode(): Promise<string> {
+  const region = await getServerRegion();
+  return region.code;
+}
+

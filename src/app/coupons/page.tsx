@@ -6,7 +6,7 @@ import Breadcrumbs from '@/components/Breadcrumbs';
 import CouponCard from '@/components/CouponCard';
 import { Search, Tag, X } from 'lucide-react';
 import { getCanonicalUrl } from '@/lib/seo';
-import { getServerTranslator } from '@/lib/serverLocale';
+import { getServerTranslator, getServerRegionCode } from '@/lib/serverLocale';
 import { getLocalizedCategoryName } from '@/lib/translations';
 
 export const metadata: Metadata = {
@@ -30,12 +30,19 @@ interface CouponsPageProps {
 
 export default async function CouponsHubPage(props: CouponsPageProps) {
   const { locale, t } = await getServerTranslator();
+  const regionCode = await getServerRegionCode();
   const searchParams = await props.searchParams;
   const searchQuery = searchParams.search || '';
   const selectedCategory = searchParams.category || '';
   const selectedStore = searchParams.store || '';
   const selectedType = searchParams.type || 'all';
   const selectedSort = searchParams.sort || 'popular';
+
+  // Look up the Country record for region filtering
+  const currentCountry = await prisma.country.findUnique({
+    where: { code: regionCode },
+    select: { id: true },
+  });
 
   const [categories, stores] = await Promise.all([
     prisma.category.findMany({
@@ -56,13 +63,33 @@ export default async function CouponsHubPage(props: CouponsPageProps) {
     status: 'active',
   };
 
-  if (searchQuery) {
+  // Region filter: show coupons tagged for this region OR coupons with no region tags (global)
+  if (currentCountry) {
     whereCondition.OR = [
+      { couponCountries: { some: { countryId: currentCountry.id } } },
+      { couponCountries: { none: {} } },
+    ];
+  }
+
+  if (searchQuery) {
+    // If we already have an OR for region, wrap everything in AND
+    const searchCondition = [
       { title: { contains: searchQuery } },
       { couponCode: { contains: searchQuery } },
       { discountValue: { contains: searchQuery } },
       { store: { name: { contains: searchQuery } } },
     ];
+    if (whereCondition.OR) {
+      // Combine region OR with search OR using AND
+      const regionOr = whereCondition.OR;
+      delete whereCondition.OR;
+      whereCondition.AND = [
+        { OR: regionOr },
+        { OR: searchCondition },
+      ];
+    } else {
+      whereCondition.OR = searchCondition;
+    }
   }
 
   if (selectedStore) {
