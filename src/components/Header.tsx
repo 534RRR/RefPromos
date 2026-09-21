@@ -195,7 +195,7 @@ export default function Header() {
                 aria-expanded={showCountryMenu}
               >
                 <Globe size={15} color="var(--primary)" />
-                <span>{regionSelected ? `${currentRegion.flag} ${currentRegion.name}` : 'Select Region'}</span>
+                <span>{hasRegionInUrl ? `${currentRegion.flag} ${currentRegion.name}` : 'Select Region'}</span>
                 <ChevronDown size={14} color="var(--slate-400)" />
               </button>
 
