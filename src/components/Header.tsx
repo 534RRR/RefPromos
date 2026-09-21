@@ -227,7 +227,7 @@ export default function Header() {
                     {t('select_region')}
                   </div>
                   {regions.map((c) => {
-                    const isSelected = currentRegion.code === c.code;
+                    const isSelected = hasRegionInUrl && currentRegion.code === c.code;
                     return (
                       <button
                         key={c.code}
