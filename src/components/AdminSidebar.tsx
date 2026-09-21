@@ -236,9 +236,16 @@ export default function AdminSidebar({ session }: AdminSidebarProps) {
           </div>
         </div>
 
-        <form action="/api/admin/auth/logout" method="POST">
-          <button
-            type="submit"
+        <button
+            type="button"
+            onClick={async () => {
+              try {
+                await fetch('/api/admin/auth/logout', { method: 'POST' });
+              } catch (_) {
+                // ignore network errors — still redirect
+              }
+              window.location.href = '/cms_admin_login/login';
+            }}
             style={{
               background: 'rgba(239, 68, 68, 0.12)',
               border: '1px solid rgba(239, 68, 68, 0.25)',
@@ -255,7 +262,6 @@ export default function AdminSidebar({ session }: AdminSidebarProps) {
           >
             <LogOut size={16} />
           </button>
-        </form>
       </div>
     </aside>
   );
