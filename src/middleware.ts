@@ -148,13 +148,7 @@ export async function middleware(request: NextRequest) {
   const segments = pathname.split('/').filter(Boolean);
   const firstSegment = segments[0]?.toLowerCase();
 
-  // Case A: Root path '/' or no region prefix -> serve as-is (no auto-redirect on first visit)
-  // The URL slug only changes when the user explicitly selects a region from the dropdown.
-  if (pathname === '/' || segments.length === 0) {
-    return NextResponse.next();
-  }
-
-  // Case B: First segment is a valid region slug (e.g. /us, /uk, /au, /ca, /de, /fr, /it, /nl)
+  // Case A: First segment is a valid region slug (e.g. /us, /uk, /au, /ca, /de, /fr, /it, /nl, /pl, /es)
   if (firstSegment && REGION_SLUG_MAP[firstSegment]) {
     const regionInfo = REGION_SLUG_MAP[firstSegment];
     const remainingSegments = segments.slice(1);
@@ -201,9 +195,19 @@ export async function middleware(request: NextRequest) {
     return response;
   }
 
-  // Case C: Path doesn't start with a region slug (e.g. /coupons, /stores/nike)
-  // Serve as-is — region slug in URL is opt-in only (user must select region from dropdown)
-  return NextResponse.next();
+  // Case B: Root path '/' or any path without a region slug (e.g. /coupons, /stores/nike)
+  // Strictly enforce English ('en') and no region selected by default.
+  // Strip any upstream proxy x-country/x-region-slug headers that may leak server datacenter location.
+  const requestHeaders = new Headers(request.headers);
+  requestHeaders.set('x-locale', 'en');
+  requestHeaders.delete('x-region-slug');
+  requestHeaders.delete('x-country');
+
+  return NextResponse.next({
+    request: {
+      headers: requestHeaders,
+    },
+  });
 }
 
 export const config = {

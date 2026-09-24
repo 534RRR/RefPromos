@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { headers, cookies } from 'next/headers';
+import { headers } from 'next/headers';
 import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -9,7 +9,7 @@ import InitialPreloader from '@/components/InitialPreloader';
 import RegionSelector from '@/components/RegionSelector';
 import AutoTranslator from '@/components/AutoTranslator';
 import { LanguageProvider } from '@/context/LanguageContext';
-import { getRegionByCode, getRegionBySlug, DEFAULT_REGION, Region } from '@/lib/regions';
+import { getRegionBySlug, DEFAULT_REGION, Region } from '@/lib/regions';
 
 export const metadata: Metadata = {
   title: 'RefPromos — Verified Coupons, Promo Codes & Shopping Deals',
@@ -46,11 +46,8 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const headerList = await headers();
-  const cookieStore = await cookies();
 
   const regionSlugHeader = headerList.get('x-region-slug');
-  const countryHeader = headerList.get('x-country');
-  const cookieCountry = cookieStore.get('gmp_country')?.value;
 
   let initialRegion: Region = DEFAULT_REGION;
   let hasRegionInUrl = false;
@@ -58,14 +55,12 @@ export default async function RootLayout({
   if (regionSlugHeader) {
     initialRegion = getRegionBySlug(regionSlugHeader);
     hasRegionInUrl = true;
-  } else if (countryHeader) {
-    initialRegion = getRegionByCode(countryHeader);
-  } else if (cookieCountry) {
-    initialRegion = getRegionByCode(cookieCountry);
   }
 
+  const currentLang = hasRegionInUrl ? initialRegion.lang : 'en';
+
   return (
-    <html lang="en" data-lang={initialRegion.lang} data-region={initialRegion.code} suppressHydrationWarning>
+    <html lang={currentLang} data-lang={currentLang} data-region={hasRegionInUrl ? initialRegion.code : 'GLOBAL'} suppressHydrationWarning>
       <head>
         <meta name="google-site-verification" content="JQYT4mwfKlvkLfCcB13-QDTEl_dX0LJLLEA3UXEJEYw" />
         <script

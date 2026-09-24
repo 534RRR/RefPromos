@@ -226,6 +226,31 @@ export default function Header() {
                   >
                     {t('select_region')}
                   </div>
+                  {hasRegionInUrl && (
+                    <button
+                      onClick={() => handleSelectCountry('all')}
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        width: '100%',
+                        padding: '0.45rem 0.65rem',
+                        background: 'transparent',
+                        border: 'none',
+                        borderRadius: 'var(--radius-sm)',
+                        cursor: 'pointer',
+                        textAlign: 'left',
+                        fontWeight: 500,
+                        fontSize: '0.82rem',
+                        color: 'var(--slate-500)',
+                        borderBottom: '1px solid var(--border)',
+                        marginBottom: '0.25rem',
+                        transition: 'background 0.15s ease',
+                      }}
+                    >
+                      <span>🌐 All Regions (Default)</span>
+                    </button>
+                  )}
                   {regions.map((c) => {
                     const isSelected = hasRegionInUrl && currentRegion.code === c.code;
                     return (
@@ -249,7 +274,7 @@ export default function Header() {
                           transition: 'background 0.15s ease',
                         }}
                       >
-                        <span>{c.name}</span>
+                        <span>{c.flag} {c.name}</span>
                         {isSelected && <Check size={14} color="var(--primary)" />}
                       </button>
                     );

@@ -11,6 +11,27 @@ declare global {
   }
 }
 
+function clearGoogleTransCookies() {
+  if (typeof window === 'undefined') return;
+  const hostname = window.location.hostname;
+  const domains = ['', hostname, `.${hostname}`];
+  const parts = hostname.split('.');
+  if (parts.length > 2) {
+    domains.push(`.${parts.slice(-2).join('.')}`);
+    domains.push(parts.slice(-2).join('.'));
+  }
+
+  const paths = ['/', ''];
+
+  for (const d of domains) {
+    for (const p of paths) {
+      const domainAttr = d ? `; domain=${d}` : '';
+      const pathAttr = p ? `; path=${p}` : '';
+      document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC${domainAttr}${pathAttr};`;
+    }
+  }
+}
+
 function setGoogleTransCookie(lang: string) {
   if (typeof window === 'undefined') return;
   const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
@@ -25,14 +46,7 @@ function setGoogleTransCookie(lang: string) {
       }
     }
   } else {
-    document.cookie = 'googtrans=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;';
-    if (!isLocal) {
-      document.cookie = `googtrans=; path=/; domain=${window.location.hostname}; expires=Thu, 01 Jan 1970 00:00:00 UTC;`;
-      const parts = window.location.hostname.split('.');
-      if (parts.length > 2) {
-        document.cookie = `googtrans=; path=/; domain=.${parts.slice(-2).join('.')}; expires=Thu, 01 Jan 1970 00:00:00 UTC;`;
-      }
-    }
+    clearGoogleTransCookies();
   }
 }
 
@@ -84,13 +98,23 @@ export default function AutoTranslator() {
 
     setGoogleTransCookie(currentLang);
 
-    // Poll for the combo box to ensure language switch triggers
+    if (currentLang === 'en') {
+      clearGoogleTransCookies();
+      const selectEl = document.querySelector<HTMLSelectElement>('.goog-te-combo');
+      if (selectEl && selectEl.value !== '') {
+        selectEl.value = '';
+        selectEl.dispatchEvent(new Event('change'));
+      }
+      return;
+    }
+
+    // Poll for the combo box to ensure language switch triggers for non-English regions
     let attempts = 0;
     const interval = setInterval(() => {
       attempts++;
       const selectEl = document.querySelector<HTMLSelectElement>('.goog-te-combo');
       if (selectEl) {
-        const targetValue = currentLang === 'en' ? '' : currentLang;
+        const targetValue = currentLang;
         if (selectEl.value !== targetValue) {
           selectEl.value = targetValue;
           selectEl.dispatchEvent(new Event('change'));
